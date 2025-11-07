@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
-import { formatMonth, getMonthName, parseMonth } from '../../utils/taxCalculations';
+import { formatMonth } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
+import MonthNavigation from '../../components/MonthNavigation';
 
 export default function ExpensesMonth() {
   const navigate = useNavigate();
@@ -30,23 +31,6 @@ export default function ExpensesMonth() {
     return grouped;
   }, [monthExpenses]);
 
-  // Navigation functions
-  const goToPreviousMonth = () => {
-    if (!month) return;
-    const currentDate = parseMonth(month);
-    const previousMonth = new Date(currentDate);
-    previousMonth.setMonth(previousMonth.getMonth() - 1);
-    navigate(`/expenses/${formatMonth(previousMonth)}`);
-  };
-
-  const goToNextMonth = () => {
-    if (!month) return;
-    const currentDate = parseMonth(month);
-    const nextMonth = new Date(currentDate);
-    nextMonth.setMonth(nextMonth.getMonth() + 1);
-    navigate(`/expenses/${formatMonth(nextMonth)}`);
-  };
-
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
   };
@@ -57,54 +41,35 @@ export default function ExpensesMonth() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header with Month Navigation */}
-      <header className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => navigate('/')}
-            className="p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={goToPreviousMonth}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <h1 className="text-lg font-bold text-gray-900 min-w-[200px] text-center">
-              {getMonthName(month)}
-            </h1>
-
-            <button
-              onClick={goToNextMonth}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          <button
-            onClick={() => navigate('/expenses/new')}
-            className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
-        </div>
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
+        <button
+          onClick={() => navigate('/')}
+          className="p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h1 className="text-xl font-bold text-gray-900 flex-1">Expenses</h1>
+        <button
+          onClick={() => navigate('/expenses/new')}
+          className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+        </button>
       </header>
 
-      <div className="px-4 py-6 max-w-md mx-auto space-y-6">
+      <div className="px-4 max-w-md mx-auto">
+        {/* Month Navigation */}
+        <MonthNavigation
+          currentMonth={month}
+          onMonthChange={(newMonth) => navigate(`/expenses/${newMonth}`)}
+        />
+
+        <div className="space-y-6 pb-6">
         {/* Summary Card */}
         <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
           <h2 className="text-lg font-semibold text-gray-900">Summary</h2>
@@ -185,6 +150,7 @@ export default function ExpensesMonth() {
               ))}
             </div>
           )}
+        </div>
         </div>
       </div>
     </div>

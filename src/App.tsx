@@ -81,11 +81,11 @@ function App() {
         <Route path="/" element={<Layout><Dashboard /></Layout>} />
         <Route path="/expenses" element={<Navigate to={`/expenses/${getCurrentMonth()}`} replace />} />
         <Route path="/expenses/new" element={<NewExpense />} />
-        <Route path="/expenses/:month" element={<ExpensesMonth />} />
+        <Route path="/expenses/:month" element={<Layout><ExpensesMonth /></Layout>} />
         <Route path="/taxes/:month?" element={<Layout><Taxes /></Layout>} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/reservations/new" element={<NewReservation />} />
-        <Route path="/reservations/:month" element={<ReservationsMonth />} />
+        <Route path="/reservations/new" element={<Layout><NewReservation /></Layout>} />
+        <Route path="/reservations/:month" element={<Layout><ReservationsMonth /></Layout>} />
       </Routes>
     </>
   );

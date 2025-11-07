@@ -11,6 +11,7 @@ import {
   formatReservationsForIRS,
 } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
+import MonthNavigation from '../../components/MonthNavigation';
 
 export default function Taxes() {
   const navigate = useNavigate();
@@ -122,7 +123,7 @@ export default function Taxes() {
           <h1 className="text-xl font-bold text-gray-900">Taxes</h1>
         </header>
 
-        <div className="px-4 py-6 max-w-md mx-auto">
+        <div className="px-4 max-w-md mx-auto">
           <div className="text-center py-12">
             <p className="text-gray-500">No reservations or expenses yet. Add some to see tax calculations.</p>
           </div>
@@ -146,26 +147,14 @@ export default function Taxes() {
         <h1 className="text-xl font-bold text-gray-900">Taxes</h1>
       </header>
 
-      <div className="px-4 py-6 max-w-md mx-auto space-y-6">
-        {/* Month Selector */}
-        <div>
-          <label htmlFor="month" className="block text-sm font-medium text-gray-700 mb-2">
-            Select Month
-          </label>
-          <select
-            id="month"
-            value={selectedMonth}
-            onChange={(e) => setSelectedMonth(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            {availableMonths.map((month) => (
-              <option key={month} value={month}>
-                {getMonthName(month)}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className="px-4 max-w-md mx-auto">
+        {/* Month Navigation */}
+        <MonthNavigation
+          currentMonth={selectedMonth}
+          onMonthChange={(newMonth) => navigate(`/taxes/${newMonth}`)}
+        />
 
+        <div className="space-y-6 pb-6">
         {selectedMonthData && (
           <>
             {/* Tax Calculation Breakdown */}
@@ -326,6 +315,7 @@ export default function Taxes() {
             </div>
           </>
         )}
+        </div>
       </div>
     </div>
   );
