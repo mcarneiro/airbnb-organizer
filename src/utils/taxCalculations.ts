@@ -127,3 +127,25 @@ export function formatReservationsForIRS(reservations: Reservation[]): string {
     })
     .join('\n');
 }
+
+/**
+ * Get the most recent unpaid month for tax notification
+ * Logic: Start from previous month, go back in time until finding an unpaid month
+ * Only check months that have data (reservations or expenses)
+ */
+export function getMostRecentUnpaidMonth(
+  availableMonths: string[], // Sorted most recent first
+  paidMonths: string[]
+): string | null {
+  const now = new Date();
+  const currentMonth = formatMonth(now);
+
+  // Create a set for faster lookup
+  const paidSet = new Set(paidMonths);
+
+  // Filter out current month and future months, then find first unpaid
+  const pastMonths = availableMonths.filter(month => month < currentMonth);
+
+  // Find the first (most recent) unpaid month
+  return pastMonths.find(month => !paidSet.has(month)) || null;
+}

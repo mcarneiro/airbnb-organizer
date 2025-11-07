@@ -5,6 +5,8 @@ import { googleSheetsService } from '../services/GoogleSheetsService';
 import { setReservations } from '../store/reservationsSlice';
 import { setExpenses } from '../store/expensesSlice';
 import { setSettings } from '../store/settingsSlice';
+import { setPaidMonths } from '../store/taxesSlice';
+import { getAllMonths, groupReservationsByMonth, groupExpensesByMonth, calculateMonthlyTax } from '../utils/taxCalculations';
 
 /**
  * Helper hook for debounced auto-save
@@ -13,7 +15,7 @@ function useDebouncedAutoSave(
   data: any,
   saveCallback: () => Promise<void>,
   isSignedIn: boolean,
-  sheetId: string,
+  sheetId: string | null,
   isLoadingData: React.MutableRefObject<boolean>
 ) {
   useEffect(() => {
@@ -38,6 +40,7 @@ export function useDataSync() {
   const reservations = useAppSelector(state => state.reservations.items);
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
+  const paidMonths = useAppSelector(state => state.taxes.paidMonths);
 
   // Track if we're currently loading data to prevent auto-save during load
   const isLoadingData = useRef(false);
@@ -46,7 +49,7 @@ export function useDataSync() {
    * Handle API errors, especially token expiration
    */
   const handleApiError = useCallback((error: any) => {
-    if (error.code === 'TOKEN_EXPIRED') {
+    if (error?.code === 'TOKEN_EXPIRED') {
       console.error('Token expired, signing out user');
       signOut('expired');
     }
@@ -81,6 +84,10 @@ export function useDataSync() {
       // Load expenses
       const loadedExpenses = await googleSheetsService.readExpenses(sheetId);
       dispatch(setExpenses(loadedExpenses));
+
+      // Load paid tax months
+      const loadedPaidMonths = await googleSheetsService.readPaidTaxMonths(sheetId);
+      dispatch(setPaidMonths(loadedPaidMonths));
 
       console.log('Data loaded from Google Sheets');
     } catch (error) {
@@ -135,22 +142,82 @@ export function useDataSync() {
     }
   }, [isSignedIn, sheetId, settings, handleApiError]);
 
+  /**
+   * Save tax data to Google Sheets
+   */
+  const saveTaxData = useCallback(async () => {
+    if (!isSignedIn || !sheetId) return;
+
+    try {
+      // Get all months with data
+      const allMonths = getAllMonths(reservations, expenses);
+
+      // Group data by month
+      const reservationsByMonth = groupReservationsByMonth(reservations);
+      const expensesByMonth = groupExpensesByMonth(expenses);
+
+      // Calculate tax data for all months
+      const taxData = allMonths.map(month => {
+        const monthReservations = reservationsByMonth.get(month) || [];
+        const monthExpenses = expensesByMonth.get(month) || [];
+        const isPaid = paidMonths.includes(month);
+
+        const monthlyTax = calculateMonthlyTax(
+          month,
+          monthReservations,
+          monthExpenses,
+          settings.dependents,
+          isPaid
+        );
+
+        return {
+          month: monthlyTax.month,
+          income: monthlyTax.totalIncome,
+          deductions: monthlyTax.totalDeductions,
+          taxRate: monthlyTax.taxRate,
+          taxOwed: monthlyTax.taxOwed,
+          profit: monthlyTax.profit,
+          isPaid: monthlyTax.isPaid,
+        };
+      });
+
+      await googleSheetsService.writeTaxData(sheetId, taxData);
+      console.log('Tax data saved to Google Sheets');
+    } catch (error) {
+      handleApiError(error);
+    }
+  }, [isSignedIn, sheetId, reservations, expenses, settings.dependents, paidMonths, handleApiError]);
+
   // Load data on mount (when signed in, sheet ID, and access token are available)
   useEffect(() => {
     if (isSignedIn && sheetId && accessToken) {
       loadData();
     }
-  }, [isSignedIn, sheetId, accessToken, loadData]); // Include all dependencies
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSignedIn, sheetId, accessToken]); // Only run when these change, not loadData
 
   // Auto-save data when it changes (with debouncing)
   useDebouncedAutoSave(reservations, saveReservations, isSignedIn, sheetId, isLoadingData);
   useDebouncedAutoSave(expenses, saveExpenses, isSignedIn, sheetId, isLoadingData);
   useDebouncedAutoSave(settings, saveSettings, isSignedIn, sheetId, isLoadingData);
 
+  // Auto-save tax data when paidMonths change
+  useDebouncedAutoSave(paidMonths, saveTaxData, isSignedIn, sheetId, isLoadingData);
+
+  // Also save tax data when reservations, expenses, or dependents change (since tax calculations depend on those)
+  // We concatenate the arrays into a single dependency to detect any changes
+  const taxDependencies = [
+    ...reservations.map(r => r.id),
+    ...expenses.map(e => e.id),
+    settings.dependents,
+  ];
+  useDebouncedAutoSave(taxDependencies, saveTaxData, isSignedIn, sheetId, isLoadingData);
+
   return {
     loadData,
     saveReservations,
     saveExpenses,
     saveSettings,
+    saveTaxData,
   };
 }

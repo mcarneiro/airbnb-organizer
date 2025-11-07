@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
-import { formatMonth } from '../../utils/taxCalculations';
+import { formatMonth, getAllMonths, getMostRecentUnpaidMonth, getMonthName } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 import { calculateYoYAccumulatedProfit, getYearLabels } from '../../utils/yoyCalculations';
 import YearOverYearChart from '../../components/YearOverYearChart';
@@ -11,6 +11,7 @@ export default function Dashboard() {
   const reservations = useAppSelector(state => state.reservations.items);
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
+  const paidMonths = useAppSelector(state => state.taxes.paidMonths);
 
   // Calculate current month and next 3 months data
   const monthsData = useMemo(() => {
@@ -48,7 +49,16 @@ export default function Dashboard() {
   const currentMonth = monthsData[0];
   const nextMonths = monthsData.slice(1);
 
-  const hasPendingTaxes = true; // TODO: Calculate from tax data
+  // Find the most recent unpaid month for tax notification
+  const availableMonths = useMemo(
+    () => getAllMonths(reservations, expenses),
+    [reservations, expenses]
+  );
+
+  const unpaidMonth = useMemo(
+    () => getMostRecentUnpaidMonth(availableMonths, paidMonths),
+    [availableMonths, paidMonths]
+  );
 
   // Calculate Year-over-Year data
   const yoyData = useMemo(() => {
@@ -81,12 +91,15 @@ export default function Dashboard() {
 
       <div className="px-4 py-6 space-y-6 max-w-md mx-auto">
         {/* Tax Notification Bar */}
-        {hasPendingTaxes && (
-          <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+        {unpaidMonth && (
+          <button
+            onClick={() => navigate(`/taxes/${unpaidMonth}`)}
+            className="w-full bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg hover:bg-yellow-200 transition-colors text-left"
+          >
             <p className="text-sm text-yellow-800 font-medium">
-              Notification for the taxes ready to be paid
+              Don't forget to pay your taxes for {getMonthName(unpaidMonth).split(' ')[0]}
             </p>
-          </div>
+          </button>
         )}
 
         {/* Current Month Card - Clickable */}

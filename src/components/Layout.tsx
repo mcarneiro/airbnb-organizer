@@ -5,6 +5,14 @@ interface LayoutProps {
   children: ReactNode;
 }
 
+// Helper to get current month in YYYY-MM format
+function getCurrentMonth() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  return `${year}-${month}`;
+}
+
 export default function Layout({ children }: LayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -48,9 +56,9 @@ export default function Layout({ children }: LayoutProps) {
 
           {/* Taxes */}
           <button
-            onClick={() => navigate('/taxes')}
+            onClick={() => navigate(`/taxes/${getCurrentMonth()}`)}
             className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors ${
-              isActive('/taxes')
+              location.pathname.startsWith('/taxes')
                 ? 'text-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
             }`}

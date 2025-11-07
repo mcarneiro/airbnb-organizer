@@ -7,7 +7,7 @@ interface GoogleAuthContextType {
   accessToken: string | null;
   error: string | null;
   signIn: () => void;
-  signOut: () => void;
+  signOut: (reason?: 'expired') => void;
   persistAuth: boolean;
   setPersistAuth: (persist: boolean) => void;
   sessionExpired: boolean;

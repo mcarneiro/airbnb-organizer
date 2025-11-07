@@ -82,7 +82,7 @@ function App() {
         <Route path="/expenses" element={<Navigate to={`/expenses/${getCurrentMonth()}`} replace />} />
         <Route path="/expenses/new" element={<NewExpense />} />
         <Route path="/expenses/:month" element={<ExpensesMonth />} />
-        <Route path="/taxes" element={<Layout><Taxes /></Layout>} />
+        <Route path="/taxes/:month?" element={<Layout><Taxes /></Layout>} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/reservations/new" element={<NewReservation />} />
         <Route path="/reservations/:month" element={<ReservationsMonth />} />

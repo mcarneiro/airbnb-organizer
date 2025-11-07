@@ -1,4 +1,4 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from 'recharts';
+import { AreaChart, Area, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { YearOverYearData } from '../utils/yoyCalculations';
 import { formatCurrency } from '../utils/currency';
 

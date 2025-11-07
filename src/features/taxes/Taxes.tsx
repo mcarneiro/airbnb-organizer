@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
+import { useState, useMemo, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { markMonthAsPaid, markMonthAsUnpaid } from '../../store/taxesSlice';
 import {
   getAllMonths,
   groupReservationsByMonth,
@@ -13,9 +14,12 @@ import { formatCurrency } from '../../utils/currency';
 
 export default function Taxes() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { month: monthFromUrl } = useParams<{ month?: string }>();
   const reservations = useAppSelector(state => state.reservations.items);
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
+  const paidMonths = useAppSelector(state => state.taxes.paidMonths);
 
   // Get all available months
   const availableMonths = useMemo(
@@ -23,9 +27,23 @@ export default function Taxes() {
     [reservations, expenses]
   );
 
-  const [selectedMonth, setSelectedMonth] = useState<string>(availableMonths[0] || '');
-  const [paidMonths, setPaidMonths] = useState<Set<string>>(new Set());
+  // Initialize selected month from URL param or default to most recent
+  const initialMonth = useMemo(() => {
+    if (monthFromUrl && availableMonths.includes(monthFromUrl)) {
+      return monthFromUrl;
+    }
+    return availableMonths[0] || '';
+  }, [monthFromUrl, availableMonths]);
+
+  const [selectedMonth, setSelectedMonth] = useState<string>(initialMonth);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  // Update selected month when URL param changes
+  useEffect(() => {
+    if (monthFromUrl && availableMonths.includes(monthFromUrl)) {
+      setSelectedMonth(monthFromUrl);
+    }
+  }, [monthFromUrl, availableMonths]);
 
   // Group data by month
   const reservationsByMonth = useMemo(
@@ -43,7 +61,7 @@ export default function Taxes() {
 
     const monthReservations = reservationsByMonth.get(selectedMonth) || [];
     const monthExpenses = expensesByMonth.get(selectedMonth) || [];
-    const isPaid = paidMonths.has(selectedMonth);
+    const isPaid = paidMonths.includes(selectedMonth);
 
     return calculateMonthlyTax(
       selectedMonth,
@@ -59,7 +77,7 @@ export default function Taxes() {
     return availableMonths.map((month) => {
       const monthReservations = reservationsByMonth.get(month) || [];
       const monthExpenses = expensesByMonth.get(month) || [];
-      const isPaid = paidMonths.has(month);
+      const isPaid = paidMonths.includes(month);
 
       return calculateMonthlyTax(
         month,
@@ -79,15 +97,13 @@ export default function Taxes() {
 
   const handleMarkAsPaid = () => {
     if (selectedMonth) {
-      setPaidMonths(new Set([...paidMonths, selectedMonth]));
+      dispatch(markMonthAsPaid(selectedMonth));
     }
   };
 
   const handleMarkAsUnpaid = () => {
     if (selectedMonth) {
-      const newPaidMonths = new Set(paidMonths);
-      newPaidMonths.delete(selectedMonth);
-      setPaidMonths(newPaidMonths);
+      dispatch(markMonthAsUnpaid(selectedMonth));
     }
   };
 

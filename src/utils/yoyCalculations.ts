@@ -1,5 +1,5 @@
 import { Reservation, Expense } from '../types';
-import { formatMonth, groupReservationsByMonth, groupExpensesByMonth, calculateMonthlyTax } from './taxCalculations';
+import { groupReservationsByMonth, groupExpensesByMonth, calculateMonthlyTax } from './taxCalculations';
 
 export interface YearMonthData {
   month: number; // 1-12 (January = 1)

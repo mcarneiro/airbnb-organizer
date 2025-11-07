@@ -306,6 +306,72 @@ export class GoogleSheetsService {
   }
 
   /**
+   * Read paid tax months from sheet
+   */
+  async readPaidTaxMonths(spreadsheetId: string): Promise<string[]> {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:G`;
+    const data = await this.apiRequest(url);
+
+    const rows = data.values || [];
+    const paidMonths: string[] = [];
+
+    rows.forEach((row: any[]) => {
+      const month = row[0]; // date column (YYYY-MM format)
+      const isPaid = row[6]; // is_paid column
+
+      if (month && (isPaid === 'TRUE' || isPaid === true || isPaid === '1')) {
+        paidMonths.push(month);
+      }
+    });
+
+    return paidMonths;
+  }
+
+  /**
+   * Write tax data to sheet
+   */
+  async writeTaxData(
+    spreadsheetId: string,
+    taxData: Array<{
+      month: string;
+      income: number;
+      deductions: number;
+      taxRate: number;
+      taxOwed: number;
+      profit: number;
+      isPaid: boolean;
+    }>
+  ): Promise<void> {
+    const values = taxData.map((t) => [
+      t.month, // date (YYYY-MM format)
+      t.income,
+      t.deductions,
+      t.taxRate,
+      t.taxOwed,
+      t.profit,
+      t.isPaid ? 'TRUE' : 'FALSE',
+    ]);
+
+    // Clear existing data first
+    const clearUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:G:clear`;
+    await this.apiRequest(clearUrl, {
+      method: 'POST',
+      body: JSON.stringify({}),
+    });
+
+    // Write new data
+    if (values.length > 0) {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2?valueInputOption=RAW`;
+      await this.apiRequest(url, {
+        method: 'PUT',
+        body: JSON.stringify({
+          values,
+        }),
+      });
+    }
+  }
+
+  /**
    * Extract spreadsheet ID from URL
    */
   static extractSpreadsheetId(url: string): string | null {
