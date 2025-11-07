@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
-import { formatMonth, groupReservationsByMonth } from '../../utils/taxCalculations';
+import { formatMonth } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 
 export default function Dashboard() {
