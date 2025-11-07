@@ -3,10 +3,14 @@ import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
 import { formatMonth } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
+import { calculateYoYAccumulatedProfit, getYearLabels } from '../../utils/yoyCalculations';
+import YearOverYearChart from '../../components/YearOverYearChart';
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const reservations = useAppSelector(state => state.reservations.items);
+  const expenses = useAppSelector(state => state.expenses.items);
+  const settings = useAppSelector(state => state.settings.settings);
 
   // Calculate current month and next 3 months data
   const monthsData = useMemo(() => {
@@ -45,6 +49,15 @@ export default function Dashboard() {
   const nextMonths = monthsData.slice(1);
 
   const hasPendingTaxes = true; // TODO: Calculate from tax data
+
+  // Calculate Year-over-Year data
+  const yoyData = useMemo(() => {
+    return calculateYoYAccumulatedProfit(reservations, expenses, settings.dependents);
+  }, [reservations, expenses, settings.dependents]);
+
+  const { currentYear, previousYear } = useMemo(() => {
+    return getYearLabels(reservations, expenses);
+  }, [reservations, expenses]);
 
   const handleMonthClick = (monthKey: string) => {
     navigate(`/reservations/${monthKey}`);
@@ -126,13 +139,12 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* YoY Chart Placeholder */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-md font-semibold text-gray-900 mb-4">Year over Year</h3>
-          <div className="h-48 bg-gray-100 rounded-lg flex items-center justify-center">
-            <span className="text-gray-400 text-sm">Chart coming soon</span>
-          </div>
-        </div>
+        {/* Year-over-Year Chart */}
+        <YearOverYearChart
+          data={yoyData}
+          currentYear={currentYear}
+          previousYear={previousYear}
+        />
       </div>
     </div>
   );
