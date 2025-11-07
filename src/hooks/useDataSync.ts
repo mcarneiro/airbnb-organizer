@@ -152,37 +152,48 @@ export function useDataSync() {
       // Get all months with data
       const allMonths = getAllMonths(reservations, expenses);
 
+      // Skip if there are no months with data (nothing to save)
+      if (allMonths.length === 0) {
+        console.log('No tax data to save (no months with data)');
+        return;
+      }
+
       // Group data by month
       const reservationsByMonth = groupReservationsByMonth(reservations);
       const expensesByMonth = groupExpensesByMonth(expenses);
 
       // Calculate tax data for all months
-      const taxData = allMonths.map(month => {
-        const monthReservations = reservationsByMonth.get(month) || [];
-        const monthExpenses = expensesByMonth.get(month) || [];
-        const isPaid = paidMonths.includes(month);
+      const taxData = allMonths
+        .filter(month => month && month.match(/^\d{4}-\d{2}$/)) // Only valid YYYY-MM format
+        .map(month => {
+          const monthReservations = reservationsByMonth.get(month) || [];
+          const monthExpenses = expensesByMonth.get(month) || [];
+          const isPaid = paidMonths.includes(month);
 
-        const monthlyTax = calculateMonthlyTax(
-          month,
-          monthReservations,
-          monthExpenses,
-          settings.dependents,
-          isPaid
-        );
+          const monthlyTax = calculateMonthlyTax(
+            month,
+            monthReservations,
+            monthExpenses,
+            settings.dependents,
+            isPaid
+          );
 
-        return {
-          month: monthlyTax.month,
-          income: monthlyTax.totalIncome,
-          deductions: monthlyTax.totalDeductions,
-          taxRate: monthlyTax.taxRate,
-          taxOwed: monthlyTax.taxOwed,
-          profit: monthlyTax.profit,
-          isPaid: monthlyTax.isPaid,
-        };
-      });
+          return {
+            month: monthlyTax.month,
+            income: monthlyTax.totalIncome,
+            deductions: monthlyTax.totalDeductions,
+            taxRate: monthlyTax.taxRate,
+            taxOwed: monthlyTax.taxOwed,
+            profit: monthlyTax.profit,
+            isPaid: monthlyTax.isPaid,
+          };
+        });
 
-      await googleSheetsService.writeTaxData(sheetId, taxData);
-      console.log('Tax data saved to Google Sheets');
+      // Only write if we have valid data
+      if (taxData.length > 0) {
+        await googleSheetsService.writeTaxData(sheetId, taxData);
+        console.log('Tax data saved to Google Sheets');
+      }
     } catch (error) {
       handleApiError(error);
     }

@@ -217,14 +217,20 @@ export class GoogleSheetsService {
     const data = await this.apiRequest(url);
 
     const rows = data.values || [];
-    return rows.map((row: any[], index: number) => ({
-      id: `reservation-${index}`,
-      date: this.parseLocalDate(row[0]),
-      nights: parseInt(row[1]) || 0,
-      total: parseFloat(row[2]) || 0,
-      ownerAmount: parseFloat(row[3]) || 0,
-      adminFee: parseFloat(row[4]) || 0,
-    }));
+    return rows
+      .filter((row: any[]) => {
+        // Filter out rows with invalid or missing date
+        const dateStr = row[0];
+        return dateStr && dateStr.match(/^\d{4}-\d{2}-\d{2}$/);
+      })
+      .map((row: any[], index: number) => ({
+        id: `reservation-${index}`,
+        date: this.parseLocalDate(row[0]),
+        nights: parseInt(row[1]) || 0,
+        total: parseFloat(row[2]) || 0,
+        ownerAmount: parseFloat(row[3]) || 0,
+        adminFee: parseFloat(row[4]) || 0,
+      }));
   }
 
   /**
@@ -266,13 +272,19 @@ export class GoogleSheetsService {
     const data = await this.apiRequest(url);
 
     const rows = data.values || [];
-    return rows.map((row: any[], index: number) => ({
-      id: `expense-${index}`,
-      date: this.parseLocalDate(row[0]),
-      amount: parseFloat(row[1]) || 0,
-      category: row[2] as any,
-      notes: row[3],
-    }));
+    return rows
+      .filter((row: any[]) => {
+        // Filter out rows with invalid or missing date
+        const dateStr = row[0];
+        return dateStr && dateStr.match(/^\d{4}-\d{2}-\d{2}$/);
+      })
+      .map((row: any[], index: number) => ({
+        id: `expense-${index}`,
+        date: this.parseLocalDate(row[0]),
+        amount: parseFloat(row[1]) || 0,
+        category: row[2] as any,
+        notes: row[3],
+      }));
   }
 
   /**
@@ -319,7 +331,8 @@ export class GoogleSheetsService {
       const month = row[0]; // date column (YYYY-MM format)
       const isPaid = row[6]; // is_paid column
 
-      if (month && (isPaid === 'TRUE' || isPaid === true || isPaid === '1')) {
+      // Validate month format (YYYY-MM) and that it's paid
+      if (month && month.match(/^\d{4}-\d{2}$/) && (isPaid === 'TRUE' || isPaid === true || isPaid === '1')) {
         paidMonths.push(month);
       }
     });
