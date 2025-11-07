@@ -48,10 +48,14 @@
   <button onclick="checkConfig()">Run Diagnostic</button>
 
   <script>
-    function log(message, type = 'status') {
+    function log(message, type = 'status', allowHTML = false) {
       const div = document.createElement('div');
       div.className = `status ${type}`;
-      div.innerHTML = message;
+      if (allowHTML) {
+        div.innerHTML = message; // Only for trusted static content
+      } else {
+        div.textContent = message; // Safe for dynamic content
+      }
       document.getElementById('results').appendChild(div);
     }
 
@@ -62,8 +66,8 @@
       const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
       if (!clientId) {
-        log('❌ <strong>Error:</strong> VITE_GOOGLE_CLIENT_ID not found in .env file', 'error');
-        log('💡 <strong>Solution:</strong> Create .env file with: VITE_GOOGLE_CLIENT_ID=your-client-id', 'warning');
+        log('❌ Error: VITE_GOOGLE_CLIENT_ID not found in .env file', 'error', true);
+        log('💡 Solution: Create .env file with: VITE_GOOGLE_CLIENT_ID=your-client-id', 'warning', true);
         return;
       }
 
@@ -71,7 +75,7 @@
 
       // Check client ID format
       if (!clientId.endsWith('.apps.googleusercontent.com')) {
-        log('⚠️ <strong>Warning:</strong> Client ID format looks incorrect', 'warning');
+        log('⚠️ Warning: Client ID format looks incorrect', 'warning', true);
         log('Expected format: xxx-xxx.apps.googleusercontent.com', 'warning');
       } else {
         log('✅ Client ID format is correct', 'success');
@@ -82,25 +86,38 @@
       log('ℹ️ Current URL: ' + currentUrl, 'status');
 
       if (!currentUrl.includes('localhost:5173')) {
-        log('⚠️ <strong>Warning:</strong> Not running on localhost:5173', 'warning');
+        log('⚠️ Warning: Not running on localhost:5173', 'warning', true);
         log('Make sure http://localhost:5173 is in Authorized JavaScript origins', 'warning');
       } else {
         log('✅ Running on correct port (5173)', 'success');
       }
 
       log(`
-        <strong>Next Steps if still getting errors:</strong><br><br>
-        1. Go to <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth Consent Screen</a><br>
-        2. Check Publishing Status:<br>
-        &nbsp;&nbsp;- If "Testing" → Add your email under Test Users<br>
-        &nbsp;&nbsp;- OR click "PUBLISH APP" to make it available to all users<br><br>
-        3. Verify Scopes include:<br>
-        &nbsp;&nbsp;- https://www.googleapis.com/auth/spreadsheets<br><br>
-        4. Check <a href="https://console.cloud.google.com/apis/credentials" target="_blank">OAuth Client</a>:<br>
-        &nbsp;&nbsp;- Authorized JavaScript origins: http://localhost:5173
+        Next Steps if still getting errors:
+
+        1. Go to OAuth Consent Screen (https://console.cloud.google.com/apis/credentials/consent)
+        2. Check Publishing Status:
+           - If "Testing" → Add your email under Test Users
+           - OR click "PUBLISH APP" to make it available to all users
+
+        3. Verify Scopes include:
+           - https://www.googleapis.com/auth/spreadsheets
+
+        4. Check OAuth Client (https://console.cloud.google.com/apis/credentials):
+           - Authorized JavaScript origins: http://localhost:5173
       `, 'status');
 
-      log(`<strong>Your Client ID:</strong><br><pre>${clientId}</pre>`, 'status');
+      // Display Client ID safely without HTML injection
+      const idDiv = document.createElement('div');
+      idDiv.className = 'status';
+      const idLabel = document.createElement('strong');
+      idLabel.textContent = 'Your Client ID:';
+      const idPre = document.createElement('pre');
+      idPre.textContent = clientId;
+      idDiv.appendChild(idLabel);
+      idDiv.appendChild(document.createElement('br'));
+      idDiv.appendChild(idPre);
+      document.getElementById('results').appendChild(idDiv);
     }
   </script>
 </body>

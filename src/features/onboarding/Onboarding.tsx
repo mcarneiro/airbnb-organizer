@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setSheetId } from '../../store/settingsSlice';
 import { useGoogleAuth } from '../../contexts/GoogleAuthContext';
 import { googleSheetsService, GoogleSheetsService } from '../../services/GoogleSheetsService';
@@ -9,7 +9,8 @@ import { GOOGLE_CONFIG } from '../../config/google';
 export default function Onboarding() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { signIn, isSignedIn, userEmail, accessToken, error: authError } = useGoogleAuth();
+  const { signIn, isSignedIn, userEmail, error: authError } = useGoogleAuth();
+  const sheetId = useAppSelector(state => state.settings.sheetId);
 
   const [sheetUrl, setSheetUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,19 +19,12 @@ export default function Onboarding() {
   // Check if Client ID is configured
   const isConfigured = !!GOOGLE_CONFIG.CLIENT_ID;
 
-  // Set access token when user signs in
+  // If user signs in and sheetId is already configured, go straight to dashboard
   useEffect(() => {
-    if (accessToken) {
-      googleSheetsService.setAccessToken(accessToken);
+    if (isSignedIn && sheetId) {
+      navigate('/', { replace: true });
     }
-  }, [accessToken]);
-
-  // Display auth errors
-  useEffect(() => {
-    if (authError) {
-      setError(authError);
-    }
-  }, [authError]);
+  }, [isSignedIn, sheetId, navigate]);
 
   const handleSignIn = () => {
     if (!isConfigured) {
@@ -116,9 +110,9 @@ export default function Onboarding() {
               </div>
             </div>
 
-            {error && (
+            {(error || authError) && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <p className="text-sm text-red-800">{error}</p>
+                <p className="text-sm text-red-800">{error || authError}</p>
               </div>
             )}
 

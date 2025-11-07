@@ -7,11 +7,33 @@ import { setExpenses } from '../store/expensesSlice';
 import { setSettings } from '../store/settingsSlice';
 
 /**
+ * Helper hook for debounced auto-save
+ */
+function useDebouncedAutoSave(
+  data: any,
+  saveCallback: () => Promise<void>,
+  isSignedIn: boolean,
+  sheetId: string,
+  isLoadingData: React.MutableRefObject<boolean>
+) {
+  useEffect(() => {
+    // Skip if not signed in, no sheet ID, or currently loading data
+    if (!isSignedIn || !sheetId || isLoadingData.current) return;
+
+    const timeoutId = setTimeout(() => {
+      saveCallback();
+    }, 1000); // Debounce for 1 second
+
+    return () => clearTimeout(timeoutId);
+  }, [data, isSignedIn, sheetId, saveCallback, isLoadingData]);
+}
+
+/**
  * Hook to sync data with Google Sheets
  */
 export function useDataSync() {
   const dispatch = useAppDispatch();
-  const { isSignedIn, accessToken } = useGoogleAuth();
+  const { isSignedIn, accessToken, signOut } = useGoogleAuth();
   const sheetId = useAppSelector(state => state.settings.sheetId);
   const reservations = useAppSelector(state => state.reservations.items);
   const expenses = useAppSelector(state => state.expenses.items);
@@ -19,6 +41,17 @@ export function useDataSync() {
 
   // Track if we're currently loading data to prevent auto-save during load
   const isLoadingData = useRef(false);
+
+  /**
+   * Handle API errors, especially token expiration
+   */
+  const handleApiError = useCallback((error: any) => {
+    if (error.code === 'TOKEN_EXPIRED') {
+      console.error('Token expired, signing out user');
+      signOut('expired');
+    }
+    console.error('API error:', error);
+  }, [signOut]);
 
   // Set access token when available
   useEffect(() => {
@@ -51,14 +84,14 @@ export function useDataSync() {
 
       console.log('Data loaded from Google Sheets');
     } catch (error) {
-      console.error('Failed to load data from Google Sheets:', error);
+      handleApiError(error);
     } finally {
       // Clear loading flag after a short delay to ensure all updates have settled
       setTimeout(() => {
         isLoadingData.current = false;
       }, 100);
     }
-  }, [isSignedIn, sheetId, dispatch]);
+  }, [isSignedIn, sheetId, dispatch, handleApiError]);
 
   /**
    * Save reservations to Google Sheets
@@ -70,9 +103,9 @@ export function useDataSync() {
       await googleSheetsService.writeReservations(sheetId, reservations);
       console.log('Reservations saved to Google Sheets');
     } catch (error) {
-      console.error('Failed to save reservations:', error);
+      handleApiError(error);
     }
-  }, [isSignedIn, sheetId, reservations]);
+  }, [isSignedIn, sheetId, reservations, handleApiError]);
 
   /**
    * Save expenses to Google Sheets
@@ -84,9 +117,9 @@ export function useDataSync() {
       await googleSheetsService.writeExpenses(sheetId, expenses);
       console.log('Expenses saved to Google Sheets');
     } catch (error) {
-      console.error('Failed to save expenses:', error);
+      handleApiError(error);
     }
-  }, [isSignedIn, sheetId, expenses]);
+  }, [isSignedIn, sheetId, expenses, handleApiError]);
 
   /**
    * Save settings to Google Sheets
@@ -98,52 +131,21 @@ export function useDataSync() {
       await googleSheetsService.writeSettings(sheetId, settings);
       console.log('Settings saved to Google Sheets');
     } catch (error) {
-      console.error('Failed to save settings:', error);
+      handleApiError(error);
     }
-  }, [isSignedIn, sheetId, settings]);
+  }, [isSignedIn, sheetId, settings, handleApiError]);
 
-  // Load data on mount (when signed in and sheet ID is available)
+  // Load data on mount (when signed in, sheet ID, and access token are available)
   useEffect(() => {
-    if (isSignedIn && sheetId) {
+    if (isSignedIn && sheetId && accessToken) {
       loadData();
     }
-  }, [isSignedIn, sheetId]); // Only run when these change, not loadData
+  }, [isSignedIn, sheetId, accessToken, loadData]); // Include all dependencies
 
-  // Auto-save reservations when they change (with debouncing)
-  useEffect(() => {
-    // Skip if not signed in, no sheet ID, or currently loading data
-    if (!isSignedIn || !sheetId || isLoadingData.current) return;
-
-    const timeoutId = setTimeout(() => {
-      saveReservations();
-    }, 1000); // Debounce for 1 second
-
-    return () => clearTimeout(timeoutId);
-  }, [reservations, isSignedIn, sheetId]); // Don't include saveReservations to avoid infinite loop
-
-  // Auto-save expenses when they change (with debouncing)
-  useEffect(() => {
-    // Skip if not signed in, no sheet ID, or currently loading data
-    if (!isSignedIn || !sheetId || isLoadingData.current) return;
-
-    const timeoutId = setTimeout(() => {
-      saveExpenses();
-    }, 1000); // Debounce for 1 second
-
-    return () => clearTimeout(timeoutId);
-  }, [expenses, isSignedIn, sheetId]); // Don't include saveExpenses to avoid infinite loop
-
-  // Auto-save settings when they change (with debouncing)
-  useEffect(() => {
-    // Skip if not signed in, no sheet ID, or currently loading data
-    if (!isSignedIn || !sheetId || isLoadingData.current) return;
-
-    const timeoutId = setTimeout(() => {
-      saveSettings();
-    }, 1000); // Debounce for 1 second
-
-    return () => clearTimeout(timeoutId);
-  }, [settings, isSignedIn, sheetId]); // Don't include saveSettings to avoid infinite loop
+  // Auto-save data when it changes (with debouncing)
+  useDebouncedAutoSave(reservations, saveReservations, isSignedIn, sheetId, isLoadingData);
+  useDebouncedAutoSave(expenses, saveExpenses, isSignedIn, sheetId, isLoadingData);
+  useDebouncedAutoSave(settings, saveSettings, isSignedIn, sheetId, isLoadingData);
 
   return {
     loadData,

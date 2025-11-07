@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addReservation } from '../../store/reservationsSlice';
@@ -15,19 +15,10 @@ export default function NewReservation() {
     total: '',
   });
 
-  const [calculatedAmounts, setCalculatedAmounts] = useState({
-    ownerAmount: 0,
-    adminFee: 0,
-  });
-
-  // Auto-calculate splits when total changes
-  useEffect(() => {
-    const total = parseFloat(formData.total) || 0;
-    setCalculatedAmounts({
-      ownerAmount: total * settings.ownerSplit,
-      adminFee: total * settings.adminSplit,
-    });
-  }, [formData.total, settings.ownerSplit, settings.adminSplit]);
+  // Calculate splits directly from form data
+  const total = parseFloat(formData.total) || 0;
+  const ownerAmount = total * settings.ownerSplit;
+  const adminFee = total * settings.adminSplit;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,8 +29,8 @@ export default function NewReservation() {
       date: new Date(formData.date),
       nights: parseInt(formData.nights),
       total: parseFloat(formData.total),
-      ownerAmount: calculatedAmounts.ownerAmount,
-      adminFee: calculatedAmounts.adminFee,
+      ownerAmount,
+      adminFee,
     };
 
     // Dispatch to Redux
@@ -126,13 +117,13 @@ export default function NewReservation() {
                 <div className="flex justify-between">
                   <span className="text-blue-700">Owner ({(settings.ownerSplit * 100).toFixed(0)}%):</span>
                   <span className="font-semibold text-blue-900">
-                    R$ {formatCurrency(calculatedAmounts.ownerAmount)}
+                    R$ {formatCurrency(ownerAmount)}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-blue-700">Admin ({(settings.adminSplit * 100).toFixed(0)}%):</span>
                   <span className="font-semibold text-blue-900">
-                    R$ {formatCurrency(calculatedAmounts.adminFee)}
+                    R$ {formatCurrency(adminFee)}
                   </span>
                 </div>
               </div>

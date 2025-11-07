@@ -232,12 +232,132 @@ npx tsc --noEmit
 npm run lint
 ```
 
-## Security Notes
+## Security
 
-- Never commit your `.env` file to version control
-- Keep your Google Client ID secure but not secret (it's used client-side)
-- Users' data stays in their own Google Sheets
-- The app only requests Google Sheets API access (no other Google services)
+### Overview
+
+This application implements multiple security layers to protect user data and prevent common web vulnerabilities.
+
+### Implemented Security Measures
+
+#### 1. **Content Security Policy (CSP)**
+The app includes a strict CSP header that prevents XSS attacks by:
+- Allowing scripts only from trusted sources (self and Google APIs)
+- Preventing inline script execution
+- Restricting connections to approved domains
+- Blocking unauthorized frame embedding
+
+The CSP is configured in `index.html` and allows:
+- Scripts: Self-hosted and Google authentication services
+- Connections: Google Sheets API, OAuth services
+- Styles: Self-hosted with inline styles for Tailwind CSS
+
+#### 2. **XSS Protection**
+- All user inputs are rendered through React's safe JSX syntax (auto-escaped)
+- No use of `dangerouslySetInnerHTML` in the codebase
+- Input validation on all forms (dates, numbers, text)
+- Type safety enforced via TypeScript
+
+#### 3. **Authentication Token Storage**
+The app provides two storage options for authentication tokens:
+
+**Option A: Persistent Auth (Default)**
+- Tokens stored in `localStorage`
+- User stays signed in after closing browser
+- Convenient for personal devices
+
+**Option B: Session-Only Auth (More Secure)**
+- Tokens stored in `sessionStorage`
+- User logged out when browser closes
+- Recommended for shared computers
+- Toggle available in Settings → Security Settings
+
+⚠️ **Important**: While `localStorage` is convenient, it's vulnerable to XSS attacks. We mitigate this with CSP and secure coding practices, but consider using session-only auth on shared devices.
+
+#### 4. **Token Expiration**
+- Google access tokens automatically expire after ~1 hour
+- Users must re-authenticate after expiration
+- Limits exposure window if token is compromised
+
+#### 5. **HTTPS Deployment**
+**Critical**: Always deploy to HTTPS in production. HTTP is insecure and exposes tokens to interception.
+
+##### Deployment Options:
+
+**Free HTTPS Hosting:**
+1. **Vercel** (Recommended)
+   ```bash
+   npm install -g vercel
+   vercel --prod
+   ```
+   - Automatic HTTPS
+   - Free tier available
+   - Custom domains supported
+
+2. **Netlify**
+   ```bash
+   npm run build
+   # Drag dist/ folder to netlify.com
+   ```
+   - Automatic HTTPS
+   - Free tier available
+
+3. **GitHub Pages** (Static hosting)
+   - Enable HTTPS in repository settings
+   - Configure custom domain with SSL
+
+4. **Cloudflare Pages**
+   - Free HTTPS and CDN
+   - Connect to GitHub repository
+
+**After Deployment:**
+1. Update Google Cloud Console OAuth settings
+2. Add your production domain to "Authorized JavaScript origins"
+   - Example: `https://your-domain.com`
+3. Test authentication flow on production URL
+
+#### 6. **Data Privacy**
+- All data stored in user's own Google Sheet
+- No third-party data storage
+- No analytics or tracking scripts
+- App only requests Google Sheets API access (no other services)
+
+### Security Best Practices
+
+#### For Developers
+- ✅ Never commit `.env` file to version control
+- ✅ Keep dependencies updated (check regularly for security patches)
+- ✅ Always deploy with HTTPS enabled
+- ✅ Review Google Cloud Console security settings periodically
+- ✅ Use OAuth consent screen with minimal required scopes
+
+#### For Users
+- ✅ Only sign in on trusted devices
+- ✅ Use "Session-only auth" on shared computers (Settings → Security)
+- ✅ Keep browser updated for latest security patches
+- ✅ Review Google account "Apps with access" periodically
+- ✅ Revoke access from [Google Account Security](https://myaccount.google.com/permissions) if needed
+- ✅ Use strong Google account password with 2FA enabled
+
+### Security Audit Checklist
+
+Before deploying to production:
+- [ ] HTTPS enabled and verified
+- [ ] Google OAuth configured with production domain
+- [ ] CSP header properly set (check browser console for violations)
+- [ ] No console errors on production build
+- [ ] Test authentication flow works correctly
+- [ ] Verify data syncs to Google Sheets
+- [ ] Test on multiple browsers and devices
+- [ ] Review Google Cloud Console security settings
+
+### Reporting Security Issues
+
+If you discover a security vulnerability, please:
+1. **Do not** open a public GitHub issue
+2. Email security concerns directly to the maintainer
+3. Provide detailed information about the vulnerability
+4. Allow reasonable time for patch before public disclosure
 
 ## Browser Support
 

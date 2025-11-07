@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateSettings, setSheetId } from '../../store/settingsSlice';
+import { useGoogleAuth } from '../../contexts/GoogleAuthContext';
 
 export default function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const settings = useAppSelector(state => state.settings.settings);
   const currentSheetId = useAppSelector(state => state.settings.sheetId);
+  const { persistAuth, setPersistAuth } = useGoogleAuth();
 
   const [formData, setFormData] = useState({
     sheetId: currentSheetId || '',
@@ -71,6 +73,50 @@ export default function Settings() {
             <p className="mt-1 text-xs text-gray-500">
               Stored locally for connection purposes only
             </p>
+          </div>
+
+          {/* Security Settings Section */}
+          <div className="pt-4 border-t border-gray-200">
+            <h3 className="text-md font-semibold text-gray-900 mb-4">Security Settings</h3>
+
+            {/* Keep me signed in toggle */}
+            <div className="mb-4">
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  <label htmlFor="persistAuth" className="block text-sm font-medium text-gray-700">
+                    Keep me signed in
+                  </label>
+                  <p className="mt-1 text-xs text-gray-500">
+                    {persistAuth
+                      ? 'You\'ll stay signed in after closing your browser'
+                      : 'You\'ll be logged out when you close your browser (more secure)'}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  id="persistAuth"
+                  onClick={() => setPersistAuth(!persistAuth)}
+                  className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                    persistAuth ? 'bg-blue-600' : 'bg-gray-200'
+                  }`}
+                  role="switch"
+                  aria-checked={persistAuth}
+                >
+                  <span
+                    className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                      persistAuth ? 'translate-x-5' : 'translate-x-0'
+                    }`}
+                  />
+                </button>
+              </div>
+              <div className="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <p className="text-xs text-blue-900 font-semibold mb-1">🔒 Security Note:</p>
+                <p className="text-xs text-blue-800">
+                  For better security, disable "Keep me signed in" on shared computers.
+                  This stores your access token only in session storage, which clears when you close the browser.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Tax Settings Section */}

@@ -39,6 +39,15 @@ export class GoogleSheetsService {
     });
 
     if (!response.ok) {
+      // Handle authentication errors (expired or invalid token)
+      if (response.status === 401) {
+        // Clear the invalid token
+        this.accessToken = null;
+        const error = new Error('Your session has expired. Please sign in again.');
+        (error as any).code = 'TOKEN_EXPIRED';
+        throw error;
+      }
+
       const error = await response.json();
       throw new Error(error.error?.message || 'API request failed');
     }
