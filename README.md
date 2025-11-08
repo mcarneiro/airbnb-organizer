@@ -2,6 +2,8 @@
 
 A modern web application to manage Airbnb rental properties, track reservations, expenses, and calculate Brazilian rental income taxes. All data is stored in your own Google Sheet for full control and easy access.
 
+> This is a vibe coding experiment!
+
 ## Features
 
 - **Dashboard**: Overview of current and upcoming months with income, occupation, and nights
