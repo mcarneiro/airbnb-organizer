@@ -89,6 +89,7 @@ export function useDataSync() {
 
       // Load paid tax months
       const loadedPaidMonths = await googleSheetsService.readPaidTaxMonths(sheetId);
+      console.log('Loaded paid months from sheet:', loadedPaidMonths);
       dispatch(setPaidMonths(loadedPaidMonths));
 
       console.log('Data loaded from Google Sheets');
@@ -167,12 +168,15 @@ export function useDataSync() {
       const expensesByMonth = groupExpensesByMonth(expenses);
 
       // Calculate tax data for all months
+      console.log('Current paidMonths in Redux:', paidMonths);
       const taxData = allMonths
         .filter(month => month && month.match(/^\d{4}-\d{2}$/)) // Only valid YYYY-MM format
         .map(month => {
           const monthReservations = reservationsByMonth.get(month) || [];
           const monthExpenses = expensesByMonth.get(month) || [];
           const isPaid = paidMonths.includes(month);
+
+          console.log(`Month ${month}: isPaid=${isPaid} (paidMonths includes: ${paidMonths.includes(month)})`);
 
           const monthlyTax = calculateMonthlyTax(
             month,

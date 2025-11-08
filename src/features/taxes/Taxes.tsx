@@ -250,14 +250,14 @@ export default function Taxes() {
                     type="text"
                     value={`R$ ${formatCurrency(selectedMonthData.totalIncome)}`}
                     readOnly
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-50"
+                    className="flex-1 min-w-0 px-2 sm:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm"
                   />
                   <button
                     onClick={() => handleCopyToClipboard(
                       formatCurrency(selectedMonthData.totalIncome),
                       'income'
                     )}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                    className="flex-shrink-0 px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                   >
                     {copiedField === 'income' ? '✓' : 'Copiar'}
                   </button>
@@ -274,14 +274,14 @@ export default function Taxes() {
                     type="text"
                     value={`R$ ${formatCurrency(selectedMonthData.totalDeductions)}`}
                     readOnly
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-50"
+                    className="flex-1 min-w-0 px-2 sm:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm"
                   />
                   <button
                     onClick={() => handleCopyToClipboard(
                       formatCurrency(selectedMonthData.totalDeductions),
                       'deductions'
                     )}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                    className="flex-shrink-0 px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                   >
                     {copiedField === 'deductions' ? '✓' : 'Copiar'}
                   </button>
@@ -298,14 +298,14 @@ export default function Taxes() {
                     value={formatReservationsForIRS(reservationsByMonth.get(selectedMonth) || [])}
                     readOnly
                     rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm font-mono resize-none"
+                    className="w-full px-2 sm:px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-sm font-mono resize-none"
                   />
                   <button
                     onClick={() => handleCopyToClipboard(
                       formatReservationsForIRS(reservationsByMonth.get(selectedMonth) || []),
                       'reservations'
                     )}
-                    className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                    className="w-full px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                   >
                     {copiedField === 'reservations' ? '✓ Copiado' : 'Copiar'}
                   </button>

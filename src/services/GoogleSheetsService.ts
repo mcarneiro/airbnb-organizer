@@ -382,18 +382,55 @@ export class GoogleSheetsService {
     const rows = data.values || [];
     const paidMonths: string[] = [];
 
-    rows.forEach((row: any[]) => {
+    console.log(`Reading ${rows.length} rows from taxes sheet`);
+
+    rows.forEach((row: any[], index: number) => {
       const month = row[0]; // date column (YYYY-MM format)
       const isPaid = row[6]; // is_paid column
 
-      // Convert month to string if needed (UNFORMATTED_VALUE might return different types)
-      const monthStr = month ? String(month) : '';
+      console.log(`Row ${index}: month=${month} (type: ${typeof month}), isPaid=${isPaid} (type: ${typeof isPaid}), full row:`, row);
 
-      // Validate month format (YYYY-MM) and that it's paid
-      if (monthStr && monthStr.match(/^\d{4}-\d{2}$/) && (isPaid === 'TRUE' || isPaid === true || isPaid === '1')) {
+      // Convert month value to YYYY-MM format
+      let monthStr = '';
+
+      if (typeof month === 'number') {
+        // It's an Excel serial number - convert to date and format as YYYY-MM
+        const date = this.excelSerialToDate(month);
+        const year = date.getFullYear();
+        const monthNum = String(date.getMonth() + 1).padStart(2, '0');
+        monthStr = `${year}-${monthNum}`;
+        console.log(`  -> Converted Excel serial ${month} to ${monthStr}`);
+      } else if (typeof month === 'string') {
+        monthStr = month;
+      } else {
+        console.log(`  -> Month is invalid type, skipping`);
+        return;
+      }
+
+      // Check if month is valid format
+      if (!monthStr || !monthStr.match(/^\d{4}-\d{2}$/)) {
+        console.log(`  -> Month "${monthStr}" doesn't match YYYY-MM format, skipping`);
+        return;
+      }
+
+      // Check if it's paid - handle multiple formats
+      // Could be: boolean true, string 'TRUE', string 'true', number 1, string '1'
+      const isPaidValue = isPaid === true ||
+                          isPaid === 'TRUE' ||
+                          isPaid === 'true' ||
+                          isPaid === 1 ||
+                          isPaid === '1' ||
+                          String(isPaid).toUpperCase() === 'TRUE';
+
+      console.log(`  -> Month "${monthStr}" format OK, isPaid=${isPaidValue}`);
+
+      if (isPaidValue) {
         paidMonths.push(monthStr);
+        console.log(`  -> Added ${monthStr} to paid months`);
       }
     });
+
+    console.log(`Total paid months found: ${paidMonths.length}`, paidMonths);
 
     return paidMonths;
   }
@@ -414,13 +451,13 @@ export class GoogleSheetsService {
     }>
   ): Promise<void> {
     const values = taxData.map((t) => [
-      t.month, // date (YYYY-MM format)
+      t.month, // date (YYYY-MM format) - will be interpreted as date by Google Sheets
       t.income,
       t.deductions,
       t.taxRate,
       t.taxOwed,
       t.profit,
-      t.isPaid ? 'TRUE' : 'FALSE',
+      t.isPaid, // Use boolean directly - USER_ENTERED will interpret it correctly
     ]);
 
     // Clear existing data first
