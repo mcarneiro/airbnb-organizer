@@ -388,8 +388,6 @@ export class GoogleSheetsService {
       const month = row[0]; // date column (YYYY-MM format)
       const isPaid = row[6]; // is_paid column
 
-      console.log(`Row ${index}: month=${month} (type: ${typeof month}), isPaid=${isPaid} (type: ${typeof isPaid}), full row:`, row);
-
       // Convert month value to YYYY-MM format
       let monthStr = '';
 
@@ -399,17 +397,14 @@ export class GoogleSheetsService {
         const year = date.getFullYear();
         const monthNum = String(date.getMonth() + 1).padStart(2, '0');
         monthStr = `${year}-${monthNum}`;
-        console.log(`  -> Converted Excel serial ${month} to ${monthStr}`);
       } else if (typeof month === 'string') {
         monthStr = month;
       } else {
-        console.log(`  -> Month is invalid type, skipping`);
         return;
       }
 
       // Check if month is valid format
       if (!monthStr || !monthStr.match(/^\d{4}-\d{2}$/)) {
-        console.log(`  -> Month "${monthStr}" doesn't match YYYY-MM format, skipping`);
         return;
       }
 
@@ -422,15 +417,10 @@ export class GoogleSheetsService {
                           isPaid === '1' ||
                           String(isPaid).toUpperCase() === 'TRUE';
 
-      console.log(`  -> Month "${monthStr}" format OK, isPaid=${isPaidValue}`);
-
       if (isPaidValue) {
         paidMonths.push(monthStr);
-        console.log(`  -> Added ${monthStr} to paid months`);
       }
     });
-
-    console.log(`Total paid months found: ${paidMonths.length}`, paidMonths);
 
     return paidMonths;
   }
