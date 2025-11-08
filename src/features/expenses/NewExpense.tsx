@@ -57,7 +57,7 @@ export default function NewExpense() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900">New Expense</h1>
+        <h1 className="text-xl font-bold text-gray-900">Nova Despesa</h1>
       </header>
 
       <div className="px-4 py-6 max-w-md mx-auto">
@@ -65,7 +65,7 @@ export default function NewExpense() {
           {/* Date Input */}
           <div>
             <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
-              Date
+              Data
             </label>
             <input
               type="date"
@@ -80,7 +80,7 @@ export default function NewExpense() {
           {/* Category Select */}
           <div>
             <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-              Category
+              Categoria
             </label>
             <select
               id="category"
@@ -89,7 +89,7 @@ export default function NewExpense() {
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
             >
-              <option value="">Select a category</option>
+              <option value="">Selecione uma categoria</option>
               {EXPENSE_CATEGORIES.map((category) => (
                 <option key={category} value={category}>
                   {category}
@@ -101,7 +101,7 @@ export default function NewExpense() {
           {/* Amount Input */}
           <div>
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
-              Amount (R$)
+              Valor (R$)
             </label>
             <input
               type="number"
@@ -111,7 +111,7 @@ export default function NewExpense() {
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g., 150.00"
+              placeholder="ex: 150.00"
               required
             />
           </div>
@@ -119,7 +119,7 @@ export default function NewExpense() {
           {/* Notes Input */}
           <div>
             <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2">
-              Notes (optional)
+              Observações (opcional)
             </label>
             <textarea
               id="notes"
@@ -127,7 +127,7 @@ export default function NewExpense() {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              placeholder="Add details, especially for maintenance items..."
+              placeholder="Adicione detalhes, especialmente para itens de manutenção..."
             />
           </div>
 
@@ -137,7 +137,7 @@ export default function NewExpense() {
             disabled={!isFormValid}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            Add Expense
+            Adicionar Despesa
           </button>
         </form>
       </div>

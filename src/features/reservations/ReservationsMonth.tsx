@@ -48,7 +48,7 @@ export default function ReservationsMonth() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900 flex-1">Reservations</h1>
+        <h1 className="text-xl font-bold text-gray-900 flex-1">Reservas</h1>
         <button
           onClick={() => navigate('/reservations/new')}
           className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
@@ -69,28 +69,28 @@ export default function ReservationsMonth() {
         <div className="space-y-6 pb-6">
         {/* Summary Card */}
         <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900">Summary</h2>
+          <h2 className="text-lg font-semibold text-gray-900">Resumo</h2>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <div className="text-sm text-gray-600">Total Income</div>
+              <div className="text-sm text-gray-600">Renda Total</div>
               <div className="text-xl font-bold text-gray-900">
                 R$ {formatCurrency(totals.ownerAmount)}
               </div>
             </div>
 
             <div>
-              <div className="text-sm text-gray-600">Occupation</div>
+              <div className="text-sm text-gray-600">Ocupação</div>
               <div className="text-xl font-bold text-gray-900">{totals.occupationRate}%</div>
             </div>
 
             <div>
-              <div className="text-sm text-gray-600">Reservations</div>
+              <div className="text-sm text-gray-600">Reservas</div>
               <div className="text-xl font-bold text-gray-900">{monthReservations.length}</div>
             </div>
 
             <div>
-              <div className="text-sm text-gray-600">Nights</div>
+              <div className="text-sm text-gray-600">Diárias</div>
               <div className="text-xl font-bold text-gray-900">{totals.nights}</div>
             </div>
           </div>
@@ -99,17 +99,17 @@ export default function ReservationsMonth() {
         {/* Reservations List */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900">Reservations</h3>
+            <h3 className="text-md font-semibold text-gray-900">Reservas</h3>
           </div>
 
           {monthReservations.length === 0 ? (
             <div className="px-6 py-12 text-center">
-              <p className="text-gray-500">No reservations for this month</p>
+              <p className="text-gray-500">Nenhuma reserva neste mês</p>
               <button
                 onClick={() => navigate('/reservations/new')}
                 className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
               >
-                Add a reservation
+                Adicionar uma reserva
               </button>
             </div>
           ) : (
@@ -123,7 +123,7 @@ export default function ReservationsMonth() {
                           {formatDate(reservation.date)}
                         </span>
                         <span className="text-sm text-gray-600">
-                          {reservation.nights} {reservation.nights === 1 ? 'night' : 'nights'}
+                          {reservation.nights} {reservation.nights === 1 ? 'diária' : 'diárias'}
                         </span>
                       </div>
 
@@ -135,13 +135,13 @@ export default function ReservationsMonth() {
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Owner:</span>
+                          <span className="text-gray-600">Proprietário:</span>
                           <span className="font-medium text-blue-600">
                             R$ {formatCurrency(reservation.ownerAmount)}
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Admin Fee:</span>
+                          <span className="text-gray-600">Taxa Admin:</span>
                           <span className="font-medium text-gray-600">
                             R$ {formatCurrency(reservation.adminFee)}
                           </span>

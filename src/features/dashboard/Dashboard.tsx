@@ -77,7 +77,7 @@ export default function Dashboard() {
     <div className="bg-gray-50">
       {/* Header with Settings */}
       <header className="bg-white border-b border-gray-200 px-4 py-3 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-900">Dashboard</h1>
+        <h1 className="text-xl font-bold text-gray-900">Painel</h1>
         <button
           onClick={() => navigate('/settings')}
           className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -97,7 +97,7 @@ export default function Dashboard() {
             className="w-full bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg hover:bg-yellow-200 transition-colors text-left"
           >
             <p className="text-sm text-yellow-800 font-medium">
-              Don't forget to pay your taxes for {getMonthName(unpaidMonth).split(' ')[0]}
+              Não se esqueça de pagar seus impostos de {getMonthName(unpaidMonth).split(' ')[0]}
             </p>
           </button>
         )}
@@ -122,14 +122,14 @@ export default function Dashboard() {
             </div>
 
             <div className="text-sm text-gray-600">
-              {currentMonth.count} {currentMonth.count === 1 ? 'reservation' : 'reservations'} · {currentMonth.nights} nights · {currentMonth.occupation}% occupation
+              {currentMonth.count} {currentMonth.count === 1 ? 'reserva' : 'reservas'} · {currentMonth.nights} diárias · {currentMonth.occupation}% ocupação
             </div>
           </div>
         </button>
 
         {/* Next Months Preview - Clickable Rows */}
         <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-          <h3 className="text-md font-semibold text-gray-900">NEXT UP</h3>
+          <h3 className="text-md font-semibold text-gray-900">PRÓXIMOS</h3>
 
           <div className="space-y-2">
             {nextMonths.map((month) => (

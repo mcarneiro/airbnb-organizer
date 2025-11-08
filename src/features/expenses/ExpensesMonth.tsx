@@ -51,7 +51,7 @@ export default function ExpensesMonth() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900 flex-1">Expenses</h1>
+        <h1 className="text-xl font-bold text-gray-900 flex-1">Despesas</h1>
         <button
           onClick={() => navigate('/expenses/new')}
           className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
@@ -72,22 +72,22 @@ export default function ExpensesMonth() {
         <div className="space-y-6 pb-6">
         {/* Summary Card */}
         <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900">Summary</h2>
+          <h2 className="text-lg font-semibold text-gray-900">Resumo</h2>
 
           <div>
-            <div className="text-sm text-gray-600 mb-1">Total Expenses</div>
+            <div className="text-sm text-gray-600 mb-1">Total de Despesas</div>
             <div className="text-3xl font-bold text-red-600">
               R$ {formatCurrency(total)}
             </div>
             <div className="text-sm text-gray-600 mt-2">
-              {monthExpenses.length} {monthExpenses.length === 1 ? 'expense' : 'expenses'}
+              {monthExpenses.length} {monthExpenses.length === 1 ? 'despesa' : 'despesas'}
             </div>
           </div>
 
           {/* Category Breakdown */}
           {byCategory.size > 0 && (
             <div className="pt-4 border-t border-gray-200">
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">By Category</h3>
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">Por Categoria</h3>
               <div className="space-y-2">
                 {Array.from(byCategory.entries()).map(([category, amount]) => (
                   <div key={category} className="flex justify-between items-center text-sm">
@@ -105,17 +105,17 @@ export default function ExpensesMonth() {
         {/* Expenses List */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900">Expenses</h3>
+            <h3 className="text-md font-semibold text-gray-900">Despesas</h3>
           </div>
 
           {monthExpenses.length === 0 ? (
             <div className="px-6 py-12 text-center">
-              <p className="text-gray-500">No expenses for this month</p>
+              <p className="text-gray-500">Nenhuma despesa neste mês</p>
               <button
                 onClick={() => navigate('/expenses/new')}
                 className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
               >
-                Add an expense
+                Adicionar uma despesa
               </button>
             </div>
           ) : (

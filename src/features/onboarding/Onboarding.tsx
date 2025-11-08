@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch } from '../../store/hooks';
 import { setSheetId } from '../../store/settingsSlice';
 import { useGoogleAuth } from '../../contexts/GoogleAuthContext';
 import { googleSheetsService, GoogleSheetsService } from '../../services/GoogleSheetsService';
@@ -10,7 +10,6 @@ export default function Onboarding() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { signIn, isSignedIn, userEmail, error: authError } = useGoogleAuth();
-  const sheetId = useAppSelector(state => state.settings.sheetId);
 
   const [sheetUrl, setSheetUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,13 +17,6 @@ export default function Onboarding() {
 
   // Check if Client ID is configured
   const isConfigured = !!GOOGLE_CONFIG.CLIENT_ID;
-
-  // If user signs in and sheetId is already configured, go straight to dashboard
-  useEffect(() => {
-    if (isSignedIn && sheetId) {
-      navigate('/', { replace: true });
-    }
-  }, [isSignedIn, sheetId, navigate]);
 
   const handleSignIn = () => {
     if (!isConfigured) {

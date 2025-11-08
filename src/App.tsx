@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Layout from './components/Layout';
 import Dashboard from './features/dashboard/Dashboard';
@@ -23,28 +23,36 @@ function getCurrentMonth() {
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   const sheetId = useAppSelector(state => state.settings.sheetId);
-  const { sessionExpired, clearSessionExpired } = useGoogleAuth();
+  const { isSignedIn, sessionExpired, clearSessionExpired } = useGoogleAuth();
 
   // Initialize data sync (loads and auto-saves data)
   useDataSync();
 
-  // Check if we need onboarding (just need sheet ID, client ID is in config)
-  const needsOnboarding = !sheetId;
-
-  // Redirect to onboarding if not set up
+  // Centralized navigation logic - single source of truth
   useEffect(() => {
-    if (needsOnboarding && window.location.pathname !== '/onboarding') {
-      navigate('/onboarding', { replace: true });
-    }
-  }, [needsOnboarding, navigate]);
+    const isOnboarding = location.pathname === '/onboarding';
+    const isAppReady = isSignedIn && sheetId;
 
-  // Redirect to onboarding when session expires
-  useEffect(() => {
-    if (sessionExpired && window.location.pathname !== '/onboarding') {
-      navigate('/onboarding', { replace: true });
+    // Case 1: User is signed in with sheetId but on onboarding page → go to dashboard
+    if (isAppReady && isOnboarding) {
+      navigate('/', { replace: true });
+      return;
     }
-  }, [sessionExpired, navigate]);
+
+    // Case 2: User needs setup (not signed in OR no sheetId) and NOT on onboarding → go to onboarding
+    if (!isAppReady && !isOnboarding) {
+      navigate('/onboarding', { replace: true });
+      return;
+    }
+
+    // Case 3: Session expired → go to onboarding
+    if (sessionExpired && !isOnboarding) {
+      navigate('/onboarding', { replace: true });
+      return;
+    }
+  }, [isSignedIn, sheetId, sessionExpired, location.pathname, navigate]);
 
   return (
     <>

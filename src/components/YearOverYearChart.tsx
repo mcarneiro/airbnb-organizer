@@ -50,7 +50,7 @@ export default function YearOverYearChart({ data, currentYear, previousYear }: Y
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Year over Year</h2>
+      <h2 className="text-lg font-semibold text-gray-900 mb-4">Variação a.a</h2>
 
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
