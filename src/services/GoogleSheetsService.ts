@@ -384,7 +384,7 @@ export class GoogleSheetsService {
 
     console.log(`Reading ${rows.length} rows from taxes sheet`);
 
-    rows.forEach((row: any[], index: number) => {
+    rows.forEach((row: any[]) => {
       const month = row[0]; // date column (YYYY-MM format)
       const isPaid = row[6]; // is_paid column
 
