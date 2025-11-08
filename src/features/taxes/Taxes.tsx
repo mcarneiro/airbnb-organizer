@@ -228,6 +228,18 @@ export default function Taxes() {
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
               <h3 className="text-md font-semibold text-gray-900">Preparar para Declaração</h3>
 
+              <p className="text-sm text-gray-600">
+                Preencha os dados abaixo no{' '}
+                <a
+                  href="https://www3.cav.receita.fazenda.gov.br/carneleao/rendimentos/rendimento"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 underline font-medium"
+                >
+                  Carnê Leão Web
+                </a>.
+              </p>
+
               {/* Copy Total Income */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">

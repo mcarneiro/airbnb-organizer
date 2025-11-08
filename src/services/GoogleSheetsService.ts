@@ -139,7 +139,8 @@ export class GoogleSheetsService {
         if (key === 'settings' && 'defaultData' in config) {
           const hasData = await this.sheetHasData(spreadsheetId, config.name);
           if (!hasData) {
-            const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${config.name}!A2?valueInputOption=RAW`;
+            // Use USER_ENTERED to store numbers as Number values
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${config.name}!A2?valueInputOption=USER_ENTERED`;
             await this.apiRequest(url, {
               method: 'PUT',
               body: JSON.stringify({
@@ -189,7 +190,8 @@ export class GoogleSheetsService {
    * Write settings to sheet
    */
   async writeSettings(spreadsheetId: string, settings: AppSettings): Promise<void> {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/settings!A2:B4?valueInputOption=RAW`;
+    // Use USER_ENTERED to store numbers as Number values
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/settings!A2:B4?valueInputOption=USER_ENTERED`;
     await this.apiRequest(url, {
       method: 'PUT',
       body: JSON.stringify({
@@ -211,6 +213,51 @@ export class GoogleSheetsService {
   }
 
   /**
+   * Convert Excel serial date number to Date object
+   * Excel dates are stored as days since December 30, 1899
+   */
+  private excelSerialToDate(serial: number): Date {
+    // Excel epoch: December 30, 1899
+    const excelEpoch = new Date(1899, 11, 30);
+    const date = new Date(excelEpoch.getTime() + serial * 24 * 60 * 60 * 1000);
+    return date;
+  }
+
+  /**
+   * Parse a date value that could be:
+   * - A string in YYYY-MM-DD format
+   * - An Excel serial number
+   * - A Date object
+   */
+  private parseDateValue(value: any): Date | null {
+    if (!value) return null;
+
+    // If it's already a Date object, return it
+    if (value instanceof Date) return value;
+
+    // If it's a number, treat it as Excel serial date
+    if (typeof value === 'number') {
+      return this.excelSerialToDate(value);
+    }
+
+    // If it's a string, check format
+    const str = String(value);
+
+    // Check if it's a valid YYYY-MM-DD format
+    if (str.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      return this.parseLocalDate(str);
+    }
+
+    // If it's a numeric string (Excel serial as string), parse as number
+    const asNumber = parseFloat(str);
+    if (!isNaN(asNumber) && asNumber > 0) {
+      return this.excelSerialToDate(asNumber);
+    }
+
+    return null;
+  }
+
+  /**
    * Read reservations from sheet
    */
   async readReservations(spreadsheetId: string): Promise<Reservation[]> {
@@ -220,19 +267,20 @@ export class GoogleSheetsService {
 
     const rows = data.values || [];
     return rows
-      .filter((row: any[]) => {
-        // Filter out rows with invalid or missing date
-        const dateStr = row[0];
-        return dateStr && dateStr.match(/^\d{4}-\d{2}-\d{2}$/);
+      .map((row: any[], index: number) => {
+        const date = this.parseDateValue(row[0]);
+        if (!date) return null; // Skip invalid dates
+
+        return {
+          id: `reservation-${index}`,
+          date,
+          nights: parseInt(row[1]) || 0,
+          total: parseFloat(row[2]) || 0,
+          ownerAmount: parseFloat(row[3]) || 0,
+          adminFee: parseFloat(row[4]) || 0,
+        };
       })
-      .map((row: any[], index: number) => ({
-        id: `reservation-${index}`,
-        date: this.parseLocalDate(row[0]),
-        nights: parseInt(row[1]) || 0,
-        total: parseFloat(row[2]) || 0,
-        ownerAmount: parseFloat(row[3]) || 0,
-        adminFee: parseFloat(row[4]) || 0,
-      }));
+      .filter((item: any): item is Reservation => item !== null);
   }
 
   /**
@@ -256,7 +304,8 @@ export class GoogleSheetsService {
 
     // Write new data
     if (values.length > 0) {
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb!A2?valueInputOption=RAW`;
+      // Use USER_ENTERED to store dates as actual Date values and numbers as Number values
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb!A2?valueInputOption=USER_ENTERED`;
       await this.apiRequest(url, {
         method: 'PUT',
         body: JSON.stringify({
@@ -276,18 +325,19 @@ export class GoogleSheetsService {
 
     const rows = data.values || [];
     return rows
-      .filter((row: any[]) => {
-        // Filter out rows with invalid or missing date
-        const dateStr = row[0];
-        return dateStr && dateStr.match(/^\d{4}-\d{2}-\d{2}$/);
+      .map((row: any[], index: number) => {
+        const date = this.parseDateValue(row[0]);
+        if (!date) return null; // Skip invalid dates
+
+        return {
+          id: `expense-${index}`,
+          date,
+          amount: parseFloat(row[1]) || 0,
+          category: row[2] as any,
+          notes: row[3],
+        };
       })
-      .map((row: any[], index: number) => ({
-        id: `expense-${index}`,
-        date: this.parseLocalDate(row[0]),
-        amount: parseFloat(row[1]) || 0,
-        category: row[2] as any,
-        notes: row[3],
-      }));
+      .filter((item: any): item is Expense => item !== null);
   }
 
   /**
@@ -310,7 +360,8 @@ export class GoogleSheetsService {
 
     // Write new data
     if (values.length > 0) {
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb_expenses!A2?valueInputOption=RAW`;
+      // Use USER_ENTERED to store dates as actual Date values and numbers as Number values
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb_expenses!A2?valueInputOption=USER_ENTERED`;
       await this.apiRequest(url, {
         method: 'PUT',
         body: JSON.stringify({
@@ -335,9 +386,12 @@ export class GoogleSheetsService {
       const month = row[0]; // date column (YYYY-MM format)
       const isPaid = row[6]; // is_paid column
 
+      // Convert month to string if needed (UNFORMATTED_VALUE might return different types)
+      const monthStr = month ? String(month) : '';
+
       // Validate month format (YYYY-MM) and that it's paid
-      if (month && month.match(/^\d{4}-\d{2}$/) && (isPaid === 'TRUE' || isPaid === true || isPaid === '1')) {
-        paidMonths.push(month);
+      if (monthStr && monthStr.match(/^\d{4}-\d{2}$/) && (isPaid === 'TRUE' || isPaid === true || isPaid === '1')) {
+        paidMonths.push(monthStr);
       }
     });
 
@@ -378,7 +432,8 @@ export class GoogleSheetsService {
 
     // Write new data
     if (values.length > 0) {
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2?valueInputOption=RAW`;
+      // Use USER_ENTERED to store numbers as Number values
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2?valueInputOption=USER_ENTERED`;
       await this.apiRequest(url, {
         method: 'PUT',
         body: JSON.stringify({
