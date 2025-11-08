@@ -208,6 +208,30 @@ export default function Taxes() {
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
               <h3 className="text-md font-semibold text-gray-900">Prepare for IRS</h3>
 
+              {/* Copy Total Income */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Total Income
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={`R$ ${formatCurrency(selectedMonthData.totalIncome)}`}
+                    readOnly
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-50"
+                  />
+                  <button
+                    onClick={() => handleCopyToClipboard(
+                      formatCurrency(selectedMonthData.totalIncome),
+                      'income'
+                    )}
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                  >
+                    {copiedField === 'income' ? '✓' : 'Copy'}
+                  </button>
+                </div>
+              </div>
+
               {/* Copy Total Deductions */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
