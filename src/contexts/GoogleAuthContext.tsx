@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
+import { useDispatch } from 'react-redux';
+import { setAuthInitialized } from '../store/appSlice';
 
 interface GoogleAuthContextType {
   isSignedIn: boolean;
@@ -28,6 +30,7 @@ function shouldPersistAuth(): boolean {
 }
 
 export function GoogleAuthProvider({ children }: { children: ReactNode }) {
+  const dispatch = useDispatch();
   const [persistAuth, setPersistAuthState] = useState(shouldPersistAuth);
 
   // Initialize from appropriate storage and check token expiration
@@ -95,7 +98,10 @@ export function GoogleAuthProvider({ children }: { children: ReactNode }) {
       storage.removeItem('googleAuth_accessToken');
       storage.removeItem('googleAuth_expiresAt');
     }
-  }, []); // Run once on mount
+
+    // Mark auth as initialized after checking token expiration
+    dispatch(setAuthInitialized(true));
+  }, [dispatch]); // Run once on mount
 
   // Function to set persist auth preference
   const setPersistAuth = (persist: boolean) => {

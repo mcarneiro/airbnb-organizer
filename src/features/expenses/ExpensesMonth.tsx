@@ -9,6 +9,7 @@ export default function ExpensesMonth() {
   const navigate = useNavigate();
   const { month } = useParams<{ month: string }>();
   const expenses = useAppSelector(state => state.expenses.items);
+  const dataLoaded = useAppSelector(state => state.app.dataLoaded);
 
   // Filter expenses for the selected month
   const monthExpenses = useMemo(() => {
@@ -70,40 +71,61 @@ export default function ExpensesMonth() {
         />
 
         <div className="space-y-6 pb-6">
-        {/* Summary Card */}
-        <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900">Resumo</h2>
-
-          <div>
-            <div className="text-sm text-gray-600 mb-1">Total de Despesas</div>
-            <div className="text-3xl font-bold text-red-600">
-              R$ {formatCurrency(total)}
+        {/* Loading State */}
+        {!dataLoaded && (
+          <>
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+              <div className="h-10 bg-gray-200 rounded w-2/3 mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
             </div>
-            <div className="text-sm text-gray-600 mt-2">
-              {monthExpenses.length} {monthExpenses.length === 1 ? 'despesa' : 'despesas'}
-            </div>
-          </div>
-
-          {/* Category Breakdown */}
-          {byCategory.size > 0 && (
-            <div className="pt-4 border-t border-gray-200">
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">Por Categoria</h3>
-              <div className="space-y-2">
-                {Array.from(byCategory.entries()).map(([category, amount]) => (
-                  <div key={category} className="flex justify-between items-center text-sm">
-                    <span className="text-gray-700">{category}</span>
-                    <span className="font-semibold text-gray-900">
-                      R$ {formatCurrency(amount)}
-                    </span>
-                  </div>
-                ))}
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+              <div className="space-y-3">
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
               </div>
             </div>
-          )}
-        </div>
+          </>
+        )}
 
-        {/* Expenses List */}
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+        {/* Summary and List - only show when data is loaded */}
+        {dataLoaded && (
+          <>
+            {/* Summary Card */}
+            <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
+              <h2 className="text-lg font-semibold text-gray-900">Resumo</h2>
+
+              <div>
+                <div className="text-sm text-gray-600 mb-1">Total de Despesas</div>
+                <div className="text-3xl font-bold text-red-600">
+                  R$ {formatCurrency(total)}
+                </div>
+                <div className="text-sm text-gray-600 mt-2">
+                  {monthExpenses.length} {monthExpenses.length === 1 ? 'despesa' : 'despesas'}
+                </div>
+              </div>
+
+              {/* Category Breakdown */}
+              {byCategory.size > 0 && (
+                <div className="pt-4 border-t border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-3">Por Categoria</h3>
+                  <div className="space-y-2">
+                    {Array.from(byCategory.entries()).map(([category, amount]) => (
+                      <div key={category} className="flex justify-between items-center text-sm">
+                        <span className="text-gray-700">{category}</span>
+                        <span className="font-semibold text-gray-900">
+                          R$ {formatCurrency(amount)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Expenses List */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
             <h3 className="text-md font-semibold text-gray-900">Despesas</h3>
           </div>
@@ -150,7 +172,9 @@ export default function ExpensesMonth() {
               ))}
             </div>
           )}
-        </div>
+            </div>
+          </>
+        )}
         </div>
       </div>
     </div>

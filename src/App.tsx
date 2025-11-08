@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Layout from './components/Layout';
+import LoadingScreen from './components/LoadingScreen';
 import Dashboard from './features/dashboard/Dashboard';
 import NewExpense from './features/expenses/NewExpense';
 import ExpensesMonth from './features/expenses/ExpensesMonth';
@@ -25,13 +26,20 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const sheetId = useAppSelector(state => state.settings.sheetId);
+  const authInitialized = useAppSelector(state => state.app.authInitialized);
+  const dataLoading = useAppSelector(state => state.app.dataLoading);
+  const dataLoaded = useAppSelector(state => state.app.dataLoaded);
   const { isSignedIn, sessionExpired, clearSessionExpired } = useGoogleAuth();
 
   // Initialize data sync (loads and auto-saves data)
   useDataSync();
 
   // Centralized navigation logic - single source of truth
+  // IMPORTANT: This useEffect must be called before any early returns (Rules of Hooks)
   useEffect(() => {
+    // Skip navigation if still initializing
+    if (!authInitialized) return;
+
     const isOnboarding = location.pathname === '/onboarding';
     const isAppReady = isSignedIn && sheetId;
 
@@ -46,13 +54,13 @@ function App() {
       navigate('/onboarding', { replace: true });
       return;
     }
+  }, [authInitialized, isSignedIn, sheetId, location.pathname, navigate]);
 
-    // Case 3: Session expired → go to onboarding
-    if (sessionExpired && !isOnboarding) {
-      navigate('/onboarding', { replace: true });
-      return;
-    }
-  }, [isSignedIn, sheetId, sessionExpired, location.pathname, navigate]);
+  // Show loading screen while auth is initializing or while loading initial data
+  // This early return is AFTER all hooks are called (satisfies Rules of Hooks)
+  if (!authInitialized || (isSignedIn && sheetId && !dataLoaded && dataLoading)) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>

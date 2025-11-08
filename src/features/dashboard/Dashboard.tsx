@@ -12,6 +12,7 @@ export default function Dashboard() {
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
   const paidMonths = useAppSelector(state => state.taxes.paidMonths);
+  const dataLoaded = useAppSelector(state => state.app.dataLoaded);
 
   // Calculate current month and next 3 months data
   const monthsData = useMemo(() => {
@@ -90,8 +91,28 @@ export default function Dashboard() {
       </header>
 
       <div className="px-4 py-6 space-y-6 max-w-md mx-auto">
-        {/* Tax Notification Bar */}
-        {unpaidMonth && (
+        {/* Loading State */}
+        {!dataLoaded && (
+          <div className="space-y-6">
+            {/* Loading skeleton for current month card */}
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+              <div className="h-10 bg-gray-200 rounded w-2/3 mb-2"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+            {/* Loading skeleton for next months */}
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+              <div className="space-y-3">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tax Notification Bar - only show when data is loaded */}
+        {dataLoaded && unpaidMonth && (
           <button
             onClick={() => navigate(`/taxes/${unpaidMonth}`)}
             className="w-full bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg hover:bg-yellow-200 transition-colors text-left"
@@ -102,11 +123,12 @@ export default function Dashboard() {
           </button>
         )}
 
-        {/* Current Month Card - Clickable */}
-        <button
-          onClick={() => handleMonthClick(currentMonth.key)}
-          className="w-full bg-white rounded-lg shadow-sm p-6 space-y-4 text-left hover:shadow-md transition-shadow"
-        >
+        {/* Current Month Card - Clickable - only show when data is loaded */}
+        {dataLoaded && (
+          <button
+            onClick={() => handleMonthClick(currentMonth.key)}
+            className="w-full bg-white rounded-lg shadow-sm p-6 space-y-4 text-left hover:shadow-md transition-shadow"
+          >
           <div className="flex justify-between items-start">
             <h2 className="text-lg font-semibold text-gray-900 capitalize">{currentMonth.shortName}</h2>
             <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,10 +147,12 @@ export default function Dashboard() {
               {currentMonth.count} {currentMonth.count === 1 ? 'reserva' : 'reservas'} · {currentMonth.nights} diárias · {currentMonth.occupation}% ocupação
             </div>
           </div>
-        </button>
+          </button>
+        )}
 
-        {/* Next Months Preview - Clickable Rows */}
-        <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
+        {/* Next Months Preview - Clickable Rows - only show when data is loaded */}
+        {dataLoaded && (
+          <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
           <h3 className="text-md font-semibold text-gray-900">PRÓXIMOS</h3>
 
           <div className="space-y-2">
@@ -150,14 +174,17 @@ export default function Dashboard() {
               </button>
             ))}
           </div>
-        </div>
+          </div>
+        )}
 
-        {/* Year-over-Year Chart */}
-        <YearOverYearChart
-          data={yoyData}
-          currentYear={currentYear}
-          previousYear={previousYear}
-        />
+        {/* Year-over-Year Chart - only show when data is loaded */}
+        {dataLoaded && (
+          <YearOverYearChart
+            data={yoyData}
+            currentYear={currentYear}
+            previousYear={previousYear}
+          />
+        )}
       </div>
     </div>
   );

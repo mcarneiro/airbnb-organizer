@@ -6,6 +6,7 @@ import { setReservations } from '../store/reservationsSlice';
 import { setExpenses } from '../store/expensesSlice';
 import { setSettings } from '../store/settingsSlice';
 import { setPaidMonths } from '../store/taxesSlice';
+import { setDataLoading, setDataLoaded } from '../store/appSlice';
 import { getAllMonths, groupReservationsByMonth, groupExpensesByMonth, calculateMonthlyTax } from '../utils/taxCalculations';
 
 /**
@@ -71,6 +72,7 @@ export function useDataSync() {
 
     // Set loading flag to prevent auto-save during load
     isLoadingData.current = true;
+    dispatch(setDataLoading(true));
 
     try {
       // Load settings
@@ -90,8 +92,10 @@ export function useDataSync() {
       dispatch(setPaidMonths(loadedPaidMonths));
 
       console.log('Data loaded from Google Sheets');
+      dispatch(setDataLoaded(true));
     } catch (error) {
       handleApiError(error);
+      dispatch(setDataLoaded(false));
     } finally {
       // Clear loading flag after a short delay to ensure all updates have settled
       setTimeout(() => {

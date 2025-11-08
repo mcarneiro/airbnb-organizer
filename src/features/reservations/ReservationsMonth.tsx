@@ -9,6 +9,7 @@ export default function ReservationsMonth() {
   const navigate = useNavigate();
   const { month } = useParams<{ month: string }>();
   const reservations = useAppSelector(state => state.reservations.items);
+  const dataLoaded = useAppSelector(state => state.app.dataLoaded);
 
   // Filter reservations for the selected month
   const monthReservations = useMemo(() => {
@@ -67,11 +68,36 @@ export default function ReservationsMonth() {
         />
 
         <div className="space-y-6 pb-6">
-        {/* Summary Card */}
-        <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900">Resumo</h2>
+        {/* Loading State */}
+        {!dataLoaded && (
+          <>
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+              <div className="space-y-3">
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+          </>
+        )}
 
-          <div className="grid grid-cols-2 gap-4">
+        {/* Summary and List - only show when data is loaded */}
+        {dataLoaded && (
+          <>
+            {/* Summary Card */}
+            <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
+              <h2 className="text-lg font-semibold text-gray-900">Resumo</h2>
+
+              <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="text-sm text-gray-600">Renda Total</div>
               <div className="text-xl font-bold text-gray-900">
@@ -93,11 +119,11 @@ export default function ReservationsMonth() {
               <div className="text-sm text-gray-600">Diárias</div>
               <div className="text-xl font-bold text-gray-900">{totals.nights}</div>
             </div>
-          </div>
-        </div>
+              </div>
+            </div>
 
-        {/* Reservations List */}
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            {/* Reservations List */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
             <h3 className="text-md font-semibold text-gray-900">Reservas</h3>
           </div>
@@ -153,7 +179,9 @@ export default function ReservationsMonth() {
               ))}
             </div>
           )}
-        </div>
+            </div>
+          </>
+        )}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setSheetId } from '../../store/settingsSlice';
 import { useGoogleAuth } from '../../contexts/GoogleAuthContext';
 import { googleSheetsService, GoogleSheetsService } from '../../services/GoogleSheetsService';
@@ -9,6 +9,7 @@ import { GOOGLE_CONFIG } from '../../config/google';
 export default function Onboarding() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const existingSheetId = useAppSelector(state => state.settings.sheetId);
   const { signIn, isSignedIn, userEmail, error: authError } = useGoogleAuth();
 
   const [sheetUrl, setSheetUrl] = useState('');
@@ -17,6 +18,10 @@ export default function Onboarding() {
 
   // Check if Client ID is configured
   const isConfigured = !!GOOGLE_CONFIG.CLIENT_ID;
+
+  // If user is signed in and has a sheetId, they're ready to go
+  // App.tsx will handle navigation to dashboard
+  const hasExistingSetup = !!existingSheetId;
 
   const handleSignIn = () => {
     if (!isConfigured) {
@@ -86,20 +91,25 @@ export default function Onboarding() {
           <div className="space-y-6">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Step 1: Sign in with Google
+                {hasExistingSetup ? 'Sign in to Continue' : 'Step 1: Sign in with Google'}
               </h2>
               <p className="text-sm text-gray-600 mb-4">
-                We need access to your Google Sheets to store your data.
+                {hasExistingSetup
+                  ? 'Your session has expired. Please sign in again to access your data.'
+                  : 'We need access to your Google Sheets to store your data.'
+                }
               </p>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                <p className="text-xs text-blue-900 font-semibold mb-2">What we'll access:</p>
-                <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
-                  <li>Read and write to your Google Sheets</li>
-                  <li>No access to other Google services</li>
-                  <li>Your data stays in your own Google Sheet</li>
-                </ul>
-              </div>
+              {!hasExistingSetup && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <p className="text-xs text-blue-900 font-semibold mb-2">What we'll access:</p>
+                  <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
+                    <li>Read and write to your Google Sheets</li>
+                    <li>No access to other Google services</li>
+                    <li>Your data stays in your own Google Sheet</li>
+                  </ul>
+                </div>
+              )}
             </div>
 
             {(error || authError) && (
@@ -122,8 +132,21 @@ export default function Onboarding() {
               {loading ? 'Signing in...' : 'Sign in with Google'}
             </button>
           </div>
+        ) : hasExistingSetup ? (
+          /* User has existing setup, show loading message while App.tsx navigates */
+          <div className="space-y-6">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+              <p className="text-sm text-green-800">
+                ✓ Signed in as <strong>{userEmail}</strong>
+              </p>
+            </div>
+            <div className="text-center py-8">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+              <p className="text-gray-700">Loading your data...</p>
+            </div>
+          </div>
         ) : (
-          /* Step 2: Google Sheet Setup */
+          /* Step 2: Google Sheet Setup - only for new users */
           <div className="space-y-6">
             <div>
               <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">

@@ -21,6 +21,7 @@ export default function Taxes() {
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
   const paidMonths = useAppSelector(state => state.taxes.paidMonths);
+  const dataLoaded = useAppSelector(state => state.app.dataLoaded);
 
   // Get all available months
   const availableMonths = useMemo(
@@ -108,7 +109,8 @@ export default function Taxes() {
     }
   };
 
-  if (availableMonths.length === 0) {
+  // Show empty state only when data is loaded and there are no months
+  if (dataLoaded && availableMonths.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50">
         <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
@@ -155,7 +157,25 @@ export default function Taxes() {
         />
 
         <div className="space-y-6 pb-6">
-        {selectedMonthData && (
+        {/* Loading State */}
+        {!dataLoaded && (
+          <>
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+              <div className="space-y-3">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+              <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+              <div className="h-16 bg-gray-200 rounded"></div>
+            </div>
+          </>
+        )}
+
+        {dataLoaded && selectedMonthData && (
           <>
             {/* Tax Calculation Breakdown */}
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">

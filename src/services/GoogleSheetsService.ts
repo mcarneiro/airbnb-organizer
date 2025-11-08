@@ -156,7 +156,8 @@ export class GoogleSheetsService {
    * Read settings from sheet
    */
   async readSettings(spreadsheetId: string): Promise<AppSettings> {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/settings!A2:B`;
+    // Use valueRenderOption=UNFORMATTED_VALUE to get actual numbers instead of locale-formatted strings
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/settings!A2:B?valueRenderOption=UNFORMATTED_VALUE`;
     const data = await this.apiRequest(url);
 
     const rows = data.values || [];
@@ -213,7 +214,8 @@ export class GoogleSheetsService {
    * Read reservations from sheet
    */
   async readReservations(spreadsheetId: string): Promise<Reservation[]> {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb!A2:E`;
+    // Use valueRenderOption=UNFORMATTED_VALUE to get actual numbers instead of locale-formatted strings
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb!A2:E?valueRenderOption=UNFORMATTED_VALUE`;
     const data = await this.apiRequest(url);
 
     const rows = data.values || [];
@@ -268,7 +270,8 @@ export class GoogleSheetsService {
    * Read expenses from sheet
    */
   async readExpenses(spreadsheetId: string): Promise<Expense[]> {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb_expenses!A2:D`;
+    // Use valueRenderOption=UNFORMATTED_VALUE to get actual numbers instead of locale-formatted strings
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb_expenses!A2:D?valueRenderOption=UNFORMATTED_VALUE`;
     const data = await this.apiRequest(url);
 
     const rows = data.values || [];
@@ -321,7 +324,8 @@ export class GoogleSheetsService {
    * Read paid tax months from sheet
    */
   async readPaidTaxMonths(spreadsheetId: string): Promise<string[]> {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:G`;
+    // Use valueRenderOption=UNFORMATTED_VALUE to get actual values
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:G?valueRenderOption=UNFORMATTED_VALUE`;
     const data = await this.apiRequest(url);
 
     const rows = data.values || [];
