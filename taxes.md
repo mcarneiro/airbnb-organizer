@@ -193,6 +193,56 @@ const unpaidMonth = useMemo(
 6. Month turns green in the list
 7. Notification disappears from dashboard
 
+## User Flows
+
+### Flow 1: Viewing and Paying Taxes
+
+1. User sees yellow notification on dashboard: "Não se esqueça de pagar seus impostos de Outubro 2025"
+2. User clicks notification
+3. App navigates to `/taxes/2025-10`
+4. User sees full tax breakdown for October:
+   - Total Income: R$ 3,500.00
+   - Deductions: R$ 450.00
+   - Liquid Income: R$ 3,050.00
+   - Tax Deduction: R$ 528.00
+   - Taxable Income: R$ 2,522.00
+   - Tax Rate: 7.5%
+   - Tax Owed: R$ 189.15
+   - Final Profit: R$ 2,860.85
+5. User scrolls to "Preparar para Declaração" section
+6. User clicks "Copiar" on Total Income field
+7. Pastes in Carnê Leão Web form
+8. Repeats for Deductions and Reservation Details
+9. User submits tax declaration on Carnê Leão website
+10. User returns to app and clicks "Marcar como Pago"
+11. Month turns green in list
+12. Dashboard notification disappears
+
+### Flow 2: Navigating Between Months
+
+1. User is on `/taxes/2025-11` (November)
+2. User sees "Últimos 6 Meses" list below
+3. User sees October is yellow (unpaid, tax owed)
+4. User clicks October month item (entire button is clickable)
+5. App navigates to `/taxes/2025-10`
+6. User reviews October's tax details
+7. User can use month navigation arrows to go to September
+8. Or click another month from the list
+
+### Flow 3: Zero Tax Months
+
+1. User has a month with high expenses and low income
+2. Tax calculation shows:
+   - Total Income: R$ 1,000.00
+   - Deductions: R$ 1,200.00
+   - Liquid Income: R$ -200.00
+   - Taxable Income: R$ 0.00
+   - Tax Owed: R$ 0.00
+3. Month appears gray in list with "Sem imposto" badge
+4. No notification appears on dashboard
+5. User doesn't need to mark as paid
+6. Month doesn't block other notifications
+
 ## Recent Changes (2025-11-09)
 
 ### What Changed:
@@ -208,10 +258,17 @@ const unpaidMonth = useMemo(
    - Dashboard notification won't show for months with zero tax
    - No need to manually mark zero-tax months as paid
 
+3. **Made month items clickable**
+   - Entire month card in "Últimos 6 Meses" list is now a button
+   - Clicking navigates to that month's tax detail page
+   - No separate view/arrow icon needed
+   - Better UX and accessibility
+
 ### Why:
 - Improve UX by reducing noise (don't show old months)
 - Eliminate unnecessary action for zero-tax months
 - Focus attention on months that actually need payment
+- Easier navigation between months with full clickable items
 
 ## Important Notes
 

@@ -202,6 +202,124 @@ The split percentages are configurable in Settings and used for all reservation 
 3. **Date pre-fills with today's date**
 4. Rest of flow is same as Scenario 1
 
+## Edit and Delete Functionality
+
+### Edit Mode
+**Location:** `src/features/reservations/NewReservation.tsx`
+
+NewReservation component is reusable for both creating and editing reservations.
+
+**Mode Detection (lines 16-17):**
+```typescript
+const isEditMode = !!id;
+const existingReservation = isEditMode ? reservations.find(r => r.id === id) : null;
+```
+
+**Pre-fill Form in Edit Mode (lines 57-71):**
+```typescript
+useEffect(() => {
+  if (existingReservation) {
+    const date = existingReservation.date;
+    const year = date.getFullYear();
+    const monthNum = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const dateString = `${year}-${monthNum}-${day}`;
+
+    setFormData({
+      date: dateString,
+      nights: existingReservation.nights.toString(),
+      total: existingReservation.total.toString(),
+    });
+  }
+}, [existingReservation]);
+```
+
+**Update Handler (lines 95-110):**
+- Updates existing reservation with new values
+- Preserves the same ID
+- Recalculates owner and admin splits based on new total
+- Navigates back to reservation's month after save
+
+**Routes:**
+- Create: `/reservations/new/:month` (e.g., `/reservations/new/2025-11`)
+- Edit: `/reservations/edit/:id` (e.g., `/reservations/edit/abc-123`)
+
+**UI Changes:**
+- Header text: "Nova Reserva" vs "Editar Reserva"
+- Submit button: "Adicionar Reserva" vs "Salvar Alterações"
+- Delete button only shows in edit mode
+
+### Delete Mode
+**Location:** `src/features/reservations/NewReservation.tsx:73-81, 241-276`
+
+**Delete Handler:**
+```typescript
+const handleDelete = () => {
+  if (!existingReservation) return;
+
+  dispatch(deleteReservation(existingReservation.id));
+
+  // Navigate back to reservations list for this reservation's month
+  const reservationMonth = formatMonth(existingReservation.date);
+  navigate(`/reservations/${reservationMonth}`);
+};
+```
+
+**Delete Button:**
+- Red "Remover Reserva" button only visible in edit mode
+- Appears below "Salvar Alterações"
+- Opens confirmation modal on click
+
+**Confirmation Modal:**
+- Title: "Confirmar Remoção"
+- Warning: "Tem certeza que deseja remover esta reserva? Esta ação não pode ser desfeita."
+- Buttons: "Cancelar" (gray) and "Sim, Remover" (red)
+- Modal uses `showDeleteConfirm` state
+
+### Clickable Reservation Items
+**Location:** `src/features/reservations/ReservationsMonth.tsx:144-178`
+
+Entire reservation items are clickable buttons (not just icons):
+```typescript
+<button
+  key={reservation.id}
+  onClick={() => navigate(`/reservations/edit/${reservation.id}`)}
+  className="w-full px-6 py-4 hover:bg-gray-50 transition-colors text-left"
+>
+  {/* Reservation content */}
+</button>
+```
+
+- No separate edit icon needed
+- Full item has hover effect
+- Maintains text-left alignment
+- Keyboard accessible
+
+## Timezone Bug Fix
+
+**Problem:** When user entered October 1st (2025-10-01), it was saved as September 30th.
+
+**Root Cause:** `new Date(dateString)` interprets the date as UTC midnight. In UTC-3 timezone (Brazil), this becomes the previous day.
+
+**Solution (lines 91-93):**
+Parse date components locally instead of using Date constructor with string:
+
+```typescript
+// Before (buggy):
+const reservation = {
+  date: new Date(formData.date) // UTC interpretation!
+};
+
+// After (fixed):
+const [year, monthNum, day] = formData.date.split('-').map(Number);
+const localDate = new Date(year, monthNum - 1, day); // Local interpretation
+const reservation = {
+  date: localDate
+};
+```
+
+This ensures dates are always interpreted in the local timezone, not UTC.
+
 ## Recent Changes (2025-11-09)
 
 ### What Changed:
@@ -221,11 +339,34 @@ The split percentages are configurable in Settings and used for all reservation 
    - After submission, returns to month page instead of dashboard
    - Maintains context throughout the flow
 
+4. **Added edit functionality**
+   - Reused NewReservation component with mode detection via URL params
+   - Pre-fills form with existing data in edit mode
+   - Dynamic header and button text based on mode
+
+5. **Added delete functionality**
+   - Red "Remover Reserva" button in edit mode
+   - Confirmation modal before deletion
+   - Safe deletion with navigation to month view
+
+6. **Made reservation items clickable**
+   - Entire item is now a button (not just icon)
+   - Removed separate pencil edit icon
+   - Better UX and accessibility
+
+7. **Fixed timezone bug**
+   - Changed from `new Date(dateString)` to local date parsing
+   - Prevents date shifting due to timezone conversion
+   - User input matches saved date exactly
+
 ### Why:
 - Reduce manual input by intelligently pre-filling dates
 - Maintain context awareness (current vs past/future months)
 - Improve UX by reducing clicks and preventing invalid states
 - Fix bug where bottom nav button generated invalid date page
+- Enable full CRUD operations for reservations
+- Better accessibility with full clickable items
+- Ensure date accuracy across timezones
 
 ## Important Notes
 
