@@ -215,17 +215,10 @@ export function useDataSync() {
   useDebouncedAutoSave(expenses, saveExpenses, isSignedIn, sheetId, isLoadingData);
   useDebouncedAutoSave(settings, saveSettings, isSignedIn, sheetId, isLoadingData);
 
-  // Auto-save tax data when paidMonths change
+  // Auto-save tax data ONLY when paidMonths change
+  // Tax data is derived/calculated data and should only be saved when user marks something as paid/unpaid
+  // This prevents the isPaid status from being reset when reservations/expenses change
   useDebouncedAutoSave(paidMonths, saveTaxData, isSignedIn, sheetId, isLoadingData);
-
-  // Also save tax data when reservations, expenses, or dependents change (since tax calculations depend on those)
-  // We concatenate the arrays into a single dependency to detect any changes
-  const taxDependencies = [
-    ...reservations.map(r => r.id),
-    ...expenses.map(e => e.id),
-    settings.dependents,
-  ];
-  useDebouncedAutoSave(taxDependencies, saveTaxData, isSignedIn, sheetId, isLoadingData);
 
   return {
     loadData,

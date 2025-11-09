@@ -188,7 +188,7 @@ export default function Taxes() {
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Total de Despesas:</span>
+                  <span className="text-gray-600">Despesas Dedutíveis:</span>
                   <span className="font-semibold text-green-600">- R$ {formatCurrency(selectedMonthData.totalDeductions)}</span>
                 </div>
 
@@ -198,7 +198,7 @@ export default function Taxes() {
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Dedução Fiscal:</span>
+                  <span className="text-gray-600">Dedução Fiscal (Dependentes):</span>
                   <span className="font-semibold text-green-600">- R$ {formatCurrency(selectedMonthData.deduction)}</span>
                 </div>
 
@@ -236,14 +236,14 @@ export default function Taxes() {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800 underline font-medium"
                 >
-                  Carnê Leão Web
+                  Carnê Leão Web → Rendimentos → + Rendimentos
                 </a>.
               </p>
 
               {/* Copy Total Income */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Renda Total
+                  Campo "Valor"
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -267,7 +267,7 @@ export default function Taxes() {
               {/* Copy Total Deductions */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Total de Deduções
+                  Campo "Valor Exclusão/Dedução"
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -291,7 +291,7 @@ export default function Taxes() {
               {/* Copy Reservation Details */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Detalhes das Reservas
+                  Campo "Histórico"
                 </label>
                 <div className="space-y-2">
                   <textarea

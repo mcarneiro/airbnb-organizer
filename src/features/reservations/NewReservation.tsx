@@ -80,7 +80,7 @@ export default function NewReservation() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900">New Reservation</h1>
+        <h1 className="text-xl font-bold text-gray-900">Nova Reserva</h1>
       </header>
 
       <div className="px-4 py-6 max-w-md mx-auto">
@@ -88,7 +88,7 @@ export default function NewReservation() {
           {/* Date Input */}
           <div>
             <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
-              Check-in Date
+              Data de Check-in
             </label>
             <input
               type="date"
@@ -103,7 +103,7 @@ export default function NewReservation() {
           {/* Nights Input */}
           <div>
             <label htmlFor="nights" className="block text-sm font-medium text-gray-700 mb-2">
-              Number of Nights
+              Diárias
             </label>
             <input
               type="number"
@@ -120,7 +120,7 @@ export default function NewReservation() {
           {/* Total Amount Input */}
           <div>
             <label htmlFor="total" className="block text-sm font-medium text-gray-700 mb-2">
-              Total Amount (R$)
+              Total (R$)
             </label>
             <input
               type="number"
@@ -138,16 +138,16 @@ export default function NewReservation() {
           {/* Calculated Splits */}
           {formData.total && (
             <div className="bg-blue-50 rounded-lg p-4 space-y-2">
-              <h3 className="text-sm font-semibold text-blue-900">Calculated Amounts</h3>
+              <h3 className="text-sm font-semibold text-blue-900">Distribuição</h3>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-blue-700">Owner ({(settings.ownerSplit * 100).toFixed(0)}%):</span>
+                  <span className="text-blue-700">Propritário ({(settings.ownerSplit * 100).toFixed(0)}%):</span>
                   <span className="font-semibold text-blue-900">
                     R$ {formatCurrency(ownerAmount)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-blue-700">Admin ({(settings.adminSplit * 100).toFixed(0)}%):</span>
+                  <span className="text-blue-700">Administrador ({(settings.adminSplit * 100).toFixed(0)}%):</span>
                   <span className="font-semibold text-blue-900">
                     R$ {formatCurrency(adminFee)}
                   </span>
@@ -162,7 +162,7 @@ export default function NewReservation() {
             disabled={!isFormValid}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            Add Reservation
+            Adicionar Reserva
           </button>
         </form>
       </div>
