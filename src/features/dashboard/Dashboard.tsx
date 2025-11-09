@@ -57,8 +57,8 @@ export default function Dashboard() {
   );
 
   const unpaidMonth = useMemo(
-    () => getMostRecentUnpaidMonth(availableMonths, paidMonths),
-    [availableMonths, paidMonths]
+    () => getMostRecentUnpaidMonth(availableMonths, paidMonths, reservations, expenses, settings.dependents),
+    [availableMonths, paidMonths, reservations, expenses, settings.dependents]
   );
 
   // Calculate Year-over-Year data

@@ -96,7 +96,7 @@ function App() {
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/" element={<Layout><Dashboard /></Layout>} />
         <Route path="/expenses" element={<Navigate to={`/expenses/${getCurrentMonth()}`} replace />} />
-        <Route path="/expenses/new" element={<NewExpense />} />
+        <Route path="/expenses/new/:month" element={<NewExpense />} />
         <Route path="/expenses/:month" element={<Layout><ExpensesMonth /></Layout>} />
         <Route path="/taxes/:month?" element={<Layout><Taxes /></Layout>} />
         <Route path="/settings" element={<Settings />} />

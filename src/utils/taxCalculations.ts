@@ -130,12 +130,15 @@ export function formatReservationsForIRS(reservations: Reservation[]): string {
 
 /**
  * Get the most recent unpaid month for tax notification
- * Logic: Start from previous month, go back in time until finding an unpaid month
+ * Logic: Start from previous month, go back in time until finding an unpaid month with tax owed > 0
  * Only check months that have data (reservations or expenses)
  */
 export function getMostRecentUnpaidMonth(
   availableMonths: string[], // Sorted most recent first
-  paidMonths: string[]
+  paidMonths: string[],
+  reservations: Reservation[],
+  expenses: Expense[],
+  dependents: number
 ): string | null {
   const now = new Date();
   const currentMonth = formatMonth(now);
@@ -143,9 +146,25 @@ export function getMostRecentUnpaidMonth(
   // Create a set for faster lookup
   const paidSet = new Set(paidMonths);
 
-  // Filter out current month and future months, then find first unpaid
+  // Filter out current month and future months, then find first unpaid with tax owed > 0
   const pastMonths = availableMonths.filter(month => month < currentMonth);
 
-  // Find the first (most recent) unpaid month
-  return pastMonths.find(month => !paidSet.has(month)) || null;
+  // Group reservations and expenses by month
+  const reservationsByMonth = groupReservationsByMonth(reservations);
+  const expensesByMonth = groupExpensesByMonth(expenses);
+
+  // Find the first (most recent) unpaid month that has tax owed > 0
+  return pastMonths.find(month => {
+    if (paidSet.has(month)) {
+      return false; // Already paid
+    }
+
+    // Calculate tax for this month
+    const monthReservations = reservationsByMonth.get(month) || [];
+    const monthExpenses = expensesByMonth.get(month) || [];
+    const taxSummary = calculateMonthlyTax(month, monthReservations, monthExpenses, dependents, false);
+
+    // Only show notification if tax owed > 0
+    return taxSummary.taxOwed > 0;
+  }) || null;
 }

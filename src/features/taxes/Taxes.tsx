@@ -74,9 +74,9 @@ export default function Taxes() {
     );
   }, [selectedMonth, reservationsByMonth, expensesByMonth, settings.dependents, paidMonths]);
 
-  // Get all monthly summaries for the list
+  // Get all monthly summaries for the list (last 6 entries)
   const allMonthlyTaxes = useMemo(() => {
-    return availableMonths.map((month) => {
+    return availableMonths.slice(0, 6).map((month) => {
       const monthReservations = reservationsByMonth.get(month) || [];
       const monthExpenses = expensesByMonth.get(month) || [];
       const isPaid = paidMonths.includes(month);
@@ -334,7 +334,7 @@ export default function Taxes() {
 
             {/* All Months Summary */}
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-              <h3 className="text-md font-semibold text-gray-900">Todos os Meses</h3>
+              <h3 className="text-md font-semibold text-gray-900">Últimos 6 Meses</h3>
 
               <div className="space-y-2">
                 {allMonthlyTaxes.map((monthData) => (

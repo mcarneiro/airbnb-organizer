@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
 import { addExpense } from '../../store/expensesSlice';
 import { ExpenseCategory } from '../../types';
@@ -16,9 +16,9 @@ const EXPENSE_CATEGORIES: ExpenseCategory[] = [
 export default function NewExpense() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { month } = useParams<{ month: string }>();
 
   const [formData, setFormData] = useState({
-    date: '',
     amount: '',
     category: '' as ExpenseCategory | '',
     notes: '',
@@ -27,23 +27,29 @@ export default function NewExpense() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!month) return;
+
+    // Create date from month parameter (first day of month)
+    const [year, monthNum] = month.split('-');
+    const expenseDate = new Date(parseInt(year), parseInt(monthNum) - 1, 1);
+
     // Create expense object
     const expense = {
       id: crypto.randomUUID(),
-      date: new Date(formData.date),
+      date: expenseDate,
       amount: parseFloat(formData.amount),
-      category: formData.category as ExpenseCategory,
+      category: formData.category || undefined,
       notes: formData.notes || undefined,
     };
 
     // Dispatch to Redux
     dispatch(addExpense(expense));
 
-    // Navigate back to expenses list
-    navigate('/expenses');
+    // Navigate back to expenses list for this month
+    navigate(`/expenses/${month}`);
   };
 
-  const isFormValid = formData.date && formData.amount && formData.category;
+  const isFormValid = formData.amount;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -62,42 +68,6 @@ export default function NewExpense() {
 
       <div className="px-4 py-6 max-w-md mx-auto">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Date Input */}
-          <div>
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
-              Data
-            </label>
-            <input
-              type="date"
-              id="date"
-              value={formData.date}
-              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            />
-          </div>
-
-          {/* Category Select */}
-          <div>
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-              Categoria
-            </label>
-            <select
-              id="category"
-              value={formData.category}
-              onChange={(e) => setFormData({ ...formData, category: e.target.value as ExpenseCategory })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            >
-              <option value="">Selecione uma categoria</option>
-              {EXPENSE_CATEGORIES.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </div>
-
           {/* Amount Input */}
           <div>
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
@@ -114,6 +84,26 @@ export default function NewExpense() {
               placeholder="ex: 150.00"
               required
             />
+          </div>
+
+          {/* Category Select */}
+          <div>
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+              Categoria (opcional)
+            </label>
+            <select
+              id="category"
+              value={formData.category}
+              onChange={(e) => setFormData({ ...formData, category: e.target.value as ExpenseCategory })}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">Selecione uma categoria</option>
+              {EXPENSE_CATEGORIES.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Notes Input */}

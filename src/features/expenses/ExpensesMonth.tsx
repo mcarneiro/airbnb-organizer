@@ -22,20 +22,6 @@ export default function ExpensesMonth() {
     return monthExpenses.reduce((sum, e) => sum + e.amount, 0);
   }, [monthExpenses]);
 
-  // Group by category
-  const byCategory = useMemo(() => {
-    const grouped = new Map<string, number>();
-    monthExpenses.forEach(expense => {
-      const current = grouped.get(expense.category) || 0;
-      grouped.set(expense.category, current + expense.amount);
-    });
-    return grouped;
-  }, [monthExpenses]);
-
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-  };
-
   if (!month) {
     return null;
   }
@@ -54,7 +40,7 @@ export default function ExpensesMonth() {
         </button>
         <h1 className="text-xl font-bold text-gray-900 flex-1">Despesas</h1>
         <button
-          onClick={() => navigate('/expenses/new')}
+          onClick={() => navigate(`/expenses/new/${month}`)}
           className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +103,7 @@ export default function ExpensesMonth() {
             <div className="px-6 py-12 text-center">
               <p className="text-gray-500">Nenhuma despesa neste mês</p>
               <button
-                onClick={() => navigate('/expenses/new')}
+                onClick={() => navigate(`/expenses/new/${month}`)}
                 className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
               >
                 Adicionar uma despesa
@@ -133,9 +119,11 @@ export default function ExpensesMonth() {
                         <span className="font-bold text-red-600">
                           R$ {formatCurrency(expense.amount)}
                         </span>
-                        <span className="text-sm px-2 py-0.5 bg-gray-100 text-gray-700 rounded">
-                          {expense.category}
-                        </span>
+                        {expense.category && (
+                          <span className="text-sm px-2 py-0.5 bg-gray-100 text-gray-700 rounded">
+                            {expense.category}
+                          </span>
+                        )}
                       </div>
 
                       {expense.notes && (

@@ -21,7 +21,7 @@ export interface Expense {
   id: string;
   date: Date;           // Expense date
   amount: number;       // Amount spent
-  category: ExpenseCategory; // Expense category
+  category?: ExpenseCategory; // Optional expense category
   notes?: string;       // Optional description
 }
 
