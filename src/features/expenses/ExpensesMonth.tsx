@@ -105,23 +105,6 @@ export default function ExpensesMonth() {
                   {monthExpenses.length} {monthExpenses.length === 1 ? 'despesa' : 'despesas'}
                 </div>
               </div>
-
-              {/* Category Breakdown */}
-              {byCategory.size > 0 && (
-                <div className="pt-4 border-t border-gray-200">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-3">Por Categoria</h3>
-                  <div className="space-y-2">
-                    {Array.from(byCategory.entries()).map(([category, amount]) => (
-                      <div key={category} className="flex justify-between items-center text-sm">
-                        <span className="text-gray-700">{category}</span>
-                        <span className="font-semibold text-gray-900">
-                          R$ {formatCurrency(amount)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Expenses List */}
@@ -147,8 +130,8 @@ export default function ExpensesMonth() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <div className="flex items-baseline gap-2">
-                        <span className="font-semibold text-gray-900">
-                          {formatDate(expense.date)}
+                        <span className="font-bold text-red-600">
+                          R$ {formatCurrency(expense.amount)}
                         </span>
                         <span className="text-sm px-2 py-0.5 bg-gray-100 text-gray-700 rounded">
                           {expense.category}
@@ -160,12 +143,6 @@ export default function ExpensesMonth() {
                           {expense.notes}
                         </div>
                       )}
-
-                      <div className="mt-2">
-                        <span className="font-bold text-red-600">
-                          R$ {formatCurrency(expense.amount)}
-                        </span>
-                      </div>
                     </div>
                   </div>
                 </div>
