@@ -17,7 +17,7 @@ export default function Layout({ children }: LayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+  const isHomePage = location.pathname === '/';
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -33,7 +33,7 @@ export default function Layout({ children }: LayoutProps) {
           <button
             onClick={() => navigate('/expenses')}
             className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors ${
-              isActive('/expenses')
+              location.pathname.startsWith('/expenses')
                 ? 'text-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
@@ -44,15 +44,27 @@ export default function Layout({ children }: LayoutProps) {
             <span className="text-xs font-medium">Despesas</span>
           </button>
 
-          {/* Add Reservation (Primary Action) */}
-          <button
-            onClick={() => navigate(`/reservations/new/${getCurrentMonth()}`)}
-            className="flex flex-col items-center gap-1 px-6 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors -mt-4"
-          >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
+          {/* Center Button: Add Reservation (on home) or Home (on other pages) */}
+          {isHomePage ? (
+            <button
+              onClick={() => navigate(`/reservations/new/${getCurrentMonth()}`)}
+              className="flex flex-col items-center gap-1 px-6 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors -mt-4"
+            >
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate('/')}
+              className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors text-gray-600 hover:text-gray-900`}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span className="text-xs font-medium">Início</span>
+            </button>
+          )}
 
           {/* Taxes */}
           <button

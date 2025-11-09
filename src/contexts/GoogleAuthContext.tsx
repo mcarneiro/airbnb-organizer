@@ -21,13 +21,13 @@ const GoogleAuthContext = createContext<GoogleAuthContextType | undefined>(undef
 
 // Helper to get the appropriate storage based on user preference
 function getStorage(): Storage {
-  const persistAuth = localStorage.getItem('persistAuth') !== 'false'; // Default to true
+  const persistAuth = localStorage.getItem('persistAuth') === 'true'; // Default to false (more secure)
   return persistAuth ? localStorage : sessionStorage;
 }
 
 // Helper to check if auth is persisted
 function shouldPersistAuth(): boolean {
-  return localStorage.getItem('persistAuth') !== 'false'; // Default to true
+  return localStorage.getItem('persistAuth') === 'true'; // Default to false (more secure)
 }
 
 export function GoogleAuthProvider({ children }: { children: ReactNode }) {
