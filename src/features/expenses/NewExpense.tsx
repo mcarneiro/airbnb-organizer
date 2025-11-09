@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addExpense, updateExpense } from '../../store/expensesSlice';
+import { addExpense, updateExpense, deleteExpense } from '../../store/expensesSlice';
 import { ExpenseCategory } from '../../types';
 import { formatMonth } from '../../utils/taxCalculations';
 
@@ -30,6 +30,8 @@ export default function NewExpense() {
     notes: '',
   });
 
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
   // Pre-fill form when editing
   useEffect(() => {
     if (existingExpense) {
@@ -40,6 +42,16 @@ export default function NewExpense() {
       });
     }
   }, [existingExpense]);
+
+  const handleDelete = () => {
+    if (!existingExpense) return;
+
+    dispatch(deleteExpense(existingExpense.id));
+
+    // Navigate back to expenses list for this expense's month
+    const expenseMonth = formatMonth(existingExpense.date);
+    navigate(`/expenses/${expenseMonth}`);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -170,7 +182,44 @@ export default function NewExpense() {
           >
             {isEditMode ? 'Salvar Alterações' : 'Adicionar Despesa'}
           </button>
+
+          {/* Delete Button - Only in Edit Mode */}
+          {isEditMode && (
+            <button
+              type="button"
+              onClick={() => setShowDeleteConfirm(true)}
+              className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+            >
+              Remover Despesa
+            </button>
+          )}
         </form>
+
+        {/* Delete Confirmation Modal */}
+        {showDeleteConfirm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Confirmar Remoção</h3>
+              <p className="text-sm text-gray-600 mb-6">
+                Tem certeza que deseja remover esta despesa? Esta ação não pode ser desfeita.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                >
+                  Sim, Remover
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
