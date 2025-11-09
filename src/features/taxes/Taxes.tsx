@@ -189,7 +189,7 @@ export default function Taxes() {
 
                 <div className="flex justify-between py-2 border-b border-gray-100">
                   <span className="text-gray-600">Total de Despesas:</span>
-                  <span className="font-semibold text-red-600">- R$ {formatCurrency(selectedMonthData.totalDeductions)}</span>
+                  <span className="font-semibold text-green-600">- R$ {formatCurrency(selectedMonthData.totalDeductions)}</span>
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-200">

@@ -13,11 +13,11 @@ export class BrazilianRentalTaxCalculator implements TaxCalculator {
 
   // Progressive tax brackets
   private static readonly TAX_BRACKETS: TaxBracket[] = [
-    { maxIncome: 2428.81, rate: 0.075, deduction: 182.16 },
-    { maxIncome: 2826.66, rate: 0.15, deduction: 394.16 },
-    { maxIncome: 3751.05, rate: 0.225, deduction: 675.49 },
-    { maxIncome: 4664.68, rate: 0.275, deduction: 908.73 },
-    { maxIncome: Infinity, rate: 0.275, deduction: 908.73 }, // Above highest bracket
+    { maxIncome: 2428.81, rate: 0, deduction: 182.16 },
+    { maxIncome: 2826.66, rate: 0.075, deduction: 182.16 },
+    { maxIncome: 3751.05, rate: 0.15, deduction: 394.16 },
+    { maxIncome: 4664.68, rate: 0.225, deduction: 675.49 },
+    { maxIncome: Infinity, rate: 0.275, deduction: 908.73 }
   ];
 
   /**
@@ -54,7 +54,7 @@ export class BrazilianRentalTaxCalculator implements TaxCalculator {
    */
   private findTaxBracket(taxableIncome: number): TaxBracket {
     return BrazilianRentalTaxCalculator.TAX_BRACKETS.find(
-      bracket => taxableIncome <= bracket.maxIncome
+      bracket => taxableIncome < bracket.maxIncome
     ) || BrazilianRentalTaxCalculator.TAX_BRACKETS[BrazilianRentalTaxCalculator.TAX_BRACKETS.length - 1];
   }
 
