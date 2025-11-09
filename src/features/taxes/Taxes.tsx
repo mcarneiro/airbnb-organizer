@@ -338,9 +338,10 @@ export default function Taxes() {
 
               <div className="space-y-2">
                 {allMonthlyTaxes.map((monthData) => (
-                  <div
+                  <button
                     key={monthData.month}
-                    className={`p-3 rounded-lg border ${
+                    onClick={() => navigate(`/taxes/${monthData.month}`)}
+                    className={`w-full p-3 rounded-lg border text-left hover:opacity-80 transition-opacity ${
                       monthData.isPaid
                         ? 'border-green-200 bg-green-50'
                         : monthData.taxOwed > 0
@@ -365,7 +366,7 @@ export default function Taxes() {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>

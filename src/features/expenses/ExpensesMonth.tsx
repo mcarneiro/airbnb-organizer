@@ -171,28 +171,28 @@ export default function ExpensesMonth() {
           ) : (
             <div className="divide-y divide-gray-100">
               {monthExpenses.map((expense) => (
-                <div key={expense.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <div className="flex items-baseline gap-2">
-                        <span className="font-bold text-red-600">
-                          R$ {formatCurrency(expense.amount)}
-                        </span>
-                        {expense.category && (
-                          <span className="text-sm px-2 py-0.5 bg-gray-100 text-gray-700 rounded">
-                            {expense.category}
-                          </span>
-                        )}
-                      </div>
-
-                      {expense.notes && (
-                        <div className="mt-1 text-sm text-gray-600">
-                          {expense.notes}
-                        </div>
-                      )}
-                    </div>
+                <button
+                  key={expense.id}
+                  onClick={() => navigate(`/expenses/edit/${expense.id}`)}
+                  className="w-full px-6 py-4 hover:bg-gray-50 transition-colors text-left"
+                >
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-bold text-red-600">
+                      R$ {formatCurrency(expense.amount)}
+                    </span>
+                    {expense.category && (
+                      <span className="text-sm px-2 py-0.5 bg-gray-100 text-gray-700 rounded">
+                        {expense.category}
+                      </span>
+                    )}
                   </div>
-                </div>
+
+                  {expense.notes && (
+                    <div className="mt-1 text-sm text-gray-600">
+                      {expense.notes}
+                    </div>
+                  )}
+                </button>
               ))}
             </div>
           )}

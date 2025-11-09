@@ -1,18 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addReservation } from '../../store/reservationsSlice';
+import { addReservation, updateReservation } from '../../store/reservationsSlice';
 import { formatCurrency } from '../../utils/currency';
 import { formatMonth } from '../../utils/taxCalculations';
 
 export default function NewReservation() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { month } = useParams<{ month: string }>();
+  const { month, id } = useParams<{ month?: string; id?: string }>();
   const settings = useAppSelector(state => state.settings.settings);
+  const reservations = useAppSelector(state => state.reservations.items);
+
+  // Check if we're editing an existing reservation
+  const isEditMode = !!id;
+  const existingReservation = isEditMode ? reservations.find(r => r.id === id) : null;
 
   // Calculate initial date based on month parameter
   const getInitialDate = (): string => {
+    if (existingReservation) {
+      // Edit mode: use existing date
+      const date = existingReservation.date;
+      const year = date.getFullYear();
+      const monthNum = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${monthNum}-${day}`;
+    }
+
     if (!month) return '';
 
     const now = new Date();
@@ -37,6 +51,23 @@ export default function NewReservation() {
     total: '',
   });
 
+  // Pre-fill form when editing
+  useEffect(() => {
+    if (existingReservation) {
+      const date = existingReservation.date;
+      const year = date.getFullYear();
+      const monthNum = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const dateString = `${year}-${monthNum}-${day}`;
+
+      setFormData({
+        date: dateString,
+        nights: existingReservation.nights.toString(),
+        total: existingReservation.total.toString(),
+      });
+    }
+  }, [existingReservation]);
+
   // Calculate splits directly from form data
   const total = parseFloat(formData.total) || 0;
   const ownerAmount = total * settings.ownerSplit;
@@ -45,24 +76,45 @@ export default function NewReservation() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Create reservation object
-    const reservation = {
-      id: crypto.randomUUID(),
-      date: new Date(formData.date),
-      nights: parseInt(formData.nights),
-      total: parseFloat(formData.total),
-      ownerAmount,
-      adminFee,
-    };
+    // Parse date as local date to avoid timezone issues
+    const [year, monthNum, day] = formData.date.split('-').map(Number);
+    const localDate = new Date(year, monthNum - 1, day);
 
-    // Dispatch to Redux
-    dispatch(addReservation(reservation));
+    if (isEditMode && existingReservation) {
+      // Edit mode: update existing reservation
+      const updatedReservation = {
+        id: existingReservation.id,
+        date: localDate,
+        nights: parseInt(formData.nights),
+        total: parseFloat(formData.total),
+        ownerAmount,
+        adminFee,
+      };
 
-    // Navigate back to the month page
-    if (month) {
-      navigate(`/reservations/${month}`);
+      dispatch(updateReservation(updatedReservation));
+
+      // Navigate back to reservations list for this reservation's month
+      const reservationMonth = formatMonth(localDate);
+      navigate(`/reservations/${reservationMonth}`);
     } else {
-      navigate('/');
+      // Create mode: add new reservation
+      const reservation = {
+        id: crypto.randomUUID(),
+        date: localDate,
+        nights: parseInt(formData.nights),
+        total: parseFloat(formData.total),
+        ownerAmount,
+        adminFee,
+      };
+
+      dispatch(addReservation(reservation));
+
+      // Navigate back to the month page
+      if (month) {
+        navigate(`/reservations/${month}`);
+      } else {
+        navigate('/');
+      }
     }
   };
 
@@ -73,14 +125,22 @@ export default function NewReservation() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => {
+            if (isEditMode && existingReservation) {
+              navigate(`/reservations/${formatMonth(existingReservation.date)}`);
+            } else {
+              navigate('/');
+            }
+          }}
           className="p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
         >
           <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Nova Reserva</h1>
+        <h1 className="text-xl font-bold text-gray-900">
+          {isEditMode ? 'Editar Reserva' : 'Nova Reserva'}
+        </h1>
       </header>
 
       <div className="px-4 py-6 max-w-md mx-auto">
@@ -162,7 +222,7 @@ export default function NewReservation() {
             disabled={!isFormValid}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            Adicionar Reserva
+            {isEditMode ? 'Salvar Alterações' : 'Adicionar Reserva'}
           </button>
         </form>
       </div>

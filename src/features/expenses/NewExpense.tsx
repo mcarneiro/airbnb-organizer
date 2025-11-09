@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../store/hooks';
-import { addExpense } from '../../store/expensesSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { addExpense, updateExpense } from '../../store/expensesSlice';
 import { ExpenseCategory } from '../../types';
+import { formatMonth } from '../../utils/taxCalculations';
 
 const EXPENSE_CATEGORIES: ExpenseCategory[] = [
   'IPTU',
@@ -16,7 +17,12 @@ const EXPENSE_CATEGORIES: ExpenseCategory[] = [
 export default function NewExpense() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { month } = useParams<{ month: string }>();
+  const { month, id } = useParams<{ month?: string; id?: string }>();
+  const expenses = useAppSelector(state => state.expenses.items);
+
+  // Check if we're editing an existing expense
+  const isEditMode = !!id;
+  const existingExpense = isEditMode ? expenses.find(e => e.id === id) : null;
 
   const [formData, setFormData] = useState({
     amount: '',
@@ -24,29 +30,56 @@ export default function NewExpense() {
     notes: '',
   });
 
+  // Pre-fill form when editing
+  useEffect(() => {
+    if (existingExpense) {
+      setFormData({
+        amount: existingExpense.amount.toString(),
+        category: existingExpense.category || '',
+        notes: existingExpense.notes || '',
+      });
+    }
+  }, [existingExpense]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!month) return;
+    if (isEditMode && existingExpense) {
+      // Edit mode: update existing expense
+      const updatedExpense = {
+        id: existingExpense.id,
+        date: existingExpense.date,
+        amount: parseFloat(formData.amount),
+        category: formData.category || undefined,
+        notes: formData.notes || undefined,
+      };
 
-    // Create date from month parameter (first day of month)
-    const [year, monthNum] = month.split('-');
-    const expenseDate = new Date(parseInt(year), parseInt(monthNum) - 1, 1);
+      dispatch(updateExpense(updatedExpense));
 
-    // Create expense object
-    const expense = {
-      id: crypto.randomUUID(),
-      date: expenseDate,
-      amount: parseFloat(formData.amount),
-      category: formData.category || undefined,
-      notes: formData.notes || undefined,
-    };
+      // Navigate back to expenses list for this expense's month
+      const expenseMonth = formatMonth(existingExpense.date);
+      navigate(`/expenses/${expenseMonth}`);
+    } else {
+      // Create mode: add new expense
+      if (!month) return;
 
-    // Dispatch to Redux
-    dispatch(addExpense(expense));
+      // Create date from month parameter (first day of month)
+      const [year, monthNum] = month.split('-');
+      const expenseDate = new Date(parseInt(year), parseInt(monthNum) - 1, 1);
 
-    // Navigate back to expenses list for this month
-    navigate(`/expenses/${month}`);
+      const expense = {
+        id: crypto.randomUUID(),
+        date: expenseDate,
+        amount: parseFloat(formData.amount),
+        category: formData.category || undefined,
+        notes: formData.notes || undefined,
+      };
+
+      dispatch(addExpense(expense));
+
+      // Navigate back to expenses list for this month
+      navigate(`/expenses/${month}`);
+    }
   };
 
   const isFormValid = formData.amount;
@@ -56,14 +89,22 @@ export default function NewExpense() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
         <button
-          onClick={() => navigate('/expenses')}
+          onClick={() => {
+            if (isEditMode && existingExpense) {
+              navigate(`/expenses/${formatMonth(existingExpense.date)}`);
+            } else {
+              navigate('/expenses');
+            }
+          }}
           className="p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
         >
           <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Nova Despesa</h1>
+        <h1 className="text-xl font-bold text-gray-900">
+          {isEditMode ? 'Editar Despesa' : 'Nova Despesa'}
+        </h1>
       </header>
 
       <div className="px-4 py-6 max-w-md mx-auto">
@@ -127,7 +168,7 @@ export default function NewExpense() {
             disabled={!isFormValid}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            Adicionar Despesa
+            {isEditMode ? 'Salvar Alterações' : 'Adicionar Despesa'}
           </button>
         </form>
       </div>

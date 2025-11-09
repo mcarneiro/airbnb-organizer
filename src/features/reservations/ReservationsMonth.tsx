@@ -141,41 +141,41 @@ export default function ReservationsMonth() {
           ) : (
             <div className="divide-y divide-gray-100">
               {monthReservations.map((reservation) => (
-                <div key={reservation.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <div className="flex items-baseline gap-2">
-                        <span className="font-semibold text-gray-900">
-                          {formatDate(reservation.date)}
-                        </span>
-                        <span className="text-sm text-gray-600">
-                          {reservation.nights} {reservation.nights === 1 ? 'diária' : 'diárias'}
-                        </span>
-                      </div>
+                <button
+                  key={reservation.id}
+                  onClick={() => navigate(`/reservations/edit/${reservation.id}`)}
+                  className="w-full px-6 py-4 hover:bg-gray-50 transition-colors text-left"
+                >
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-semibold text-gray-900">
+                      {formatDate(reservation.date)}
+                    </span>
+                    <span className="text-sm text-gray-600">
+                      {reservation.nights} {reservation.nights === 1 ? 'diária' : 'diárias'}
+                    </span>
+                  </div>
 
-                      <div className="mt-2 space-y-1 text-sm">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Total:</span>
-                          <span className="font-medium text-gray-900">
-                            R$ {formatCurrency(reservation.total)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Proprietário:</span>
-                          <span className="font-medium text-blue-600">
-                            R$ {formatCurrency(reservation.ownerAmount)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Administrador:</span>
-                          <span className="font-medium text-gray-600">
-                            R$ {formatCurrency(reservation.adminFee)}
-                          </span>
-                        </div>
-                      </div>
+                  <div className="mt-2 space-y-1 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Total:</span>
+                      <span className="font-medium text-gray-900">
+                        R$ {formatCurrency(reservation.total)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Proprietário:</span>
+                      <span className="font-medium text-blue-600">
+                        R$ {formatCurrency(reservation.ownerAmount)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Administrador:</span>
+                      <span className="font-medium text-gray-600">
+                        R$ {formatCurrency(reservation.adminFee)}
+                      </span>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           )}
