@@ -10,6 +10,7 @@ interface GoogleAuthContextType {
   error: string | null;
   signIn: () => void;
   signOut: (reason?: 'expired') => void;
+  fullLogout: () => void;
   persistAuth: boolean;
   setPersistAuth: (persist: boolean) => void;
   sessionExpired: boolean;
@@ -234,6 +235,32 @@ export function GoogleAuthProvider({ children }: { children: ReactNode }) {
     sessionStorage.removeItem('googleAuth_expiresAt');
   };
 
+  const fullLogout = () => {
+    // Clear all auth data
+    setIsSignedIn(false);
+    setUserEmail(null);
+    setAccessToken(null);
+    setTokenExpiresAt(null);
+    setError(null);
+
+    // Clear all data from localStorage
+    localStorage.removeItem('googleAuth_isSignedIn');
+    localStorage.removeItem('googleAuth_userEmail');
+    localStorage.removeItem('googleAuth_accessToken');
+    localStorage.removeItem('googleAuth_expiresAt');
+    localStorage.removeItem('sheetId'); // Clear sheet ID
+    localStorage.removeItem('persistAuth'); // Clear persist preference
+
+    // Clear all data from sessionStorage
+    sessionStorage.removeItem('googleAuth_isSignedIn');
+    sessionStorage.removeItem('googleAuth_userEmail');
+    sessionStorage.removeItem('googleAuth_accessToken');
+    sessionStorage.removeItem('googleAuth_expiresAt');
+
+    // Reload the page to reset Redux store and navigate to onboarding
+    window.location.href = '/';
+  };
+
   return (
     <GoogleAuthContext.Provider
       value={{
@@ -243,6 +270,7 @@ export function GoogleAuthProvider({ children }: { children: ReactNode }) {
         error,
         signIn,
         signOut,
+        fullLogout,
         persistAuth,
         setPersistAuth,
         sessionExpired,

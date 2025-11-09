@@ -9,7 +9,7 @@ export default function Settings() {
   const dispatch = useAppDispatch();
   const settings = useAppSelector(state => state.settings.settings);
   const currentSheetId = useAppSelector(state => state.settings.sheetId);
-  const { persistAuth, setPersistAuth } = useGoogleAuth();
+  const { persistAuth, setPersistAuth, fullLogout } = useGoogleAuth();
 
   const [formData, setFormData] = useState({
     sheetId: currentSheetId || '',
@@ -19,6 +19,7 @@ export default function Settings() {
   });
 
   const [isSaved, setIsSaved] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -216,6 +217,55 @@ export default function Settings() {
             {isSaved ? '✓ Salvo!' : 'Salvar Configurações'}
           </button>
         </form>
+
+        {/* Logout Section */}
+        <div className="mt-8 pt-6 border-t border-gray-200">
+          <button
+            type="button"
+            onClick={() => setShowLogoutConfirm(true)}
+            className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+          >
+            Sair e Limpar Todos os Dados
+          </button>
+          <p className="mt-2 text-xs text-center text-gray-500">
+            Isso removerá todos os dados armazenados localmente e fará logout da sua conta
+          </p>
+        </div>
+
+        {/* Logout Confirmation Modal */}
+        {showLogoutConfirm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Confirmar Logout</h3>
+              <p className="text-sm text-gray-600 mb-6">
+                Tem certeza que deseja sair? Isso irá:
+              </p>
+              <ul className="text-sm text-gray-600 mb-6 space-y-2">
+                <li>• Fazer logout da sua conta Google</li>
+                <li>• Remover o ID da planilha armazenado</li>
+                <li>• Limpar todas as configurações locais</li>
+                <li>• Limpar todos os dados em memória</li>
+              </ul>
+              <p className="text-sm text-gray-600 mb-6">
+                Seus dados na Planilha Google permanecerão intactos.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowLogoutConfirm(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={fullLogout}
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                >
+                  Sim, Sair
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
