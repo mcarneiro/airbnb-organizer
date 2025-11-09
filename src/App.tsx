@@ -100,7 +100,7 @@ function App() {
         <Route path="/expenses/:month" element={<Layout><ExpensesMonth /></Layout>} />
         <Route path="/taxes/:month?" element={<Layout><Taxes /></Layout>} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/reservations/new" element={<Layout><NewReservation /></Layout>} />
+        <Route path="/reservations/new/:month" element={<Layout><NewReservation /></Layout>} />
         <Route path="/reservations/:month" element={<Layout><ReservationsMonth /></Layout>} />
       </Routes>
     </>

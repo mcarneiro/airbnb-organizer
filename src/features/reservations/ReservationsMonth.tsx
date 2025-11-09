@@ -51,7 +51,7 @@ export default function ReservationsMonth() {
         </button>
         <h1 className="text-xl font-bold text-gray-900 flex-1">Reservas</h1>
         <button
-          onClick={() => navigate('/reservations/new')}
+          onClick={() => navigate(`/reservations/new/${month}`)}
           className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@ export default function ReservationsMonth() {
             <div className="px-6 py-12 text-center">
               <p className="text-gray-500">Nenhuma reserva neste mês</p>
               <button
-                onClick={() => navigate('/reservations/new')}
+                onClick={() => navigate(`/reservations/new/${month}`)}
                 className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
               >
                 Adicionar uma reserva

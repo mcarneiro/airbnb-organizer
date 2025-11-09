@@ -46,7 +46,7 @@ export default function Layout({ children }: LayoutProps) {
 
           {/* Add Reservation (Primary Action) */}
           <button
-            onClick={() => navigate('/reservations/new')}
+            onClick={() => navigate(`/reservations/new/${getCurrentMonth()}`)}
             className="flex flex-col items-center gap-1 px-6 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors -mt-4"
           >
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">

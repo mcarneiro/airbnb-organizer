@@ -1,16 +1,38 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addReservation } from '../../store/reservationsSlice';
 import { formatCurrency } from '../../utils/currency';
+import { formatMonth } from '../../utils/taxCalculations';
 
 export default function NewReservation() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { month } = useParams<{ month: string }>();
   const settings = useAppSelector(state => state.settings.settings);
 
+  // Calculate initial date based on month parameter
+  const getInitialDate = (): string => {
+    if (!month) return '';
+
+    const now = new Date();
+    const currentMonth = formatMonth(now);
+
+    if (month === currentMonth) {
+      // Current month: use today's date
+      const year = now.getFullYear();
+      const monthNum = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      return `${year}-${monthNum}-${day}`;
+    } else {
+      // Past or future month: use first day of that month
+      const [year, monthNum] = month.split('-');
+      return `${year}-${monthNum}-01`;
+    }
+  };
+
   const [formData, setFormData] = useState({
-    date: '',
+    date: getInitialDate(),
     nights: '',
     total: '',
   });
@@ -36,8 +58,12 @@ export default function NewReservation() {
     // Dispatch to Redux
     dispatch(addReservation(reservation));
 
-    // Navigate back to home
-    navigate('/');
+    // Navigate back to the month page
+    if (month) {
+      navigate(`/reservations/${month}`);
+    } else {
+      navigate('/');
+    }
   };
 
   const isFormValid = formData.date && formData.nights && formData.total;
