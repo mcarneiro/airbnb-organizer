@@ -167,7 +167,7 @@ export default function ReservationsMonth() {
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Taxa Admin:</span>
+                          <span className="text-gray-600">Administrador:</span>
                           <span className="font-medium text-gray-600">
                             R$ {formatCurrency(reservation.adminFee)}
                           </span>

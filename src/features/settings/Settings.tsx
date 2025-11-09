@@ -52,7 +52,7 @@ export default function Settings() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Settings</h1>
+        <h1 className="text-xl font-bold text-gray-900">Configurações</h1>
       </header>
 
       <div className="px-4 py-6 max-w-md mx-auto">
@@ -60,7 +60,7 @@ export default function Settings() {
           {/* Google Sheet ID */}
           <div>
             <label htmlFor="sheetId" className="block text-sm font-medium text-gray-700 mb-2">
-              Google Sheet ID
+              ID da Planilha Google
             </label>
             <input
               type="text"
@@ -68,28 +68,28 @@ export default function Settings() {
               value={formData.sheetId}
               onChange={(e) => setFormData({ ...formData, sheetId: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
-              placeholder="Enter your Google Sheet ID..."
+              placeholder="Digite o ID da sua Planilha Google..."
             />
             <p className="mt-1 text-xs text-gray-500">
-              Stored locally for connection purposes only
+              Armazenado localmente apenas para fins de conexão
             </p>
           </div>
 
           {/* Security Settings Section */}
           <div className="pt-4 border-t border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900 mb-4">Security Settings</h3>
+            <h3 className="text-md font-semibold text-gray-900 mb-4">Configurações de Segurança</h3>
 
             {/* Keep me signed in toggle */}
             <div className="mb-4">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <label htmlFor="persistAuth" className="block text-sm font-medium text-gray-700">
-                    Keep me signed in
+                    Manter conectado
                   </label>
                   <p className="mt-1 text-xs text-gray-500">
                     {persistAuth
-                      ? 'You\'ll stay signed in after closing your browser'
-                      : 'You\'ll be logged out when you close your browser (more secure)'}
+                      ? 'Você permanecerá conectado após fechar o navegador'
+                      : 'Você será desconectado ao fechar o navegador (mais seguro)'}
                   </p>
                 </div>
                 <button
@@ -110,10 +110,10 @@ export default function Settings() {
                 </button>
               </div>
               <div className="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <p className="text-xs text-blue-900 font-semibold mb-1">🔒 Security Note:</p>
+                <p className="text-xs text-blue-900 font-semibold mb-1">🔒 Nota de Segurança:</p>
                 <p className="text-xs text-blue-800">
-                  For better security, disable "Keep me signed in" on shared computers.
-                  This stores your access token only in session storage, which clears when you close the browser.
+                  Para melhor segurança, desative "Manter conectado" em computadores compartilhados.
+                  Isso armazena seu token de acesso apenas no armazenamento de sessão, que é limpo quando você fecha o navegador.
                 </p>
               </div>
             </div>
@@ -121,12 +121,12 @@ export default function Settings() {
 
           {/* Tax Settings Section */}
           <div className="pt-4 border-t border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900 mb-4">Tax Settings</h3>
+            <h3 className="text-md font-semibold text-gray-900 mb-4">Configurações de Impostos</h3>
 
             {/* Number of Dependents */}
             <div className="mb-4">
               <label htmlFor="dependents" className="block text-sm font-medium text-gray-700 mb-2">
-                Number of Dependents
+                Número de Dependentes
               </label>
               <input
                 type="number"
@@ -138,19 +138,19 @@ export default function Settings() {
                 required
               />
               <p className="mt-1 text-xs text-gray-500">
-                Used for tax deduction calculation
+                Usado para cálculo de dedução de impostos
               </p>
             </div>
           </div>
 
           {/* Income Split Section */}
           <div className="pt-4 border-t border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900 mb-4">Income Split</h3>
+            <h3 className="text-md font-semibold text-gray-900 mb-4">Divisão de Renda</h3>
 
             {/* Owner Split */}
             <div className="mb-4">
               <label htmlFor="ownerSplit" className="block text-sm font-medium text-gray-700 mb-2">
-                Owner Percentage (%)
+                Porcentagem do Proprietário (%)
               </label>
               <input
                 type="number"
@@ -175,7 +175,7 @@ export default function Settings() {
             {/* Admin Split */}
             <div className="mb-4">
               <label htmlFor="adminSplit" className="block text-sm font-medium text-gray-700 mb-2">
-                Administrator Percentage (%)
+                Porcentagem do Administrador (%)
               </label>
               <input
                 type="number"
@@ -201,7 +201,7 @@ export default function Settings() {
             {parseFloat(formData.ownerSplit) + parseFloat(formData.adminSplit) !== 100 && (
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
                 <p className="text-sm text-yellow-800">
-                  ⚠ Owner and Administrator percentages must add up to 100%
+                  ⚠ As porcentagens do Proprietário e Administrador devem somar 100%
                 </p>
               </div>
             )}
@@ -213,7 +213,7 @@ export default function Settings() {
             disabled={parseFloat(formData.ownerSplit) + parseFloat(formData.adminSplit) !== 100}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            {isSaved ? '✓ Saved!' : 'Save Settings'}
+            {isSaved ? '✓ Salvo!' : 'Salvar Configurações'}
           </button>
         </form>
       </div>
