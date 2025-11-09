@@ -1,12 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { useMemo } from 'react';
 import { formatMonth } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 import MonthNavigation from '../../components/MonthNavigation';
+import { addExpense } from '../../store/expensesSlice';
 
 export default function ExpensesMonth() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { month } = useParams<{ month: string }>();
   const expenses = useAppSelector(state => state.expenses.items);
   const dataLoaded = useAppSelector(state => state.app.dataLoaded);
@@ -21,6 +23,47 @@ export default function ExpensesMonth() {
   const total = useMemo(() => {
     return monthExpenses.reduce((sum, e) => sum + e.amount, 0);
   }, [monthExpenses]);
+
+  // Get previous month's expenses
+  const previousMonthExpenses = useMemo(() => {
+    if (!month) return [];
+
+    // Parse current month
+    const [year, monthNum] = month.split('-').map(Number);
+
+    // Calculate previous month
+    let prevYear = year;
+    let prevMonth = monthNum - 1;
+    if (prevMonth === 0) {
+      prevMonth = 12;
+      prevYear = year - 1;
+    }
+
+    const previousMonth = `${prevYear}-${String(prevMonth).padStart(2, '0')}`;
+
+    return expenses.filter(e => formatMonth(e.date) === previousMonth);
+  }, [expenses, month]);
+
+  // Replicate expenses from previous month
+  const handleReplicateExpenses = () => {
+    if (!month || previousMonthExpenses.length === 0) return;
+
+    // Parse current month to create date (first day of month)
+    const [year, monthNum] = month.split('-').map(Number);
+    const expenseDate = new Date(year, monthNum - 1, 1);
+
+    // Create new expenses with current month's date
+    previousMonthExpenses.forEach((expense) => {
+      const newExpense = {
+        id: crypto.randomUUID(),
+        date: expenseDate,
+        amount: expense.amount,
+        category: expense.category,
+        notes: expense.notes,
+      };
+      dispatch(addExpense(newExpense));
+    });
+  };
 
   if (!month) {
     return null;
@@ -100,14 +143,30 @@ export default function ExpensesMonth() {
           </div>
 
           {monthExpenses.length === 0 ? (
-            <div className="px-6 py-12 text-center">
+            <div className="px-6 py-12 text-center space-y-4">
               <p className="text-gray-500">Nenhuma despesa neste mês</p>
-              <button
-                onClick={() => navigate(`/expenses/new/${month}`)}
-                className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Adicionar uma despesa
-              </button>
+              <div className="flex flex-col items-center gap-2">
+                <button
+                  onClick={() => navigate(`/expenses/new/${month}`)}
+                  className="text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  Adicionar uma despesa
+                </button>
+                {previousMonthExpenses.length > 0 && (
+                  <>
+                    <span className="text-gray-400 text-sm">ou</span>
+                    <button
+                      onClick={handleReplicateExpenses}
+                      className="text-green-600 hover:text-green-700 font-medium flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      Replicar despesas do mês anterior ({previousMonthExpenses.length})
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           ) : (
             <div className="divide-y divide-gray-100">
