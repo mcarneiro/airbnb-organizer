@@ -640,6 +640,145 @@ If API call fails:
 4. Next auto-save will retry
 5. If token expired, user signed out
 
+## Internationalization (i18n)
+
+### Overview
+
+The application supports multiple languages with automatic browser detection and manual language selection.
+
+**Supported Languages:**
+- Portuguese (Brazil) - `pt-BR` (primary)
+- English (US) - `en-US`
+
+**Library:** react-i18next with i18next-browser-languagedetector
+
+**Configuration Location:** `src/config/i18n.ts`
+
+### Language Detection
+
+**Custom Detection Logic:**
+```typescript
+const languageDetector = new LanguageDetector();
+languageDetector.addDetector({
+  name: 'customDetector',
+  lookup() {
+    // 1. Check localStorage for saved preference
+    const stored = localStorage.getItem('i18nextLng');
+    if (stored) return stored;
+
+    // 2. Check browser language
+    const browserLang = navigator.language || (navigator as any).userLanguage;
+    if (browserLang?.startsWith('pt')) return 'pt-BR';
+    if (browserLang?.startsWith('en')) return 'en-US';
+
+    // 3. Fallback to English
+    return 'en-US';
+  }
+});
+```
+
+**Detection Priority:**
+1. **localStorage** (`i18nextLng`) - User's saved preference
+2. **Browser Language** - Navigator language with mapping:
+   - Any `pt-*` variant → `pt-BR`
+   - Any `en-*` variant → `en-US`
+   - All other languages → `en-US` (fallback)
+3. **Default** - `en-US` if no match
+
+**Storage:** localStorage key `i18nextLng` (persists across sessions)
+
+### Translation Files
+
+**Location:** `src/locales/{language}/translation.json`
+
+**Structure:** Organized by feature namespaces
+- `common` - Shared text (loading, save, cancel, etc.)
+- `navigation` - Bottom nav labels
+- `dashboard` - Dashboard page
+- `reservations` - Reservations feature
+- `expenses` - Expenses feature
+- `taxes` - Tax calculations
+- `settings` - Settings page
+- `onboarding` - Welcome and setup flow
+- `date` - Date formatting patterns
+
+**Example Structure:**
+```json
+{
+  "onboarding": {
+    "title": "Bem-vindo ao Airbnb Organizer",
+    "subtitle": "Conecte suas Planilhas Google para começar",
+    "step1": "Passo 1: Entre com Google",
+    "signInButton": "Entrar com Google"
+  }
+}
+```
+
+### Features
+
+**Pluralization:**
+Uses i18next's plural handling with `_one` and `_other` suffixes:
+```json
+{
+  "reservation_one": "reserva",
+  "reservation_other": "reservas"
+}
+```
+
+Usage: `t('dashboard.reservation', { count: 5 })` → "5 reservas"
+
+**Interpolation:**
+Dynamic values using double curly braces:
+```json
+{
+  "signedInAs": "✓ Conectado como {{email}}"
+}
+```
+
+Usage: `t('onboarding.signedInAs', { email: userEmail })`
+
+**Locale-aware Date Formatting:**
+Uses `i18n.language` for date display:
+```typescript
+date.toLocaleDateString(i18n.language, {
+  month: 'long',
+  year: 'numeric'
+})
+```
+
+**Real-time Switching:**
+- No page reload required
+- Updates all UI text immediately
+- Preference saved to localStorage
+
+### Language Selector
+
+**Location:** Settings page (first field)
+
+**Implementation:**
+```typescript
+<select
+  value={i18n.language}
+  onChange={(e) => i18n.changeLanguage(e.target.value)}
+>
+  <option value="pt-BR">Português (Brasil)</option>
+  <option value="en-US">English (US)</option>
+</select>
+```
+
+### Onboarding Text
+
+All onboarding text is translated including:
+- Welcome title and subtitle
+- Configuration error messages
+- Sign-in instructions and buttons
+- Permission descriptions
+- Sheet setup instructions
+- Loading messages
+- Form labels and placeholders
+
+**Default Language:** Determined by browser on first visit, can be changed in Settings at any time.
+
 ## Configuration Requirements
 
 ### Environment Variables

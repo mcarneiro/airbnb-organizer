@@ -379,6 +379,9 @@ This ensures dates are always interpreted in the local timezone, not UTC.
 - Occupation percentage assumes 30 days per month
 - All amounts are in Brazilian Reais (R$)
 - Date field is always pre-filled (never empty)
+- **Internationalization:** All UI text is translatable (pt-BR / en-US)
+- **Pluralization:** "diária" vs "diárias" based on count
+- **Date Formatting:** Locale-aware display (DD/MM for pt-BR, MM/DD for en-US)
 
 ## Occupation Calculation
 

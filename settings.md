@@ -37,7 +37,49 @@ Stored in localStorage at key `sheetId`. This is the only app data stored locall
 
 ## Settings Sections
 
-### 1. Google Sheet Connection
+### 1. Language Preferences
+
+**Field:** Idioma (Language)
+
+**Purpose:** Controls the application's display language.
+
+**Storage:** localStorage key `i18nextLng`
+
+**Available Languages:**
+- Português (Brasil) - `pt-BR`
+- English (US) - `en-US`
+
+**Implementation:**
+```typescript
+<select
+  id="language"
+  value={i18n.language}
+  onChange={(e) => handleLanguageChange(e.target.value)}
+>
+  <option value="pt-BR">{t('settings.languagePtBR')}</option>
+  <option value="en-US">{t('settings.languageEnUS')}</option>
+</select>
+```
+
+**Browser Language Detection:**
+- On first visit, automatically detects browser language
+- Portuguese variants (pt-BR, pt-PT, etc.) → pt-BR
+- English variants (en-US, en-GB, etc.) → en-US
+- All other languages → en-US (fallback)
+- User selection overrides auto-detection
+- Preference persists across sessions
+
+**Internationalization (i18n):**
+- All UI text is translatable
+- Uses react-i18next library
+- Translations stored in `src/locales/{language}/translation.json`
+- Includes pluralization support (e.g., "1 reserva" vs "2 reservas")
+- Locale-aware date formatting based on selected language
+- Real-time language switching (no page reload required)
+
+**Note:** This setting is stored separately from AppSettings and does not sync to Google Sheets.
+
+### 2. Google Sheet Connection
 
 **Field:** ID da Planilha Google (Google Sheet ID)
 
@@ -68,7 +110,7 @@ Stored in localStorage at key `sheetId`. This is the only app data stored locall
 
 **Note:** Stored locally only, NOT synced to Google Sheets (would be circular dependency).
 
-### 2. Security Settings
+### 3. Security Settings
 
 #### Manter Conectado (Keep Me Signed In)
 
@@ -116,7 +158,7 @@ When toggled, `setPersistAuth()` migrates data between storages:
 
 **Location:** `src/contexts/GoogleAuthContext.tsx:108-142`
 
-### 3. Tax Settings
+### 4. Tax Settings
 
 #### Número de Dependentes (Number of Dependents)
 
@@ -146,7 +188,7 @@ When toggled, `setPersistAuth()` migrates data between storages:
 **How it affects taxes:**
 Each dependent increases the tax deduction amount. See `BrazilianRentalTaxCalculator.ts` for calculation details.
 
-### 4. Income Split Settings
+### 5. Income Split Settings
 
 #### Porcentagem do Proprietário (Owner Percentage)
 
@@ -228,7 +270,7 @@ Submit button is disabled until validation passes.
 - Must always sum to exactly 100%
 - Used when creating/editing reservations to calculate splits
 
-### 5. Logout Section
+### 6. Logout Section
 
 #### Sair e Limpar Todos os Dados (Logout and Clear All Data)
 
@@ -504,18 +546,19 @@ Google OAuth tokens typically expire after 1 hour (3600 seconds).
 
 ### Form Layout
 - Header with back button and title
-- Four bordered sections with headings
+- Five bordered sections with headings
 - Form fields with labels and helper text
 - Validation warnings when applicable
 - Blue submit button
 - Red logout button below form
 
 ### Visual Hierarchy
-1. **Connection:** Google Sheet ID (most critical)
-2. **Security:** persistAuth toggle with warning
-3. **Taxes:** Dependents field
-4. **Splits:** Owner and Admin percentages with validation
-5. **Logout:** Destructive action separated by border
+1. **Language:** Language selector (first field for easy access)
+2. **Connection:** Google Sheet ID (most critical)
+3. **Security:** persistAuth toggle with warning
+4. **Taxes:** Dependents field
+5. **Splits:** Owner and Admin percentages with validation
+6. **Logout:** Destructive action separated by border
 
 ### Accessibility
 - All form fields properly labeled
@@ -526,6 +569,7 @@ Google OAuth tokens typically expire after 1 hour (3600 seconds).
 
 ## Important Notes
 
+- **Language:** Supports pt-BR and en-US with auto-detection and manual switching
 - **Validation:** Split percentages must sum to exactly 100%
 - **Auto-calculation:** Changing one split automatically updates the other
 - **Percentage vs Decimal:** UI shows percentages (70%), stored as decimals (0.70)
@@ -535,4 +579,6 @@ Google OAuth tokens typically expire after 1 hour (3600 seconds).
 - **Dependents:** Integer value, minimum 0
 - **Save Feedback:** Checkmark appears for 2 seconds after save
 - **No Auto-save:** User must explicitly click save button
-- **Translation:** All text in Portuguese (pt-br)
+- **Internationalization:** All UI text is translatable with real-time switching
+- **Pluralization:** Language-specific plural forms (e.g., "1 despesa" vs "2 despesas")
+- **Date Formatting:** Locale-aware date display based on selected language
