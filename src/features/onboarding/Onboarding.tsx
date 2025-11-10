@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setSheetId } from '../../store/settingsSlice';
 import { useGoogleAuth } from '../../contexts/GoogleAuthContext';
@@ -9,6 +10,7 @@ import { GOOGLE_CONFIG } from '../../config/google';
 export default function Onboarding() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const existingSheetId = useAppSelector(state => state.settings.sheetId);
   const { signIn, isSignedIn, userEmail, error: authError } = useGoogleAuth();
 
@@ -70,18 +72,18 @@ export default function Onboarding() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome to Airbnb Organizer
+            {t('onboarding.title')}
           </h1>
           <p className="text-gray-600">
-            Connect your Google Sheets to get started
+            {t('onboarding.subtitle')}
           </p>
         </div>
 
         {!isConfigured && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-            <p className="text-sm text-red-900 font-semibold mb-2">Configuration Required</p>
+            <p className="text-sm text-red-900 font-semibold mb-2">{t('onboarding.configRequired')}</p>
             <p className="text-xs text-red-800">
-              The Google OAuth Client ID is not configured. Please create a <code className="bg-red-100 px-1 rounded">.env</code> file with your Client ID. See <code className="bg-red-100 px-1 rounded">.env.example</code> for instructions.
+              {t('onboarding.configMessage')}
             </p>
           </div>
         )}
@@ -91,22 +93,22 @@ export default function Onboarding() {
           <div className="space-y-6">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                {hasExistingSetup ? 'Sign in to Continue' : 'Step 1: Sign in with Google'}
+                {hasExistingSetup ? t('onboarding.signInToContinue') : t('onboarding.step1')}
               </h2>
               <p className="text-sm text-gray-600 mb-4">
                 {hasExistingSetup
-                  ? 'Your session has expired. Please sign in again to access your data.'
-                  : 'We need access to your Google Sheets to store your data.'
+                  ? t('onboarding.sessionExpired')
+                  : t('onboarding.needAccess')
                 }
               </p>
 
               {!hasExistingSetup && (
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                  <p className="text-xs text-blue-900 font-semibold mb-2">What we'll access:</p>
+                  <p className="text-xs text-blue-900 font-semibold mb-2">{t('onboarding.whatAccess')}</p>
                   <ul className="text-xs text-blue-800 space-y-1 list-disc list-inside">
-                    <li>Read and write to your Google Sheets</li>
-                    <li>No access to other Google services</li>
-                    <li>Your data stays in your own Google Sheet</li>
+                    <li>{t('onboarding.accessItem1')}</li>
+                    <li>{t('onboarding.accessItem2')}</li>
+                    <li>{t('onboarding.accessItem3')}</li>
                   </ul>
                 </div>
               )}
@@ -129,7 +131,7 @@ export default function Onboarding() {
                 <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                 <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
               </svg>
-              {loading ? 'Signing in...' : 'Sign in with Google'}
+              {loading ? t('onboarding.signingIn') : t('onboarding.signInButton')}
             </button>
           </div>
         ) : hasExistingSetup ? (
@@ -137,12 +139,12 @@ export default function Onboarding() {
           <div className="space-y-6">
             <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
               <p className="text-sm text-green-800">
-                ✓ Signed in as <strong>{userEmail}</strong>
+                {t('onboarding.signedInAs', { email: userEmail })}
               </p>
             </div>
             <div className="text-center py-8">
               <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
-              <p className="text-gray-700">Loading your data...</p>
+              <p className="text-gray-700">{t('onboarding.loadingData')}</p>
             </div>
           </div>
         ) : (
@@ -151,19 +153,19 @@ export default function Onboarding() {
             <div>
               <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
                 <p className="text-sm text-green-800">
-                  ✓ Signed in as <strong>{userEmail}</strong>
+                  {t('onboarding.signedInAs', { email: userEmail })}
                 </p>
               </div>
 
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Step 2: Connect Your Google Sheet
+                {t('onboarding.step2')}
               </h2>
               <p className="text-sm text-gray-600 mb-4">
-                Enter your Google Sheet URL. You can use an empty sheet or an existing one.
+                {t('onboarding.enterSheetUrl')}
               </p>
 
               <label htmlFor="sheetUrl" className="block text-sm font-medium text-gray-700 mb-2">
-                Google Sheet URL
+                {t('onboarding.sheetUrlLabel')}
               </label>
               <input
                 type="text"
@@ -175,7 +177,10 @@ export default function Onboarding() {
                 disabled={loading}
               />
               <p className="text-xs text-gray-500 mt-2">
-                Don't have a sheet? <a href="https://sheets.new" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Create one here</a>
+                {t('onboarding.noSheet')}{' '}
+                <a href="https://sheets.new" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  {t('onboarding.createSheet')}
+                </a>
               </p>
             </div>
 
@@ -190,7 +195,7 @@ export default function Onboarding() {
               disabled={loading || !sheetUrl.trim()}
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? 'Setting up...' : 'Complete Setup'}
+              {loading ? t('onboarding.settingUp') : t('onboarding.completeSetup')}
             </button>
           </div>
         )}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateSettings, setSheetId } from '../../store/settingsSlice';
 import { useGoogleAuth } from '../../contexts/GoogleAuthContext';
@@ -7,6 +8,7 @@ import { useGoogleAuth } from '../../contexts/GoogleAuthContext';
 export default function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t, i18n } = useTranslation();
   const settings = useAppSelector(state => state.settings.settings);
   const currentSheetId = useAppSelector(state => state.settings.sheetId);
   const { persistAuth, setPersistAuth, fullLogout } = useGoogleAuth();
@@ -20,6 +22,10 @@ export default function Settings() {
 
   const [isSaved, setIsSaved] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
+  const handleLanguageChange = (language: string) => {
+    i18n.changeLanguage(language);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,15 +59,31 @@ export default function Settings() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Configurações</h1>
+        <h1 className="text-xl font-bold text-gray-900">{t('settings.title')}</h1>
       </header>
 
       <div className="px-4 py-6 max-w-md mx-auto">
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Language Settings */}
+          <div>
+            <label htmlFor="language" className="block text-sm font-medium text-gray-700 mb-2">
+              {t('settings.selectLanguage')}
+            </label>
+            <select
+              id="language"
+              value={i18n.language}
+              onChange={(e) => handleLanguageChange(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="pt-BR">{t('settings.languagePtBR')}</option>
+              <option value="en-US">{t('settings.languageEnUS')}</option>
+            </select>
+          </div>
+
           {/* Google Sheet ID */}
           <div>
             <label htmlFor="sheetId" className="block text-sm font-medium text-gray-700 mb-2">
-              ID da Planilha Google
+              {t('settings.sheetId')}
             </label>
             <input
               type="text"
@@ -69,28 +91,28 @@ export default function Settings() {
               value={formData.sheetId}
               onChange={(e) => setFormData({ ...formData, sheetId: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
-              placeholder="Digite o ID da sua Planilha Google..."
+              placeholder={t('settings.sheetId')}
             />
             <p className="mt-1 text-xs text-gray-500">
-              Armazenado localmente apenas para fins de conexão
+              {t('settings.sheetIdHelper')}
             </p>
           </div>
 
           {/* Security Settings Section */}
           <div className="pt-4 border-t border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900 mb-4">Configurações de Segurança</h3>
+            <h3 className="text-md font-semibold text-gray-900 mb-4">{t('settings.securitySettings')}</h3>
 
             {/* Keep me signed in toggle */}
             <div className="mb-4">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <label htmlFor="persistAuth" className="block text-sm font-medium text-gray-700">
-                    Manter conectado
+                    {t('settings.keepSignedIn')}
                   </label>
                   <p className="mt-1 text-xs text-gray-500">
                     {persistAuth
-                      ? 'Você permanecerá conectado após fechar o navegador'
-                      : 'Você será desconectado ao fechar o navegador (mais seguro)'}
+                      ? t('settings.keepSignedInOn')
+                      : t('settings.keepSignedInOff')}
                   </p>
                 </div>
                 <button
@@ -111,10 +133,9 @@ export default function Settings() {
                 </button>
               </div>
               <div className="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <p className="text-xs text-blue-900 font-semibold mb-1">🔒 Nota de Segurança:</p>
+                <p className="text-xs text-blue-900 font-semibold mb-1">{t('settings.securityNote')}</p>
                 <p className="text-xs text-blue-800">
-                  Para melhor segurança, desative "Manter conectado" em computadores compartilhados.
-                  Isso armazena seu token de acesso apenas no armazenamento de sessão, que é limpo quando você fecha o navegador.
+                  {t('settings.securityWarning')}
                 </p>
               </div>
             </div>
@@ -122,12 +143,12 @@ export default function Settings() {
 
           {/* Tax Settings Section */}
           <div className="pt-4 border-t border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900 mb-4">Configurações de Impostos</h3>
+            <h3 className="text-md font-semibold text-gray-900 mb-4">{t('settings.taxSettings')}</h3>
 
             {/* Number of Dependents */}
             <div className="mb-4">
               <label htmlFor="dependents" className="block text-sm font-medium text-gray-700 mb-2">
-                Número de Dependentes
+                {t('settings.dependents')}
               </label>
               <input
                 type="number"
@@ -139,19 +160,19 @@ export default function Settings() {
                 required
               />
               <p className="mt-1 text-xs text-gray-500">
-                Usado para cálculo de dedução de impostos
+                {t('settings.dependentsHelper')}
               </p>
             </div>
           </div>
 
           {/* Income Split Section */}
           <div className="pt-4 border-t border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900 mb-4">Divisão de Renda</h3>
+            <h3 className="text-md font-semibold text-gray-900 mb-4">{t('settings.incomeSplit')}</h3>
 
             {/* Owner Split */}
             <div className="mb-4">
               <label htmlFor="ownerSplit" className="block text-sm font-medium text-gray-700 mb-2">
-                Porcentagem do Proprietário (%)
+                {t('settings.ownerPercentage')}
               </label>
               <input
                 type="number"
@@ -176,7 +197,7 @@ export default function Settings() {
             {/* Admin Split */}
             <div className="mb-4">
               <label htmlFor="adminSplit" className="block text-sm font-medium text-gray-700 mb-2">
-                Porcentagem do Administrador (%)
+                {t('settings.adminPercentage')}
               </label>
               <input
                 type="number"
@@ -202,7 +223,7 @@ export default function Settings() {
             {parseFloat(formData.ownerSplit) + parseFloat(formData.adminSplit) !== 100 && (
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
                 <p className="text-sm text-yellow-800">
-                  ⚠ As porcentagens do Proprietário e Administrador devem somar 100%
+                  {t('settings.splitValidation')}
                 </p>
               </div>
             )}
@@ -214,7 +235,7 @@ export default function Settings() {
             disabled={parseFloat(formData.ownerSplit) + parseFloat(formData.adminSplit) !== 100}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            {isSaved ? '✓ Salvo!' : 'Salvar Configurações'}
+            {isSaved ? t('common.savedSuccess') : t('settings.saveSettings')}
           </button>
         </form>
 
@@ -225,10 +246,10 @@ export default function Settings() {
             onClick={() => setShowLogoutConfirm(true)}
             className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
           >
-            Sair e Limpar Todos os Dados
+            {t('settings.logout')}
           </button>
           <p className="mt-2 text-xs text-center text-gray-500">
-            Isso removerá todos os dados armazenados localmente e fará logout da sua conta
+            {t('settings.logoutHelper')}
           </p>
         </div>
 
@@ -236,31 +257,31 @@ export default function Settings() {
         {showLogoutConfirm && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Confirmar Logout</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{t('settings.confirmLogout')}</h3>
               <p className="text-sm text-gray-600 mb-6">
-                Tem certeza que deseja sair? Isso irá:
+                {t('settings.logoutWarning')}
               </p>
               <ul className="text-sm text-gray-600 mb-6 space-y-2">
-                <li>• Fazer logout da sua conta Google</li>
-                <li>• Remover o ID da planilha armazenado</li>
-                <li>• Limpar todas as configurações locais</li>
-                <li>• Limpar todos os dados em memória</li>
+                <li>{t('settings.logoutItem1')}</li>
+                <li>{t('settings.logoutItem2')}</li>
+                <li>{t('settings.logoutItem3')}</li>
+                <li>{t('settings.logoutItem4')}</li>
               </ul>
               <p className="text-sm text-gray-600 mb-6">
-                Seus dados na Planilha Google permanecerão intactos.
+                {t('settings.logoutNote')}
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowLogoutConfirm(false)}
                   className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
                 >
-                  Cancelar
+                  {t('common.cancel')}
                 </button>
                 <button
                   onClick={fullLogout}
                   className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
                 >
-                  Sim, Sair
+                  {t('settings.yesLogout')}
                 </button>
               </div>
             </div>

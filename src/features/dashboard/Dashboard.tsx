@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { formatMonth, getAllMonths, getMostRecentUnpaidMonth, getMonthName } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 import { calculateYoYAccumulatedProfit, getYearLabels } from '../../utils/yoyCalculations';
@@ -8,6 +9,7 @@ import YearOverYearChart from '../../components/YearOverYearChart';
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const reservations = useAppSelector(state => state.reservations.items);
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
@@ -18,12 +20,13 @@ export default function Dashboard() {
   const monthsData = useMemo(() => {
     const now = new Date();
     const months = [];
+    const locale = i18n.language;
 
     // Generate data for current month and next 2 months (3 total)
     for (let i = 0; i < 3; i++) {
       const date = new Date(now.getFullYear(), now.getMonth() + i, 1);
       const monthKey = formatMonth(date);
-      const monthName = date.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+      const monthName = date.toLocaleDateString(locale, { month: 'long', year: 'numeric' });
 
       // Filter reservations for this month
       const monthReservations = reservations.filter(r => formatMonth(r.date) === monthKey);
@@ -36,7 +39,7 @@ export default function Dashboard() {
       months.push({
         key: monthKey,
         name: monthName,
-        shortName: date.toLocaleDateString('pt-BR', { month: 'long' }),
+        shortName: date.toLocaleDateString(locale, { month: 'long' }),
         income,
         nights,
         occupation,
@@ -45,7 +48,7 @@ export default function Dashboard() {
     }
 
     return months;
-  }, [reservations]);
+  }, [reservations, i18n.language]);
 
   const currentMonth = monthsData[0];
   const nextMonths = monthsData.slice(1);
@@ -78,7 +81,7 @@ export default function Dashboard() {
     <div className="bg-gray-50">
       {/* Header with Settings */}
       <header className="bg-white border-b border-gray-200 px-4 py-3 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-900">Painel</h1>
+        <h1 className="text-xl font-bold text-gray-900">{t('dashboard.title')}</h1>
         <button
           onClick={() => navigate('/settings')}
           className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -118,7 +121,7 @@ export default function Dashboard() {
             className="w-full bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg hover:bg-yellow-200 transition-colors text-left"
           >
             <p className="text-sm text-yellow-800 font-medium">
-              Não se esqueça de pagar seus impostos de {getMonthName(unpaidMonth).split(' ')[0]}
+              {t('dashboard.taxReminder', { month: getMonthName(unpaidMonth).split(' ')[0] })}
             </p>
           </button>
         )}
@@ -144,7 +147,7 @@ export default function Dashboard() {
             </div>
 
             <div className="text-sm text-gray-600">
-              {currentMonth.count} {currentMonth.count === 1 ? 'reserva' : 'reservas'} · {currentMonth.nights} diárias · {currentMonth.occupation}% ocupação
+              {currentMonth.count} {t('dashboard.reservation', { count: currentMonth.count })} · {currentMonth.nights} {t('dashboard.night', { count: currentMonth.nights })} · {currentMonth.occupation}% {t('dashboard.occupation')}
             </div>
           </div>
           </button>
@@ -153,7 +156,7 @@ export default function Dashboard() {
         {/* Next Months Preview - Clickable Rows - only show when data is loaded */}
         {dataLoaded && (
           <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-          <h3 className="text-md font-semibold text-gray-900">PRÓXIMOS</h3>
+          <h3 className="text-md font-semibold text-gray-900">{t('dashboard.nextMonth')}</h3>
 
           <div className="space-y-2">
             {nextMonths.map((month) => (

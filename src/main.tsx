@@ -7,6 +7,7 @@ import App from './App.tsx'
 import { store } from './store'
 import { GoogleAuthProvider } from './contexts/GoogleAuthContext'
 import { GOOGLE_CONFIG } from './config/google'
+import './config/i18n' // Initialize i18n
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

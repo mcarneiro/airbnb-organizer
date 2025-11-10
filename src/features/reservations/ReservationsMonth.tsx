@@ -1,12 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { formatMonth } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 import MonthNavigation from '../../components/MonthNavigation';
 
 export default function ReservationsMonth() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const { month } = useParams<{ month: string }>();
   const reservations = useAppSelector(state => state.reservations.items);
   const dataLoaded = useAppSelector(state => state.app.dataLoaded);
@@ -30,7 +32,7 @@ export default function ReservationsMonth() {
   }, [monthReservations]);
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    return date.toLocaleDateString(i18n.language, { day: '2-digit', month: '2-digit' });
   };
 
   if (!month) {
@@ -49,7 +51,7 @@ export default function ReservationsMonth() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900 flex-1">Reservas</h1>
+        <h1 className="text-xl font-bold text-gray-900 flex-1">{t('reservations.title')}</h1>
         <button
           onClick={() => navigate(`/reservations/new/${month}`)}
           className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
@@ -95,28 +97,28 @@ export default function ReservationsMonth() {
           <>
             {/* Summary Card */}
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-gray-900">Resumo</h2>
+              <h2 className="text-lg font-semibold text-gray-900">{t('reservations.summary')}</h2>
 
               <div className="grid grid-cols-2 gap-4">
             <div>
-              <div className="text-sm text-gray-600">Renda Total</div>
+              <div className="text-sm text-gray-600">{t('reservations.totalIncome')}</div>
               <div className="text-xl font-bold text-gray-900">
                 R$ {formatCurrency(totals.ownerAmount)}
               </div>
             </div>
 
             <div>
-              <div className="text-sm text-gray-600">Ocupação</div>
+              <div className="text-sm text-gray-600">{t('reservations.occupation')}</div>
               <div className="text-xl font-bold text-gray-900">{totals.occupationRate}%</div>
             </div>
 
             <div>
-              <div className="text-sm text-gray-600">Reservas</div>
+              <div className="text-sm text-gray-600">{t('reservations.count')}</div>
               <div className="text-xl font-bold text-gray-900">{monthReservations.length}</div>
             </div>
 
             <div>
-              <div className="text-sm text-gray-600">Diárias</div>
+              <div className="text-sm text-gray-600">{t('reservations.nights')}</div>
               <div className="text-xl font-bold text-gray-900">{totals.nights}</div>
             </div>
               </div>
@@ -125,17 +127,17 @@ export default function ReservationsMonth() {
             {/* Reservations List */}
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900">Reservas</h3>
+            <h3 className="text-md font-semibold text-gray-900">{t('reservations.title')}</h3>
           </div>
 
           {monthReservations.length === 0 ? (
             <div className="px-6 py-12 text-center">
-              <p className="text-gray-500">Nenhuma reserva neste mês</p>
+              <p className="text-gray-500">{t('reservations.noReservations')}</p>
               <button
                 onClick={() => navigate(`/reservations/new/${month}`)}
                 className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
               >
-                Adicionar uma reserva
+                {t('reservations.addReservation')}
               </button>
             </div>
           ) : (
@@ -151,25 +153,25 @@ export default function ReservationsMonth() {
                       {formatDate(reservation.date)}
                     </span>
                     <span className="text-sm text-gray-600">
-                      {reservation.nights} {reservation.nights === 1 ? 'diária' : 'diárias'}
+                      {reservation.nights} {t('reservations.night', { count: reservation.nights })}
                     </span>
                   </div>
 
                   <div className="mt-2 space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Total:</span>
+                      <span className="text-gray-600">{t('reservations.totalAmount')}:</span>
                       <span className="font-medium text-gray-900">
                         R$ {formatCurrency(reservation.total)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Proprietário:</span>
+                      <span className="text-gray-600">{t('reservations.owner')}:</span>
                       <span className="font-medium text-blue-600">
                         R$ {formatCurrency(reservation.ownerAmount)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Administrador:</span>
+                      <span className="text-gray-600">{t('reservations.admin')}:</span>
                       <span className="font-medium text-gray-600">
                         R$ {formatCurrency(reservation.adminFee)}
                       </span>

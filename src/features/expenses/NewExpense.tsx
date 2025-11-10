@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addExpense, updateExpense, deleteExpense } from '../../store/expensesSlice';
 import { ExpenseCategory } from '../../types';
@@ -17,6 +18,7 @@ const EXPENSE_CATEGORIES: ExpenseCategory[] = [
 export default function NewExpense() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { month, id } = useParams<{ month?: string; id?: string }>();
   const expenses = useAppSelector(state => state.expenses.items);
 
@@ -115,7 +117,7 @@ export default function NewExpense() {
           </svg>
         </button>
         <h1 className="text-xl font-bold text-gray-900">
-          {isEditMode ? 'Editar Despesa' : 'Nova Despesa'}
+          {isEditMode ? t('expenses.edit') : t('expenses.new')}
         </h1>
       </header>
 
@@ -124,7 +126,7 @@ export default function NewExpense() {
           {/* Amount Input */}
           <div>
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
-              Valor (R$)
+              {t('expenses.amount')}
             </label>
             <input
               type="number"
@@ -134,7 +136,7 @@ export default function NewExpense() {
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="ex: 150.00"
+              placeholder={t('expenses.amountPlaceholder')}
               required
             />
           </div>
@@ -142,7 +144,7 @@ export default function NewExpense() {
           {/* Category Select */}
           <div>
             <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-              Categoria (opcional)
+              {t('expenses.category')}
             </label>
             <select
               id="category"
@@ -150,7 +152,7 @@ export default function NewExpense() {
               onChange={(e) => setFormData({ ...formData, category: e.target.value as ExpenseCategory })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="">Selecione uma categoria</option>
+              <option value="">{t('expenses.selectCategory')}</option>
               {EXPENSE_CATEGORIES.map((category) => (
                 <option key={category} value={category}>
                   {category}
@@ -162,7 +164,7 @@ export default function NewExpense() {
           {/* Notes Input */}
           <div>
             <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2">
-              Observações (opcional)
+              {t('expenses.notes')}
             </label>
             <textarea
               id="notes"
@@ -170,7 +172,7 @@ export default function NewExpense() {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              placeholder="Adicione detalhes, especialmente para itens de manutenção..."
+              placeholder={t('expenses.notesPlaceholder')}
             />
           </div>
 
@@ -180,7 +182,7 @@ export default function NewExpense() {
             disabled={!isFormValid}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            {isEditMode ? 'Salvar Alterações' : 'Adicionar Despesa'}
+            {isEditMode ? t('expenses.saveButton') : t('expenses.addButton')}
           </button>
 
           {/* Delete Button - Only in Edit Mode */}
@@ -190,7 +192,7 @@ export default function NewExpense() {
               onClick={() => setShowDeleteConfirm(true)}
               className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
             >
-              Remover Despesa
+              {t('expenses.removeButton')}
             </button>
           )}
         </form>
@@ -199,22 +201,22 @@ export default function NewExpense() {
         {showDeleteConfirm && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Confirmar Remoção</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{t('expenses.confirmRemove')}</h3>
               <p className="text-sm text-gray-600 mb-6">
-                Tem certeza que deseja remover esta despesa? Esta ação não pode ser desfeita.
+                {t('expenses.removeWarning')}
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
                   className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
                 >
-                  Cancelar
+                  {t('common.cancel')}
                 </button>
                 <button
                   onClick={handleDelete}
                   className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
                 >
-                  Sim, Remover
+                  {t('expenses.yesRemove')}
                 </button>
               </div>
             </div>

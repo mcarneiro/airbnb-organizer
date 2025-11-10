@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addReservation, updateReservation, deleteReservation } from '../../store/reservationsSlice';
 import { formatCurrency } from '../../utils/currency';
@@ -8,6 +9,7 @@ import { formatMonth } from '../../utils/taxCalculations';
 export default function NewReservation() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { month, id } = useParams<{ month?: string; id?: string }>();
   const settings = useAppSelector(state => state.settings.settings);
   const reservations = useAppSelector(state => state.reservations.items);
@@ -151,7 +153,7 @@ export default function NewReservation() {
           </svg>
         </button>
         <h1 className="text-xl font-bold text-gray-900">
-          {isEditMode ? 'Editar Reserva' : 'Nova Reserva'}
+          {isEditMode ? t('reservations.edit') : t('reservations.new')}
         </h1>
       </header>
 
@@ -160,7 +162,7 @@ export default function NewReservation() {
           {/* Date Input */}
           <div>
             <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
-              Data de Check-in
+              {t('reservations.checkinDate')}
             </label>
             <input
               type="date"
@@ -175,7 +177,7 @@ export default function NewReservation() {
           {/* Nights Input */}
           <div>
             <label htmlFor="nights" className="block text-sm font-medium text-gray-700 mb-2">
-              Diárias
+              {t('reservations.numberOfNights')}
             </label>
             <input
               type="number"
@@ -192,7 +194,7 @@ export default function NewReservation() {
           {/* Total Amount Input */}
           <div>
             <label htmlFor="total" className="block text-sm font-medium text-gray-700 mb-2">
-              Total (R$)
+              {t('reservations.totalAmount')}
             </label>
             <input
               type="number"
@@ -210,16 +212,16 @@ export default function NewReservation() {
           {/* Calculated Splits */}
           {formData.total && (
             <div className="bg-blue-50 rounded-lg p-4 space-y-2">
-              <h3 className="text-sm font-semibold text-blue-900">Distribuição</h3>
+              <h3 className="text-sm font-semibold text-blue-900">{t('reservations.distribution')}</h3>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-blue-700">Propritário ({(settings.ownerSplit * 100).toFixed(0)}%):</span>
+                  <span className="text-blue-700">{t('reservations.owner')} ({(settings.ownerSplit * 100).toFixed(0)}%):</span>
                   <span className="font-semibold text-blue-900">
                     R$ {formatCurrency(ownerAmount)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-blue-700">Administrador ({(settings.adminSplit * 100).toFixed(0)}%):</span>
+                  <span className="text-blue-700">{t('reservations.admin')} ({(settings.adminSplit * 100).toFixed(0)}%):</span>
                   <span className="font-semibold text-blue-900">
                     R$ {formatCurrency(adminFee)}
                   </span>
@@ -234,7 +236,7 @@ export default function NewReservation() {
             disabled={!isFormValid}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            {isEditMode ? 'Salvar Alterações' : 'Adicionar Reserva'}
+            {isEditMode ? t('reservations.saveButton') : t('reservations.addButton')}
           </button>
 
           {/* Delete Button - Only in Edit Mode */}
@@ -244,7 +246,7 @@ export default function NewReservation() {
               onClick={() => setShowDeleteConfirm(true)}
               className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
             >
-              Remover Reserva
+              {t('reservations.removeButton')}
             </button>
           )}
         </form>
@@ -253,22 +255,22 @@ export default function NewReservation() {
         {showDeleteConfirm && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Confirmar Remoção</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{t('reservations.confirmRemove')}</h3>
               <p className="text-sm text-gray-600 mb-6">
-                Tem certeza que deseja remover esta reserva? Esta ação não pode ser desfeita.
+                {t('reservations.removeWarning')}
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
                   className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
                 >
-                  Cancelar
+                  {t('common.cancel')}
                 </button>
                 <button
                   onClick={handleDelete}
                   className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
                 >
-                  Sim, Remover
+                  {t('reservations.yesRemove')}
                 </button>
               </div>
             </div>

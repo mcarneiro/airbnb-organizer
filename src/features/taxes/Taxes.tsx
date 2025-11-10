@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { markMonthAsPaid, markMonthAsUnpaid } from '../../store/taxesSlice';
 import {
@@ -16,6 +17,7 @@ import MonthNavigation from '../../components/MonthNavigation';
 export default function Taxes() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { month: monthFromUrl } = useParams<{ month?: string }>();
   const reservations = useAppSelector(state => state.reservations.items);
   const expenses = useAppSelector(state => state.expenses.items);
@@ -122,12 +124,12 @@ export default function Taxes() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <h1 className="text-xl font-bold text-gray-900">Impostos</h1>
+          <h1 className="text-xl font-bold text-gray-900">{t('taxes.title')}</h1>
         </header>
 
         <div className="px-4 max-w-md mx-auto">
           <div className="text-center py-12">
-            <p className="text-gray-500">Nenhuma reserva ou despesa ainda. Adicione algumas para ver os cálculos de impostos.</p>
+            <p className="text-gray-500">{t('taxes.noData')}</p>
           </div>
         </div>
       </div>
@@ -146,7 +148,7 @@ export default function Taxes() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Impostos</h1>
+        <h1 className="text-xl font-bold text-gray-900">{t('taxes.title')}</h1>
       </header>
 
       <div className="px-4 max-w-md mx-auto">
@@ -179,46 +181,46 @@ export default function Taxes() {
           <>
             {/* Tax Calculation Breakdown */}
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-gray-900">Cálculo de Imposto</h2>
+              <h2 className="text-lg font-semibold text-gray-900">{t('taxes.calculation')}</h2>
 
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Renda Total (Proprietário):</span>
+                  <span className="text-gray-600">{t('taxes.totalIncome')}:</span>
                   <span className="font-semibold">R$ {formatCurrency(selectedMonthData.totalIncome)}</span>
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Despesas Dedutíveis:</span>
+                  <span className="text-gray-600">{t('taxes.deductibleExpenses')}:</span>
                   <span className="font-semibold text-green-600">- R$ {formatCurrency(selectedMonthData.totalDeductions)}</span>
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-200">
-                  <span className="font-medium text-gray-700">Renda Líquida:</span>
+                  <span className="font-medium text-gray-700">{t('taxes.netIncome')}:</span>
                   <span className="font-bold">R$ {formatCurrency(selectedMonthData.liquidIncome)}</span>
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Dedução Fiscal (Dependentes):</span>
+                  <span className="text-gray-600">{t('taxes.taxDeduction')}:</span>
                   <span className="font-semibold text-green-600">- R$ {formatCurrency(selectedMonthData.deduction)}</span>
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-200">
-                  <span className="font-medium text-gray-700">Renda Tributável:</span>
+                  <span className="font-medium text-gray-700">{t('taxes.taxableIncome')}:</span>
                   <span className="font-bold">R$ {formatCurrency(selectedMonthData.taxableIncome)}</span>
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Alíquota:</span>
+                  <span className="text-gray-600">{t('taxes.taxRate')}:</span>
                   <span className="font-semibold">{(selectedMonthData.taxRate * 100).toFixed(1)}%</span>
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-200">
-                  <span className="font-medium text-gray-700">Imposto Devido:</span>
+                  <span className="font-medium text-gray-700">{t('taxes.taxOwed')}:</span>
                   <span className="font-bold text-red-600">R$ {formatCurrency(selectedMonthData.taxOwed)}</span>
                 </div>
 
                 <div className="flex justify-between py-3 bg-blue-50 -mx-6 px-6 mt-4">
-                  <span className="font-bold text-blue-900">Lucro Final:</span>
+                  <span className="font-bold text-blue-900">{t('taxes.finalProfit')}:</span>
                   <span className="font-bold text-blue-900 text-lg">R$ {formatCurrency(selectedMonthData.profit)}</span>
                 </div>
               </div>
@@ -226,24 +228,24 @@ export default function Taxes() {
 
             {/* IRS Filing Actions */}
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-              <h3 className="text-md font-semibold text-gray-900">Preparar para Declaração</h3>
+              <h3 className="text-md font-semibold text-gray-900">{t('taxes.prepareForFiling')}</h3>
 
               <p className="text-sm text-gray-600">
-                Preencha os dados abaixo no{' '}
+                {t('taxes.filingInstructions')}{' '}
                 <a
                   href="https://www3.cav.receita.fazenda.gov.br/carneleao/rendimentos/rendimento"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800 underline font-medium"
                 >
-                  Carnê Leão Web → Rendimentos → + Rendimentos
+                  {t('taxes.carneLeaoLink')}
                 </a>.
               </p>
 
               {/* Copy Total Income */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Campo "Valor"
+                  {t('taxes.fieldValue')}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -259,7 +261,7 @@ export default function Taxes() {
                     )}
                     className="flex-shrink-0 px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                   >
-                    {copiedField === 'income' ? '✓' : 'Copiar'}
+                    {copiedField === 'income' ? '✓' : t('taxes.copy')}
                   </button>
                 </div>
               </div>
@@ -267,7 +269,7 @@ export default function Taxes() {
               {/* Copy Total Deductions */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Campo "Valor Exclusão/Dedução"
+                  {t('taxes.fieldDeduction')}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -283,7 +285,7 @@ export default function Taxes() {
                     )}
                     className="flex-shrink-0 px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                   >
-                    {copiedField === 'deductions' ? '✓' : 'Copiar'}
+                    {copiedField === 'deductions' ? '✓' : t('taxes.copy')}
                   </button>
                 </div>
               </div>
@@ -291,7 +293,7 @@ export default function Taxes() {
               {/* Copy Reservation Details */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Campo "Histórico"
+                  {t('taxes.fieldHistory')}
                 </label>
                 <div className="space-y-2">
                   <textarea
@@ -307,7 +309,7 @@ export default function Taxes() {
                     )}
                     className="w-full px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                   >
-                    {copiedField === 'reservations' ? '✓ Copiado' : 'Copiar'}
+                    {copiedField === 'reservations' ? t('taxes.copied') : t('taxes.copy')}
                   </button>
                 </div>
               </div>
@@ -319,14 +321,14 @@ export default function Taxes() {
                     onClick={handleMarkAsUnpaid}
                     className="w-full px-4 py-3 bg-green-100 text-green-800 rounded-lg font-semibold hover:bg-green-200 transition-colors"
                   >
-                    ✓ Imposto Pago
+                    {t('taxes.taxPaid')}
                   </button>
                 ) : (
                   <button
                     onClick={handleMarkAsPaid}
                     className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                   >
-                    Marcar como Pago
+                    {t('taxes.markAsPaid')}
                   </button>
                 )}
               </div>
@@ -334,7 +336,7 @@ export default function Taxes() {
 
             {/* All Months Summary */}
             <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-              <h3 className="text-md font-semibold text-gray-900">Últimos 6 Meses</h3>
+              <h3 className="text-md font-semibold text-gray-900">{t('taxes.lastSixMonths')}</h3>
 
               <div className="space-y-2">
                 {allMonthlyTaxes.map((monthData) => (
@@ -353,16 +355,16 @@ export default function Taxes() {
                       <div>
                         <div className="font-medium text-gray-900">{getMonthName(monthData.month)}</div>
                         <div className="text-sm text-gray-600">
-                          Imposto: R$ {formatCurrency(monthData.taxOwed)}
+                          {t('taxes.tax')}: R$ {formatCurrency(monthData.taxOwed)}
                         </div>
                       </div>
                       <div className="text-right">
                         {monthData.isPaid ? (
-                          <span className="text-green-700 font-semibold text-sm">✓ Pago</span>
+                          <span className="text-green-700 font-semibold text-sm">{t('taxes.paid')}</span>
                         ) : monthData.taxOwed > 0 ? (
-                          <span className="text-yellow-700 font-semibold text-sm">Pendente</span>
+                          <span className="text-yellow-700 font-semibold text-sm">{t('taxes.pending')}</span>
                         ) : (
-                          <span className="text-gray-500 text-sm">Sem imposto</span>
+                          <span className="text-gray-500 text-sm">{t('taxes.noTax')}</span>
                         )}
                       </div>
                     </div>
