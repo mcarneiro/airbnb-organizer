@@ -121,7 +121,7 @@ export default function Dashboard() {
             className="w-full bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg hover:bg-yellow-200 transition-colors text-left"
           >
             <p className="text-sm text-yellow-800 font-medium">
-              {t('dashboard.taxReminder', { month: getMonthName(unpaidMonth).split(' ')[0] })}
+              {t('dashboard.taxReminder', { month: getMonthName(unpaidMonth, i18n.language).split(' ')[0] })}
             </p>
           </button>
         )}

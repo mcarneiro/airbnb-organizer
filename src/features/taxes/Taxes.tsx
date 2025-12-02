@@ -17,7 +17,7 @@ import MonthNavigation from '../../components/MonthNavigation';
 export default function Taxes() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { month: monthFromUrl } = useParams<{ month?: string }>();
   const reservations = useAppSelector(state => state.reservations.items);
   const expenses = useAppSelector(state => state.expenses.items);
@@ -372,7 +372,7 @@ export default function Taxes() {
                   >
                     <div className="flex justify-between items-center">
                       <div>
-                        <div className="font-medium text-gray-900">{getMonthName(monthData.month)}</div>
+                        <div className="font-medium text-gray-900">{getMonthName(monthData.month, i18n.language)}</div>
                         <div className="text-sm text-gray-600">
                           {t('taxes.tax')}: R$ {formatCurrency(monthData.taxOwed)}
                         </div>

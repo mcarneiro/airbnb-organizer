@@ -20,11 +20,11 @@ export function parseMonth(monthStr: string): Date {
 }
 
 /**
- * Get month name in Portuguese
+ * Get month name localized
  */
-export function getMonthName(monthStr: string): string {
+export function getMonthName(monthStr: string, locale: string = 'pt-BR'): string {
   const date = parseMonth(monthStr);
-  return date.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+  return date.toLocaleDateString(locale, { month: 'long', year: 'numeric' });
 }
 
 /**

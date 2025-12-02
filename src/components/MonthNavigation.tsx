@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { formatMonth, getMonthName, parseMonth } from '../utils/taxCalculations';
 
 interface MonthNavigationProps {
@@ -6,6 +7,7 @@ interface MonthNavigationProps {
 }
 
 export default function MonthNavigation({ currentMonth, onMonthChange }: MonthNavigationProps) {
+  const { i18n } = useTranslation();
   const goToPreviousMonth = () => {
     const currentDate = parseMonth(currentMonth);
     const previousMonth = new Date(currentDate);
@@ -32,7 +34,7 @@ export default function MonthNavigation({ currentMonth, onMonthChange }: MonthNa
       </button>
 
       <h2 className="text-lg font-bold text-gray-900 min-w-[200px] text-center capitalize">
-        {getMonthName(currentMonth)}
+        {getMonthName(currentMonth, i18n.language)}
       </h2>
 
       <button
