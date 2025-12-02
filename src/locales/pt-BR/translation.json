@@ -105,6 +105,8 @@
     "taxRate": "Alíquota",
     "taxOwed": "Imposto Devido",
     "finalProfit": "Lucro Final",
+    "notes": "Observações",
+    "notesPlaceholder": "Adicione informações sobre pagamento (data, banco, comprovante, etc.)",
     "prepareForFiling": "Preparar para Declaração",
     "filingInstructions": "Preencha os dados abaixo no",
     "carneLeaoLink": "Carnê Leão Web → Rendimentos → + Rendimentos",

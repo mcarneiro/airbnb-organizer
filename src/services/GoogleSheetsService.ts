@@ -372,21 +372,23 @@ export class GoogleSheetsService {
   }
 
   /**
-   * Read paid tax months from sheet
+   * Read paid tax months and notes from sheet
    */
-  async readPaidTaxMonths(spreadsheetId: string): Promise<string[]> {
+  async readPaidTaxMonths(spreadsheetId: string): Promise<{ paidMonths: string[], notes: Record<string, string> }> {
     // Use valueRenderOption=UNFORMATTED_VALUE to get actual values
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:G?valueRenderOption=UNFORMATTED_VALUE`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:H?valueRenderOption=UNFORMATTED_VALUE`;
     const data = await this.apiRequest(url);
 
     const rows = data.values || [];
     const paidMonths: string[] = [];
+    const notes: Record<string, string> = {};
 
     console.log(`Reading ${rows.length} rows from taxes sheet`);
 
     rows.forEach((row: any[]) => {
       const month = row[0]; // date column (YYYY-MM format)
       const isPaid = row[6]; // is_paid column
+      const note = row[7]; // notes column
 
       // Convert month value to YYYY-MM format
       let monthStr = '';
@@ -420,9 +422,14 @@ export class GoogleSheetsService {
       if (isPaidValue) {
         paidMonths.push(monthStr);
       }
+
+      // Store note if it exists
+      if (note && typeof note === 'string' && note.trim()) {
+        notes[monthStr] = note.trim();
+      }
     });
 
-    return paidMonths;
+    return { paidMonths, notes };
   }
 
   /**
@@ -438,6 +445,7 @@ export class GoogleSheetsService {
       taxOwed: number;
       profit: number;
       isPaid: boolean;
+      notes?: string;
     }>
   ): Promise<void> {
     const values = taxData.map((t) => [
@@ -448,10 +456,11 @@ export class GoogleSheetsService {
       t.taxOwed,
       t.profit,
       t.isPaid, // Use boolean directly - USER_ENTERED will interpret it correctly
+      t.notes || '', // notes column
     ]);
 
     // Clear existing data first
-    const clearUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:G:clear`;
+    const clearUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:H:clear`;
     await this.apiRequest(clearUrl, {
       method: 'POST',
       body: JSON.stringify({}),

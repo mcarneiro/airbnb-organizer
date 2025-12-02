@@ -5,7 +5,7 @@ import { googleSheetsService } from '../services/GoogleSheetsService';
 import { setReservations } from '../store/reservationsSlice';
 import { setExpenses } from '../store/expensesSlice';
 import { setSettings } from '../store/settingsSlice';
-import { setPaidMonths } from '../store/taxesSlice';
+import { setPaidMonths, setNotes } from '../store/taxesSlice';
 import { setDataLoading, setDataLoaded } from '../store/appSlice';
 import { getAllMonths, groupReservationsByMonth, groupExpensesByMonth, calculateMonthlyTax } from '../utils/taxCalculations';
 
@@ -42,6 +42,7 @@ export function useDataSync() {
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
   const paidMonths = useAppSelector(state => state.taxes.paidMonths);
+  const taxNotes = useAppSelector(state => state.taxes.notes);
 
   // Track if we're currently loading data to prevent auto-save during load
   const isLoadingData = useRef(false);
@@ -87,9 +88,10 @@ export function useDataSync() {
       const loadedExpenses = await googleSheetsService.readExpenses(sheetId);
       dispatch(setExpenses(loadedExpenses));
 
-      // Load paid tax months
-      const loadedPaidMonths = await googleSheetsService.readPaidTaxMonths(sheetId);
+      // Load paid tax months and notes
+      const { paidMonths: loadedPaidMonths, notes: loadedNotes } = await googleSheetsService.readPaidTaxMonths(sheetId);
       dispatch(setPaidMonths(loadedPaidMonths));
+      dispatch(setNotes(loadedNotes));
 
       console.log('Data loaded from Google Sheets');
       dispatch(setDataLoaded(true));
@@ -189,6 +191,7 @@ export function useDataSync() {
             taxOwed: monthlyTax.taxOwed,
             profit: monthlyTax.profit,
             isPaid: monthlyTax.isPaid,
+            notes: taxNotes[month] || '',
           };
         });
 
@@ -200,7 +203,7 @@ export function useDataSync() {
     } catch (error) {
       handleApiError(error);
     }
-  }, [isSignedIn, sheetId, reservations, expenses, settings.dependents, paidMonths, handleApiError]);
+  }, [isSignedIn, sheetId, reservations, expenses, settings.dependents, paidMonths, taxNotes, handleApiError]);
 
   // Load data on mount (when signed in, sheet ID, and access token are available)
   useEffect(() => {
@@ -215,10 +218,11 @@ export function useDataSync() {
   useDebouncedAutoSave(expenses, saveExpenses, isSignedIn, sheetId, isLoadingData);
   useDebouncedAutoSave(settings, saveSettings, isSignedIn, sheetId, isLoadingData);
 
-  // Auto-save tax data ONLY when paidMonths change
-  // Tax data is derived/calculated data and should only be saved when user marks something as paid/unpaid
+  // Auto-save tax data when paidMonths or notes change
+  // Tax data is derived/calculated data and should only be saved when user marks something as paid/unpaid or updates notes
   // This prevents the isPaid status from being reset when reservations/expenses change
-  useDebouncedAutoSave(paidMonths, saveTaxData, isSignedIn, sheetId, isLoadingData);
+  // We stringify both to ensure proper change detection
+  useDebouncedAutoSave(JSON.stringify({ paidMonths, taxNotes }), saveTaxData, isSignedIn, sheetId, isLoadingData);
 
   return {
     loadData,

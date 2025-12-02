@@ -105,6 +105,8 @@
     "taxRate": "Tax Rate",
     "taxOwed": "Tax Owed",
     "finalProfit": "Final Profit",
+    "notes": "Notes",
+    "notesPlaceholder": "Add payment information (date, bank, receipt, etc.)",
     "prepareForFiling": "Prepare for Filing",
     "filingInstructions": "Fill in the data below in",
     "carneLeaoLink": "Carnê Leão Web → Income → + Income",

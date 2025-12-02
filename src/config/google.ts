@@ -36,6 +36,6 @@ export const SHEET_CONFIGS = {
   },
   taxes: {
     name: 'taxes',
-    columns: ['date', 'income', 'deductions', 'tax_rate', 'tax_owed', 'profit', 'is_paid'],
+    columns: ['date', 'income', 'deductions', 'tax_rate', 'tax_owed', 'profit', 'is_paid', 'notes'],
   },
 };

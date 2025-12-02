@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { markMonthAsPaid, markMonthAsUnpaid } from '../../store/taxesSlice';
+import { markMonthAsPaid, markMonthAsUnpaid, setMonthNote } from '../../store/taxesSlice';
 import {
   getAllMonths,
   groupReservationsByMonth,
@@ -23,6 +23,7 @@ export default function Taxes() {
   const expenses = useAppSelector(state => state.expenses.items);
   const settings = useAppSelector(state => state.settings.settings);
   const paidMonths = useAppSelector(state => state.taxes.paidMonths);
+  const taxNotes = useAppSelector(state => state.taxes.notes);
   const dataLoaded = useAppSelector(state => state.app.dataLoaded);
 
   // Get all available months
@@ -108,6 +109,12 @@ export default function Taxes() {
   const handleMarkAsUnpaid = () => {
     if (selectedMonth) {
       dispatch(markMonthAsUnpaid(selectedMonth));
+    }
+  };
+
+  const handleNotesChange = (note: string) => {
+    if (selectedMonth) {
+      dispatch(setMonthNote({ month: selectedMonth, note }));
     }
   };
 
@@ -224,6 +231,18 @@ export default function Taxes() {
                   <span className="font-bold text-blue-900 text-lg">R$ {formatCurrency(selectedMonthData.profit)}</span>
                 </div>
               </div>
+            </div>
+
+            {/* Notes Section */}
+            <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
+              <h3 className="text-md font-semibold text-gray-900">{t('taxes.notes')}</h3>
+              <textarea
+                value={taxNotes[selectedMonth] || ''}
+                onChange={(e) => handleNotesChange(e.target.value)}
+                placeholder={t('taxes.notesPlaceholder')}
+                rows={3}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-none"
+              />
             </div>
 
             {/* IRS Filing Actions */}
