@@ -41,6 +41,11 @@ export interface MonthlyTaxSummary {
   - Tax Rate
   - Tax Owed
   - Final Profit
+- Notes section for tracking payment details:
+  - Free-text textarea for adding notes
+  - Per-month storage (each month has its own notes)
+  - Auto-saved to Google Sheets (1-second debounce)
+  - Use for: payment date, bank used, receipt number, etc.
 - IRS filing section with copyable fields:
   - Total Income
   - Total Deductions
@@ -150,6 +155,7 @@ Implements Brazilian tax bracket logic with deductions based on dependents.
 ```typescript
 interface TaxesState {
   paidMonths: string[]; // Array of YYYY-MM strings
+  notes: Record<string, string>; // Notes per month (month -> note)
 }
 ```
 
@@ -157,8 +163,65 @@ interface TaxesState {
 - `markMonthAsPaid(month: string)` - Add month to paid list
 - `markMonthAsUnpaid(month: string)` - Remove month from paid list
 - `setPaidMonths(months: string[])` - Set entire paid months array
+- `setMonthNote({ month, note })` - Set or update note for a specific month
+- `setNotes(notes)` - Set entire notes object (used when loading from Sheets)
 
-**Note:** Paid status is persisted to Google Sheets via data sync.
+**Note:** Paid status and notes are persisted to Google Sheets via data sync (1-second debounce).
+
+## Google Sheets Integration
+
+### Taxes Sheet Structure
+**Sheet Name:** `taxes`
+**Columns:** `date`, `income`, `deductions`, `tax_rate`, `tax_owed`, `profit`, `is_paid`, `notes`
+
+**Column Details:**
+- **date** (A): Month in YYYY-MM format (e.g., "2024-11")
+- **income** (B): Total income (owner's share) for the month
+- **deductions** (C): Total deductible expenses for the month
+- **tax_rate** (D): Tax rate applied (as decimal, e.g., 0.075 for 7.5%)
+- **tax_owed** (E): Amount of tax owed
+- **profit** (F): Final profit after tax
+- **is_paid** (G): Boolean - TRUE if paid, FALSE if unpaid
+- **notes** (H): Free-text notes for tracking payment details
+
+**Data Sync:**
+- Tax data is calculated from reservations and expenses
+- Auto-saved to Google Sheets whenever paidMonths or notes change (1-second debounce)
+- Notes are stored per month in Redux and synced to column H
+- Notes persist across month navigation
+
+### Reading Tax Data
+**Location:** `src/services/GoogleSheetsService.ts:377-433`
+
+The `readPaidTaxMonths()` method reads from the taxes sheet and returns:
+```typescript
+{
+  paidMonths: string[], // Months where is_paid = TRUE
+  notes: Record<string, string> // Month -> note mapping
+}
+```
+
+### Writing Tax Data
+**Location:** `src/services/GoogleSheetsService.ts:438-480`
+
+The `writeTaxData()` method writes calculated tax data plus notes to the sheet.
+
+## Internationalization (i18n)
+
+### Month Name Localization
+**Function:** `getMonthName(monthStr: string, locale: string)`
+**Location:** `src/utils/taxCalculations.ts:25-28`
+
+Month names are displayed in the user's selected language:
+- **Portuguese (pt-BR)**: "janeiro de 2024", "fevereiro de 2024", etc.
+- **English (en-US)**: "January 2024", "February 2024", etc.
+
+**Used in:**
+- **MonthNavigation component** (`src/components/MonthNavigation.tsx:37`) - Month navigation header
+- **Taxes page** (`src/features/taxes/Taxes.tsx:375`) - Monthly tax list
+- **Dashboard** (`src/features/dashboard/Dashboard.tsx:124`) - Tax reminder notification
+
+All components pass `i18n.language` to ensure month names match the selected language.
 
 ## Dashboard Integration
 **Location:** `src/features/dashboard/Dashboard.tsx:59-62`
@@ -209,14 +272,18 @@ const unpaidMonth = useMemo(
    - Tax Rate: 7.5%
    - Tax Owed: R$ 189.15
    - Final Profit: R$ 2,860.85
-5. User scrolls to "Preparar para Declaração" section
-6. User clicks "Copiar" on Total Income field
-7. Pastes in Carnê Leão Web form
-8. Repeats for Deductions and Reservation Details
-9. User submits tax declaration on Carnê Leão website
-10. User returns to app and clicks "Marcar como Pago"
-11. Month turns green in list
-12. Dashboard notification disappears
+5. User scrolls to "Observações" (Notes) section
+6. User types payment details: "Paid on 15/11/2024 via Banco do Brasil, receipt #12345"
+7. Note is auto-saved to Google Sheets after 1 second
+8. User scrolls to "Preparar para Declaração" section
+9. User clicks "Copiar" on Total Income field
+10. Pastes in Carnê Leão Web form
+11. Repeats for Deductions and Reservation Details
+12. User submits tax declaration on Carnê Leão website
+13. User returns to app and clicks "Marcar como Pago"
+14. Month turns green in list
+15. Dashboard notification disappears
+16. Notes remain stored for future reference
 
 ### Flow 2: Navigating Between Months
 
@@ -243,10 +310,34 @@ const unpaidMonth = useMemo(
 5. User doesn't need to mark as paid
 6. Month doesn't block other notifications
 
-## Recent Changes (2025-11-09)
+## Recent Changes
 
-### What Changed:
+### 2025-12-01: Notes Feature and i18n Improvements
 
+**Added:**
+1. **Notes field for tax payments**
+   - Added `notes` column (H) to taxes sheet in Google Sheets
+   - Added notes textarea on Taxes page (above "Prepare for Filing" section)
+   - Notes are per-month and auto-saved (1-second debounce)
+   - Use for tracking: payment date, bank, receipt number, etc.
+   - Redux state updated to include `notes: Record<string, string>`
+   - Added `setMonthNote` and `setNotes` actions to taxesSlice
+
+2. **Month name internationalization**
+   - Updated `getMonthName()` to accept locale parameter
+   - Month names now display in correct language (pt-BR or en-US)
+   - Fixed in: MonthNavigation, Taxes page, Dashboard notification
+   - Portuguese: "janeiro de 2024", "fevereiro de 2024"
+   - English: "January 2024", "February 2024"
+
+**Updated:**
+- `GoogleSheetsService.readPaidTaxMonths()` now returns `{ paidMonths, notes }`
+- `GoogleSheetsService.writeTaxData()` now accepts and writes notes
+- Data sync auto-saves when paidMonths OR notes change
+
+### 2025-11-09: UX Improvements
+
+**What Changed:**
 1. **Limited display to last 6 months**
    - Changed "Todos os Meses" to "Últimos 6 Meses"
    - Only shows `availableMonths.slice(0, 6)` instead of all months
@@ -264,7 +355,7 @@ const unpaidMonth = useMemo(
    - No separate view/arrow icon needed
    - Better UX and accessibility
 
-### Why:
+**Why:**
 - Improve UX by reducing noise (don't show old months)
 - Eliminate unnecessary action for zero-tax months
 - Focus attention on months that actually need payment
@@ -275,7 +366,9 @@ const unpaidMonth = useMemo(
 - Tax calculation uses Brazilian Carnê Leão progressive tax brackets
 - Dependents affect deduction amount (configured in settings)
 - Month format throughout: `YYYY-MM` (e.g., `2025-11`)
-- Paid status is stored in Redux and synced to Google Sheets
+- Paid status and notes are stored in Redux and synced to Google Sheets
+- Notes are per-month and auto-saved with 1-second debounce
+- Month names are localized (pt-BR or en-US) based on language selection
 - Past months only: Current and future months never show in notifications
 - Expenses reduce taxable income (deductions)
 - Only owner's share (70% by default) is considered for tax calculation

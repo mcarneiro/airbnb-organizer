@@ -286,16 +286,18 @@ adminSplit | 0.30
 5. Tax Owed (number)
 6. Profit (number)
 7. Is Paid (boolean string)
+8. Notes (string, optional)
 
 **Example Row:**
 ```
-2025-11 | 3500 | 450 | 0.075 | 189.15 | 2860.85 | false
+2025-11 | 3500 | 450 | 0.075 | 189.15 | 2860.85 | false | Paid on 15/11 via Banco do Brasil
 ```
 
 **Note:** Tax data is calculated/derived data. Written automatically when:
 - Reservations change
 - Expenses change
 - User marks month as paid/unpaid
+- User updates notes for the month
 
 ### API Methods
 
@@ -304,7 +306,7 @@ adminSplit | 0.30
 readReservations(sheetId: string): Promise<Reservation[]>
 readExpenses(sheetId: string): Promise<Expense[]>
 readSettings(sheetId: string): Promise<AppSettings>
-readPaidTaxMonths(sheetId: string): Promise<string[]>
+readPaidTaxMonths(sheetId: string): Promise<{ paidMonths: string[], notes: Record<string, string> }>
 ```
 
 **Write Operations:**

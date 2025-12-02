@@ -10,7 +10,9 @@ A modern web application to manage Airbnb rental properties, track reservations,
 - **Reservations Management**: Add and track Airbnb reservations with automatic split calculations
 - **Expense Tracking**: Categorize expenses (IPTU, Condominium, Utilities, etc.)
 - **Tax Calculator**: Brazilian progressive tax calculation (2025 rules) with IRS filing support
+- **Tax Notes**: Add payment tracking notes per month (date paid, bank, receipt number)
 - **Google Sheets Integration**: All data automatically syncs to your Google Sheet
+- **Internationalization**: Full support for Portuguese (Brazil) and English (US)
 - **Mobile-First Design**: Responsive interface optimized for mobile devices
 - **Auto-Save**: Changes sync to Google Sheets automatically (1-second debounce)
 
@@ -182,9 +184,9 @@ The app creates and manages the following sheets:
 | 2025-01-10 | 350.00 | IPTU | Tax payment |
 
 #### `taxes` Sheet
-| date | income | deductions | tax_rate | tax_owed | profit | is_paid |
-|------|--------|------------|----------|----------|--------|---------|
-| 2025-01 | 5000.00 | 1200.00 | 0.075 | 285.00 | 3515.00 | false |
+| date | income | deductions | tax_rate | tax_owed | profit | is_paid | notes |
+|------|--------|------------|----------|----------|--------|---------|-------|
+| 2025-01 | 5000.00 | 1200.00 | 0.075 | 285.00 | 3515.00 | false | Paid 15/01 via BB |
 
 ## Tax Calculation
 
