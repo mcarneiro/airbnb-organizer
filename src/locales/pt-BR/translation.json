@@ -158,8 +158,8 @@
     "languageEnUS": "English (US)"
   },
   "onboarding": {
-    "title": "Bem-vindo ao Airbnb Organizer",
-    "subtitle": "Conecte suas Planilhas Google para começar",
+    "title": "Bem-vindo ao Stayoo",
+    "subtitle": "Sou desenvolvedor e anfitrião de aluguel por temporada. Criei o Stayoo para visualizar minhas reservas, registrar despesas e calcular impostos mensais brasileiros, tudo sincronizado com o Google Sheets. Conecte sua planilha para começar.",
     "configRequired": "Configuração Necessária",
     "configMessage": "O ID do Cliente OAuth do Google não está configurado. Por favor, crie um arquivo .env com seu ID de Cliente. Veja .env.example para instruções.",
     "step1": "Passo 1: Entre com Google",

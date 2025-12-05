@@ -1,8 +1,6 @@
-# Airbnb Organizer
+# Stayoo
 
-A modern web application to manage Airbnb rental properties, track reservations, expenses, and calculate Brazilian rental income taxes. All data is stored in your own Google Sheet for full control and easy access.
-
-> This is a vibe coding experiment!
+I'm a developer and short-term rental host. I built Stayoo to simplify my property management—track reservations, log expenses, and calculate Brazilian monthly taxes, all synced to a Google Sheet.
 
 ## Features
 
