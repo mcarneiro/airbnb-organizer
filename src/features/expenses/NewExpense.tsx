@@ -101,24 +101,26 @@ export default function NewExpense() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
-        <button
-          onClick={() => {
-            if (isEditMode && existingExpense) {
-              navigate(`/expenses/${formatMonth(existingExpense.date)}`);
-            } else {
-              navigate('/expenses');
-            }
-          }}
-          className="p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
-        >
-          <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <h1 className="text-xl font-bold text-gray-900">
-          {isEditMode ? t('expenses.edit') : t('expenses.new')}
-        </h1>
+      <header className="bg-white border-b border-gray-200">
+        <div className="px-4 py-3 flex items-center gap-3 max-w-md mx-auto">
+          <button
+            onClick={() => {
+              if (isEditMode && existingExpense) {
+                navigate(`/expenses/${formatMonth(existingExpense.date)}`);
+              } else {
+                navigate('/expenses');
+              }
+            }}
+            className="p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <h1 className="text-xl font-bold text-gray-900">
+            {isEditMode ? t('expenses.edit') : t('expenses.new')}
+          </h1>
+        </div>
       </header>
 
       <div className="px-4 py-6 max-w-md mx-auto">
