@@ -8,6 +8,18 @@ interface YearOverYearChartProps {
   previousYear: number | null;
 }
 
+interface TooltipPayload {
+  payload: YearOverYearData;
+  dataKey: string;
+  color: string;
+  value: number;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayload[];
+}
+
 export default function YearOverYearChart({ data, currentYear, previousYear }: YearOverYearChartProps) {
   // If no data, show empty state
   if (data.length === 0 || !currentYear) {
@@ -22,12 +34,12 @@ export default function YearOverYearChart({ data, currentYear, previousYear }: Y
   const previousYearKey = previousYear ? `year${previousYear}` : null;
 
   // Custom tooltip
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3">
           <p className="text-sm font-semibold text-gray-900 mb-2">{payload[0].payload.monthName}</p>
-          {payload.map((entry: any, index: number) => {
+          {payload.map((entry, index) => {
             const year = entry.dataKey.replace('year', '');
             const isCurrent = entry.dataKey === currentYearKey;
             return (
@@ -55,13 +67,9 @@ export default function YearOverYearChart({ data, currentYear, previousYear }: Y
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-            {/* Hidden Y-axis to set domain */}
             <YAxis domain={[0, 'dataMax']} hide />
-
-            {/* Tooltip */}
             <Tooltip content={<CustomTooltip />} />
 
-            {/* Previous year area (gray) */}
             {previousYearKey && (
               <Area
                 type="monotone"
@@ -73,7 +81,6 @@ export default function YearOverYearChart({ data, currentYear, previousYear }: Y
               />
             )}
 
-            {/* Current year area (blue) */}
             <Area
               type="monotone"
               dataKey={currentYearKey}
@@ -86,7 +93,6 @@ export default function YearOverYearChart({ data, currentYear, previousYear }: Y
         </ResponsiveContainer>
       </div>
 
-      {/* Legend */}
       <div className="flex items-center justify-center gap-6 mt-4">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-blue-500" />

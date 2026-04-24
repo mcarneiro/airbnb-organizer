@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { useGoogleAuth } from '../contexts/GoogleAuthContext';
 import { googleSheetsService } from '../services/GoogleSheetsService';
@@ -21,7 +21,7 @@ export function useDataSync() {
   /**
    * Handle API errors, especially token expiration
    */
-  const handleApiError = useCallback((error: any) => {
+  const handleApiError = useCallback((error: Error & { code?: string }) => {
     if (error?.code === 'TOKEN_EXPIRED') {
       console.error('Token expired, signing out user');
       signOut('expired');

@@ -14,7 +14,7 @@ vi.mock('../../services/GoogleSheetsService', () => ({
 }));
 
 describe('Sync Listener Middleware (Integration)', () => {
-  let store: any;
+  let store: ReturnType<typeof configureStore>;
 
   beforeEach(() => {
     vi.clearAllMocks();

@@ -1,6 +1,18 @@
 import { SHEET_CONFIGS } from '../config/google';
 import { Reservation, Expense, AppSettings } from '../types';
 
+interface SheetResponse {
+  sheets?: Array<{
+    properties?: {
+      title: string;
+    };
+  }>;
+}
+
+interface ValueResponse {
+  values?: any[][];
+}
+
 export class GoogleSheetsService {
   private static instance: GoogleSheetsService;
   private accessToken: string | null = null;
@@ -48,8 +60,8 @@ export class GoogleSheetsService {
         throw error;
       }
 
-      const error = await response.json();
-      throw new Error(error.error?.message || 'API request failed');
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'API request failed');
     }
 
     return response.json();
@@ -61,10 +73,10 @@ export class GoogleSheetsService {
   private async sheetExists(spreadsheetId: string, sheetName: string): Promise<boolean> {
     try {
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}`;
-      const data = await this.apiRequest(url);
+      const data: SheetResponse = await this.apiRequest(url);
 
       const sheets = data.sheets || [];
-      return sheets.some((sheet: any) => sheet.properties?.title === sheetName);
+      return sheets.some((sheet) => sheet.properties?.title === sheetName);
     } catch (error) {
       console.error(`Error checking if sheet exists:`, error);
       return false;
@@ -117,9 +129,9 @@ export class GoogleSheetsService {
   private async sheetHasData(spreadsheetId: string, sheetName: string): Promise<boolean> {
     try {
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!A2:Z`;
-      const data = await this.apiRequest(url);
+      const data: ValueResponse = await this.apiRequest(url);
       return (data.values && data.values.length > 0) || false;
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -159,10 +171,10 @@ export class GoogleSheetsService {
   async readSettings(spreadsheetId: string): Promise<AppSettings> {
     // Use valueRenderOption=UNFORMATTED_VALUE to get actual numbers instead of locale-formatted strings
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/settings!A2:B?valueRenderOption=UNFORMATTED_VALUE`;
-    const data = await this.apiRequest(url);
+    const data: ValueResponse = await this.apiRequest(url);
 
     const rows = data.values || [];
-    const settings: any = {
+    const settings: AppSettings = {
       dependents: 0,
       ownerSplit: 0.7,
       adminSplit: 0.3,
@@ -263,7 +275,7 @@ export class GoogleSheetsService {
   async readReservations(spreadsheetId: string): Promise<Reservation[]> {
     // Use valueRenderOption=UNFORMATTED_VALUE to get actual numbers instead of locale-formatted strings
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb!A2:E?valueRenderOption=UNFORMATTED_VALUE`;
-    const data = await this.apiRequest(url);
+    const data: ValueResponse = await this.apiRequest(url);
 
     const rows = data.values || [];
     return rows
@@ -321,7 +333,7 @@ export class GoogleSheetsService {
   async readExpenses(spreadsheetId: string): Promise<Expense[]> {
     // Use valueRenderOption=UNFORMATTED_VALUE to get actual numbers instead of locale-formatted strings
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/airbnb_expenses!A2:D?valueRenderOption=UNFORMATTED_VALUE`;
-    const data = await this.apiRequest(url);
+    const data: ValueResponse = await this.apiRequest(url);
 
     const rows = data.values || [];
     return rows
@@ -377,7 +389,7 @@ export class GoogleSheetsService {
   async readPaidTaxMonths(spreadsheetId: string): Promise<{ paidMonths: string[], notes: Record<string, string> }> {
     // Use valueRenderOption=UNFORMATTED_VALUE to get actual values
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/taxes!A2:H?valueRenderOption=UNFORMATTED_VALUE`;
-    const data = await this.apiRequest(url);
+    const data: ValueResponse = await this.apiRequest(url);
 
     const rows = data.values || [];
     const paidMonths: string[] = [];

@@ -17,7 +17,7 @@ languageDetector.addDetector({
     if (stored) return stored;
 
     // 2. Browser language with pt-BR preference
-    const browserLang = navigator.language || (navigator as any).userLanguage;
+    const browserLang = navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage;
 
     // If browser language is any Portuguese variant, use pt-BR
     if (browserLang?.startsWith('pt')) {
