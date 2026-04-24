@@ -115,7 +115,7 @@ Features:
 #### 5. Tax Calculation
 **Logic in Application (not in sheets)**
 
-Brazilian Rental Income Tax Rules (2025):
+Brazilian Rental Income Tax Rules (2026):
 ```
 1. Calculate Net Income:
    - Start with owner's receipt (70% of total)
@@ -132,12 +132,19 @@ Brazilian Rental Income Tax Rules (2025):
    <= R$ 2,428.81 → 7.5%  - R$ 182.16
    <= R$ 2,826.66 → 15%   - R$ 394.16
    <= R$ 3,751.05 → 22.5% - R$ 675.49
-   <= R$ 4,664.68 → 27.5% - R$ 908.73
+   >  R$ 3,751.05 → 27.5% - R$ 908.73
 
-   Tax = (Taxable Income × Rate) - Deduction
+   Base Tax = (Taxable Income × Rate) - Deduction
 
-4. Calculate Profit:
-   Profit = Liquid Income - Tax Owed
+4. Apply 2026 Tax Reducer (Exemption up to R$ 5,000):
+   - if (Liquid Income <= 5,000): Reduction = Base Tax (Tax becomes 0)
+   - if (Liquid Income <= 7,350): Reduction = 978.62 - (0.133145 * Liquid Income)
+   - else: Reduction = 0
+
+   Final Tax = MAX(Base Tax - Reduction, 0)
+
+5. Calculate Profit:
+   Profit = Liquid Income - Final Tax
 ```
 
 Display:
@@ -200,12 +207,13 @@ For each month, generate:
 ## Technical Requirements
 
 ### Tech Stack
-- **Framework**: React 18+ with TypeScript
-- **Build Tool**: Vite
-- **State Management**: Redux Toolkit
-- **UI Framework**: Tailwind CSS
+- **Framework**: React 19+ with TypeScript
+- **Build Tool**: Vite 6
+- **State Management**: Redux Toolkit 2.x
+- **UI Framework**: Tailwind CSS 4
 - **API Integration**: Google Sheets API v4
 - **Authentication**: Google OAuth 2.0
+- **Testing**: Vitest
 
 ### Architecture Principles
 
@@ -227,7 +235,7 @@ For each month, generate:
 ```typescript
 interface Reservation {
   id: string;
-  date: Date;           // Data
+  date: string;           // ISO date string (YYYY-MM-DD)
   nights: number;       // Diárias
   total: number;        // Total
   ownerAmount: number;  // Recebimento (70%)
@@ -247,7 +255,7 @@ type ExpenseCategory =
 
 interface Expense {
   id: string;
-  date: Date;           // Data
+  date: string;           // ISO date string (YYYY-MM-DD)
   amount: number;       // Valor
   category: ExpenseCategory; // Conta
   notes?: string;       // Notas

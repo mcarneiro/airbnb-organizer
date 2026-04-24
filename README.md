@@ -7,22 +7,23 @@ I'm a developer and short-term rental host. I built Stayoo to simplify my proper
 - **Dashboard**: Overview of current and upcoming months with income, occupation, and nights
 - **Reservations Management**: Add and track Airbnb reservations with automatic split calculations
 - **Expense Tracking**: Categorize expenses (IPTU, Condominium, Utilities, etc.)
-- **Tax Calculator**: Brazilian progressive tax calculation (2025 rules) with IRS filing support
+- **Tax Calculator**: Brazilian progressive tax calculation (2026 rules) with IRS filing support
 - **Tax Notes**: Add payment tracking notes per month (date paid, bank, receipt number)
 - **Google Sheets Integration**: All data automatically syncs to your Google Sheet
 - **Internationalization**: Full support for Portuguese (Brazil) and English (US)
 - **Mobile-First Design**: Responsive interface optimized for mobile devices
-- **Auto-Save**: Changes sync to Google Sheets automatically (1-second debounce)
+- **Auto-Save**: Changes sync to Google Sheets automatically (event-driven via Redux Listeners)
 
 ## Technology Stack
 
-- **React 18** with TypeScript
-- **Vite** for fast development and builds
-- **Redux Toolkit** for state management
-- **React Router** for navigation
-- **Tailwind CSS** for styling
+- **React 19** with TypeScript
+- **Vite 6** for fast development and builds
+- **Redux Toolkit 2.x** with Listeners for side effects
+- **React Router 7** for navigation
+- **Tailwind CSS 4** for styling
 - **Google Sheets API v4** for data persistence
 - **Google OAuth 2.0** for authentication
+- **Vitest** for BDD/TDD testing
 
 ## Prerequisites
 
@@ -136,11 +137,12 @@ src/
 │   ├── settings/      # App settings
 │   └── taxes/         # Tax calculations
 ├── hooks/             # Custom React hooks
-│   └── useDataSync.ts # Auto-sync with Google Sheets
+│   └── useDataSync.ts # Initial data load from Google Sheets
 ├── services/          # External services
 │   ├── BrazilianRentalTaxCalculator.ts
 │   └── GoogleSheetsService.ts
 ├── store/             # Redux store
+│   ├── middleware/    # Sync listeners for auto-save
 │   ├── expensesSlice.ts
 │   ├── reservationsSlice.ts
 │   ├── settingsSlice.ts
@@ -188,14 +190,21 @@ The app creates and manages the following sheets:
 
 ## Tax Calculation
 
-The app uses Brazilian progressive tax brackets for 2025:
+The app uses Brazilian progressive tax brackets for 2026, including the R$ 5,000 exemption rule:
 
 | Income Range | Tax Rate | Deduction |
 |--------------|----------|-----------|
 | Up to R$ 2,428.81 | 7.5% | R$ 182.16 |
 | R$ 2,428.82 - R$ 2,826.66 | 15% | R$ 394.16 |
 | R$ 2,826.67 - R$ 3,751.05 | 22.5% | R$ 675.49 |
-| R$ 3,751.06 - R$ 4,664.68 | 27.5% | R$ 908.73 |
+| Above R$ 3,751.05 | 27.5% | R$ 908.73 |
+
+### 2026 Exemption (The "Reducer")
+
+As of 2026, the government introduced a tax reducer to effectively exempt incomes up to R$ 5,000:
+- **Up to R$ 5,000**: Total exemption (Tax = 0)
+- **R$ 5,000.01 to R$ 7,350**: Partial reduction via formula: `978.62 – (0.133145 × Income)`
+- **Above R$ 7,350**: Standard table applies without reducer.
 
 ### Tax Calculation Formula
 

@@ -395,47 +395,21 @@ const loadData = useCallback(async () => {
 
 ### Auto-Save Mechanism
 
-**Debounced Auto-Save (lines 15-32):**
-```typescript
-function useDebouncedAutoSave(
-  data: any,
-  saveCallback: () => Promise<void>,
-  isSignedIn: boolean,
-  sheetId: string | null,
-  isLoadingData: React.MutableRefObject<boolean>
-) {
-  useEffect(() => {
-    if (!isSignedIn || !sheetId || isLoadingData.current) return;
-
-    const timeoutId = setTimeout(() => {
-      saveCallback();
-    }, 1000); // 1 second debounce
-
-    return () => clearTimeout(timeoutId);
-  }, [data, isSignedIn, sheetId, saveCallback, isLoadingData]);
-}
-```
+**Event-Driven Sync (via Redux Listeners):**
+Instead of watching state changes in components, the app uses **Redux Listener Middleware** (`src/store/middleware/syncListener.ts`).
 
 **How it works:**
-1. User makes change (e.g., adds reservation)
-2. Redux state updates immediately
-3. UI renders new data instantly
-4. After 1 second of no changes, auto-save triggers
-5. Data written to Google Sheets in background
-6. If user makes another change within 1 second, timer resets
+1. User makes a change (e.g., adds a reservation via `addReservation` action).
+2. The Redux state updates immediately.
+3. the `syncListenerMiddleware` detects the action, waits for a **1-second debounce** (using `listenerApi.delay`), and cancels any previous pending saves for that data type.
+4. The data is written to Google Sheets in the background.
+5. If another change occurs within the 1-second window, the previous listener is cancelled and the timer resets.
 
 **What's Auto-Saved:**
-```typescript
-// Line 214-217
-useDebouncedAutoSave(reservations, saveReservations, isSignedIn, sheetId, isLoadingData);
-useDebouncedAutoSave(expenses, saveExpenses, isSignedIn, sheetId, isLoadingData);
-useDebouncedAutoSave(settings, saveSettings, isSignedIn, sheetId, isLoadingData);
-
-// Line 221 - Only when paidMonths change
-useDebouncedAutoSave(paidMonths, saveTaxData, isSignedIn, sheetId, isLoadingData);
-```
-
-**Important:** Tax data saves ONLY when `paidMonths` changes, not when reservations/expenses change. This prevents the `isPaid` status from being reset.
+- **Reservations**: Triggered by `addReservation`, `updateReservation`, `deleteReservation`.
+- **Expenses**: Triggered by `addExpense`, `updateExpense`, `deleteExpense`.
+- **Settings**: Triggered by `setSettings`.
+- **Tax Data**: Triggered by `setPaidMonths` or `setNotes`. (Includes full recalculation of the tax sheet).
 
 ### Save Operations
 
@@ -587,16 +561,16 @@ const saveTaxData = useCallback(async () => {
 
 ### Date Serialization
 
-**Problem:** JavaScript Date objects need to be serialized for Google Sheets.
+**Problem:** JavaScript Date objects need to be serialized for both Redux and Google Sheets.
 
-**Solution:** Convert to ISO strings when writing, parse back to Date objects when reading.
+**Solution:** Store dates as **ISO strings (YYYY-MM-DD)** in the Redux state. This ensures the state is serializable and maps directly to how Google Sheets expects date values.
 
 ```typescript
-// Writing
-date: reservation.date.toISOString()
+// State/Writing
+date: "2025-11-09"
 
-// Reading
-date: new Date(row[1])
+// Processing (using parseDate utility)
+const d = parseDate(reservation.date); // returns Date object locally
 ```
 
 ### Local Date Parsing
