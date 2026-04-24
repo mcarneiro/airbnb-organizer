@@ -349,7 +349,8 @@ export class GoogleSheetsService {
           notes: row[3],
         };
       })
-      .filter((item: any): item is Expense => item !== null);
+      .filter((item) => item !== null) as Expense[];
+
   }
 
   /**

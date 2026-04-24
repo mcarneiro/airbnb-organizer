@@ -65,7 +65,7 @@ export function useDataSync() {
       console.log('Data loaded from Google Sheets');
       dispatch(setDataLoaded(true));
     } catch (error) {
-      handleApiError(error);
+      handleApiError(error as Error & { code?: string });
       dispatch(setDataLoaded(false));
     }
   }, [isSignedIn, sheetId, dispatch, handleApiError]);

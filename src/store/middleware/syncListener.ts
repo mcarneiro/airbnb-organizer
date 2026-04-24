@@ -15,7 +15,7 @@ const startAppListening = syncListenerMiddleware.startListening.withTypes<RootSt
 // Reservations Sync
 startAppListening({
   matcher: isAnyOf(addReservation, updateReservation, deleteReservation),
-  effect: async (action, listenerApi) => {
+  effect: async (_action, listenerApi) => {
     await listenerApi.delay(1000); // 1s debounce
     listenerApi.cancelActiveListeners(); // Cancel any pending saves
 
@@ -37,7 +37,7 @@ startAppListening({
 // Expenses Sync
 startAppListening({
   matcher: isAnyOf(addExpense, updateExpense, deleteExpense),
-  effect: async (action, listenerApi) => {
+  effect: async (_action, listenerApi) => {
     await listenerApi.delay(1000);
     listenerApi.cancelActiveListeners();
 
@@ -59,7 +59,7 @@ startAppListening({
 // Settings Sync
 startAppListening({
   actionCreator: setSettings,
-  effect: async (action, listenerApi) => {
+  effect: async (_action, listenerApi) => {
     await listenerApi.delay(1000);
     listenerApi.cancelActiveListeners();
 
@@ -80,7 +80,7 @@ startAppListening({
 // Tax Data Sync (Paid Months & Notes)
 startAppListening({
   matcher: isAnyOf(setPaidMonths, setNotes),
-  effect: async (action, listenerApi) => {
+  effect: async (_action, listenerApi) => {
     await listenerApi.delay(1000);
     listenerApi.cancelActiveListeners();
 
