@@ -10,7 +10,7 @@ interface SheetResponse {
 }
 
 interface ValueResponse {
-  values?: any[][];
+  values?: unknown[][];
 }
 
 export class GoogleSheetsService {
@@ -56,7 +56,7 @@ export class GoogleSheetsService {
         // Clear the invalid token
         this.accessToken = null;
         const error = new Error('Your session has expired. Please sign in again.');
-        (error as any).code = 'TOKEN_EXPIRED';
+        (error as { code?: string }).code = 'TOKEN_EXPIRED';
         throw error;
       }
 
@@ -180,17 +180,17 @@ export class GoogleSheetsService {
       adminSplit: 0.3,
     };
 
-    rows.forEach((row: any[]) => {
-      const [key, value] = row;
+    rows.forEach((row: unknown[]) => {
+      const [key, value] = row as [string, string | number];
       switch (key) {
         case 'dependents':
-          settings.dependents = parseInt(value) || 0;
+          settings.dependents = parseInt(value as string) || 0;
           break;
         case 'owner_split':
-          settings.ownerSplit = parseFloat(value) || 0.7;
+          settings.ownerSplit = parseFloat(value as string) || 0.7;
           break;
         case 'admin_split':
-          settings.adminSplit = parseFloat(value) || 0.3;
+          settings.adminSplit = parseFloat(value as string) || 0.3;
           break;
       }
     });
@@ -241,7 +241,7 @@ export class GoogleSheetsService {
    * - An Excel serial number
    * - A Date object
    */
-  private parseDateValue(value: any): Date | null {
+  private parseDateValue(value: unknown): Date | null {
     if (!value) return null;
 
     // If it's already a Date object, return it
@@ -279,20 +279,21 @@ export class GoogleSheetsService {
 
     const rows = data.values || [];
     return rows
-      .map((row: any[], index: number) => {
-        const date = this.parseDateValue(row[0]);
+      .map((row: unknown[], index: number) => {
+        const [dateVal, nights, total, owner, admin] = row as [string | number, string | number, string | number, string | number, string | number];
+        const date = this.parseDateValue(dateVal);
         if (!date) return null; // Skip invalid dates
 
         return {
           id: `reservation-${index}`,
           date: date.toISOString().split('T')[0],
-          nights: parseInt(row[1]) || 0,
-          total: parseFloat(row[2]) || 0,
-          ownerAmount: parseFloat(row[3]) || 0,
-          adminFee: parseFloat(row[4]) || 0,
+          nights: parseInt(nights as string) || 0,
+          total: parseFloat(total as string) || 0,
+          ownerAmount: parseFloat(owner as string) || 0,
+          adminFee: parseFloat(admin as string) || 0,
         };
       })
-      .filter((item: any): item is Reservation => item !== null);
+      .filter((item): item is Reservation => item !== null);
   }
 
   /**
@@ -337,19 +338,20 @@ export class GoogleSheetsService {
 
     const rows = data.values || [];
     return rows
-      .map((row: any[], index: number) => {
-        const date = this.parseDateValue(row[0]);
+      .map((row: unknown[], index: number) => {
+        const [dateVal, amount, category, notes] = row as [string | number, string | number, ExpenseCategory, string];
+        const date = this.parseDateValue(dateVal);
         if (!date) return null; // Skip invalid dates
 
         return {
           id: `expense-${index}`,
           date: date.toISOString().split('T')[0],
-          amount: parseFloat(row[1]) || 0,
-          category: row[2] as any,
-          notes: row[3],
+          amount: parseFloat(amount as string) || 0,
+          category,
+          notes,
         };
       })
-      .filter((item) => item !== null) as Expense[];
+      .filter((item): item is Expense => item !== null);
 
   }
 
@@ -398,10 +400,8 @@ export class GoogleSheetsService {
 
     console.log(`Reading ${rows.length} rows from taxes sheet`);
 
-    rows.forEach((row: any[]) => {
-      const month = row[0]; // date column (YYYY-MM format)
-      const isPaid = row[6]; // is_paid column
-      const note = row[7]; // notes column
+    rows.forEach((row: unknown[]) => {
+      const [month, , , , , , isPaid, note] = row as [string | number, unknown, unknown, unknown, unknown, unknown, unknown, string];
 
       // Convert month value to YYYY-MM format
       let monthStr = '';
