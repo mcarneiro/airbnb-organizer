@@ -50,9 +50,8 @@ export default function ExpensesMonth() {
   const handleReplicateExpenses = () => {
     if (!month || previousMonthExpenses.length === 0) return;
 
-    // Parse current month to create date (first day of month)
-    const [year, monthNum] = month.split('-').map(Number);
-    const expenseDate = new Date(year, monthNum - 1, 1);
+    // Create new expenses with current month's date (first day of month)
+    const expenseDate = `${month}-01`;
 
     // Create new expenses with current month's date
     previousMonthExpenses.forEach((expense) => {

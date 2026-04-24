@@ -5,7 +5,7 @@ describe('BrazilianRentalTaxCalculator', () => {
   let calculator: BrazilianRentalTaxCalculator;
 
   beforeEach(() => {
-    calculator = new BrazilianRentalTaxCalculator();
+    calculator = new BrazilianRentalTaxCalculator(2025);
   });
 
   describe('calculateTax', () => {

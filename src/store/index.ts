@@ -4,6 +4,7 @@ import expensesReducer from './expensesSlice';
 import settingsReducer from './settingsSlice';
 import taxesReducer from './taxesSlice';
 import appReducer from './appSlice';
+import { syncListenerMiddleware } from './middleware/syncListener';
 
 export const store = configureStore({
   reducer: {
@@ -14,13 +15,7 @@ export const store = configureStore({
     taxes: taxesReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        // Ignore Date objects in reservations and expenses
-        ignoredPaths: ['reservations.items', 'expenses.items'],
-        ignoredActions: ['reservations/setReservations', 'expenses/setExpenses', 'reservations/addReservation', 'expenses/addExpense'],
-      },
-    }),
+    getDefaultMiddleware().prepend(syncListenerMiddleware.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

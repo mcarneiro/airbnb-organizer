@@ -78,8 +78,7 @@ export default function NewExpense() {
       if (!month) return;
 
       // Create date from month parameter (first day of month)
-      const [year, monthNum] = month.split('-');
-      const expenseDate = new Date(parseInt(year), parseInt(monthNum) - 1, 1);
+      const expenseDate = `${month}-01`;
 
       const expense = {
         id: crypto.randomUUID(),

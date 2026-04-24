@@ -273,7 +273,7 @@ export class GoogleSheetsService {
 
         return {
           id: `reservation-${index}`,
-          date,
+          date: date.toISOString().split('T')[0],
           nights: parseInt(row[1]) || 0,
           total: parseFloat(row[2]) || 0,
           ownerAmount: parseFloat(row[3]) || 0,
@@ -288,7 +288,7 @@ export class GoogleSheetsService {
    */
   async writeReservations(spreadsheetId: string, reservations: Reservation[]): Promise<void> {
     const values = reservations.map((r) => [
-      r.date.toISOString().split('T')[0],
+      r.date,
       r.nights,
       r.total,
       r.ownerAmount,
@@ -331,7 +331,7 @@ export class GoogleSheetsService {
 
         return {
           id: `expense-${index}`,
-          date,
+          date: date.toISOString().split('T')[0],
           amount: parseFloat(row[1]) || 0,
           category: row[2] as any,
           notes: row[3],
@@ -345,7 +345,7 @@ export class GoogleSheetsService {
    */
   async writeExpenses(spreadsheetId: string, expenses: Expense[]): Promise<void> {
     const values = expenses.map((e) => [
-      e.date.toISOString().split('T')[0],
+      e.date,
       e.amount,
       e.category,
       e.notes || '',

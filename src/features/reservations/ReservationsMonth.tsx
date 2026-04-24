@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatMonth } from '../../utils/taxCalculations';
+import { formatMonth, parseDate } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 import MonthNavigation from '../../components/MonthNavigation';
 
@@ -31,8 +31,9 @@ export default function ReservationsMonth() {
     return { total, nights, ownerAmount, occupationRate };
   }, [monthReservations]);
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString(i18n.language, { day: '2-digit', month: '2-digit' });
+  const formatDate = (date: string | Date) => {
+    const d = parseDate(date);
+    return d.toLocaleDateString(i18n.language, { day: '2-digit', month: '2-digit' });
   };
 
   if (!month) {

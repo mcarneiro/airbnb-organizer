@@ -26,8 +26,8 @@ function calculateYearProfit(
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   // Filter reservations and expenses for this year
-  const yearReservations = reservations.filter(r => r.date.getFullYear() === year);
-  const yearExpenses = expenses.filter(e => e.date.getFullYear() === year);
+  const yearReservations = reservations.filter(r => new Date(r.date).getFullYear() === year);
+  const yearExpenses = expenses.filter(e => new Date(e.date).getFullYear() === year);
 
   // Group by month
   const reservationsByMonth = groupReservationsByMonth(yearReservations);
@@ -66,8 +66,8 @@ function calculateYearProfit(
 function getAvailableYears(reservations: Reservation[], expenses: Expense[]): number[] {
   const years = new Set<number>();
 
-  reservations.forEach(r => years.add(r.date.getFullYear()));
-  expenses.forEach(e => years.add(e.date.getFullYear()));
+  reservations.forEach(r => years.add(new Date(r.date).getFullYear()));
+  expenses.forEach(e => years.add(new Date(e.date).getFullYear()));
 
   return Array.from(years).sort((a, b) => b - a); // Most recent first
 }

@@ -21,12 +21,8 @@ export default function NewReservation() {
   // Calculate initial date based on month parameter
   const getInitialDate = (): string => {
     if (existingReservation) {
-      // Edit mode: use existing date
-      const date = existingReservation.date;
-      const year = date.getFullYear();
-      const monthNum = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      return `${year}-${monthNum}-${day}`;
+      // Edit mode: use existing date (already in YYYY-MM-DD format)
+      return existingReservation.date;
     }
 
     if (!month) return '';
@@ -58,14 +54,8 @@ export default function NewReservation() {
   // Pre-fill form when editing
   useEffect(() => {
     if (existingReservation) {
-      const date = existingReservation.date;
-      const year = date.getFullYear();
-      const monthNum = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      const dateString = `${year}-${monthNum}-${day}`;
-
       setFormData({
-        date: dateString,
+        date: existingReservation.date,
         nights: existingReservation.nights.toString(),
         total: existingReservation.total.toString(),
       });
@@ -90,15 +80,11 @@ export default function NewReservation() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Parse date as local date to avoid timezone issues
-    const [year, monthNum, day] = formData.date.split('-').map(Number);
-    const localDate = new Date(year, monthNum - 1, day);
-
     if (isEditMode && existingReservation) {
       // Edit mode: update existing reservation
       const updatedReservation = {
         id: existingReservation.id,
-        date: localDate,
+        date: formData.date,
         nights: parseInt(formData.nights),
         total: parseFloat(formData.total),
         ownerAmount,
@@ -108,13 +94,13 @@ export default function NewReservation() {
       dispatch(updateReservation(updatedReservation));
 
       // Navigate back to reservations list for this reservation's month
-      const reservationMonth = formatMonth(localDate);
+      const reservationMonth = formatMonth(formData.date);
       navigate(`/reservations/${reservationMonth}`);
     } else {
       // Create mode: add new reservation
       const reservation = {
         id: crypto.randomUUID(),
-        date: localDate,
+        date: formData.date,
         nights: parseInt(formData.nights),
         total: parseFloat(formData.total),
         ownerAmount,

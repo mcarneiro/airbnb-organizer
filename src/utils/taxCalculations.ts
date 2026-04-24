@@ -3,11 +3,22 @@ import { BrazilianRentalTaxCalculator } from '../services/BrazilianRentalTaxCalc
 import { formatCurrency } from './currency';
 
 /**
+ * Parse date string or Date object consistently
+ */
+export function parseDate(date: Date | string): Date {
+  if (date instanceof Date) return date;
+  const [year, month, day] = date.split('-').map(Number);
+  // Use local date to match what user sees in the input[type="date"]
+  return new Date(year, month - 1, day);
+}
+
+/**
  * Format date to YYYY-MM string
  */
-export function formatMonth(date: Date): string {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
+export function formatMonth(date: Date | string): string {
+  const d = parseDate(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
   return `${year}-${month}`;
 }
 
@@ -16,7 +27,8 @@ export function formatMonth(date: Date): string {
  */
 export function parseMonth(monthStr: string): Date {
   const [year, month] = monthStr.split('-').map(Number);
-  return new Date(year, month - 1, 1);
+  // Use UTC to avoid timezone issues when parsing month strings
+  return new Date(Date.UTC(year, month - 1, 1, 12, 0, 0));
 }
 
 /**
@@ -71,7 +83,9 @@ export function calculateMonthlyTax(
   dependents: number,
   isPaid: boolean = false
 ): MonthlyTaxSummary {
-  const calculator = new BrazilianRentalTaxCalculator();
+  // Extract year from YYYY-MM
+  const year = parseInt(month.split('-')[0]);
+  const calculator = new BrazilianRentalTaxCalculator(year);
 
   // Sum total income for the month (owner's portion)
   const totalIncome = reservations.reduce((sum, r) => sum + r.ownerAmount, 0);
@@ -120,8 +134,9 @@ export function getAllMonths(reservations: Reservation[], expenses: Expense[]): 
 export function formatReservationsForIRS(reservations: Reservation[]): string {
   return reservations
     .map((r) => {
-      const day = String(r.date.getDate()).padStart(2, '0');
-      const month = String(r.date.getMonth() + 1).padStart(2, '0');
+      const d = typeof r.date === 'string' ? new Date(r.date) : r.date;
+      const day = String(d.getDate()).padStart(2, '0');
+      const month = String(d.getMonth() + 1).padStart(2, '0');
       const amount = formatCurrency(r.ownerAmount);
       return `${day}/${month} - ${r.nights} diárias = R$ ${amount}`;
     })

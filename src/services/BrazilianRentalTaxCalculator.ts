@@ -1,24 +1,29 @@
 import { TaxCalculator, TaxBracket } from '../types';
 
 /**
- * Brazilian Rental Income Tax Calculator (2025)
+ * Brazilian Rental Income Tax Calculator
  *
  * Implements the Strategy Pattern for tax calculations
- * Following Brazilian tax rules for rental income
+ * Supports 2025 and 2026 tax rules
  */
 export class BrazilianRentalTaxCalculator implements TaxCalculator {
-  // Tax constants for 2025
+  private year: number;
+
+  // Tax constants
   private static readonly DEPENDENT_DEDUCTION = 189.59;
   private static readonly SIMPLIFIED_DEDUCTION = 607.20;
 
-  // Progressive tax brackets
+  // Progressive tax brackets (2025/2026 base table)
   private static readonly TAX_BRACKETS: TaxBracket[] = [
-    { maxIncome: 2428.81, rate: 0, deduction: 182.16 },
-    { maxIncome: 2826.66, rate: 0.075, deduction: 182.16 },
-    { maxIncome: 3751.05, rate: 0.15, deduction: 394.16 },
-    { maxIncome: 4664.68, rate: 0.225, deduction: 675.49 },
+    { maxIncome: 2428.81, rate: 0.075, deduction: 182.16 },
+    { maxIncome: 2826.66, rate: 0.15, deduction: 394.16 },
+    { maxIncome: 3751.05, rate: 0.225, deduction: 675.49 },
     { maxIncome: Infinity, rate: 0.275, deduction: 908.73 }
   ];
+
+  constructor(year: number = 2026) {
+    this.year = year;
+  }
 
   /**
    * Calculate tax based on liquid income and number of dependents
@@ -36,10 +41,16 @@ export class BrazilianRentalTaxCalculator implements TaxCalculator {
     // Step 2: Calculate taxable income
     const taxableIncome = Math.max(liquidIncome - deduction, 0);
 
-    // Step 3: Find applicable tax bracket and calculate tax
+    // Step 3: Find applicable tax bracket and calculate base tax
     const bracket = this.findTaxBracket(taxableIncome);
     const taxBeforeFloor = taxableIncome * bracket.rate - bracket.deduction;
-    const taxOwed = Math.max(taxBeforeFloor, 0); // Ensure tax is not negative
+    let taxOwed = Math.max(taxBeforeFloor, 0);
+
+    // Step 4: Apply 2026+ Reducer if applicable
+    if (this.year >= 2026) {
+      const reducer = this.calculate2026Reducer(liquidIncome);
+      taxOwed = Math.max(taxOwed - reducer, 0);
+    }
 
     return {
       deduction,
@@ -50,11 +61,29 @@ export class BrazilianRentalTaxCalculator implements TaxCalculator {
   }
 
   /**
+   * Calculate the 2026 tax reducer
+   * - Up to R$ 5,000: Total exemption (max reducer)
+   * - R$ 5,000.01 to R$ 7,350: Partial reduction (formula)
+   * - Above R$ 7,350.01: No additional reduction
+   */
+  private calculate2026Reducer(liquidIncome: number): number {
+    if (liquidIncome <= 5000) {
+      // Up to 5000, the reducer is meant to zero out the tax.
+      // We can return a value large enough, or specifically 312.89 (max reducer for 5k)
+      return 312.89;
+    } else if (liquidIncome <= 7350) {
+      // R$ 978.62 – (0.133145 × liquidIncome)
+      return 978.62 - (0.133145 * liquidIncome);
+    }
+    return 0;
+  }
+
+  /**
    * Find the appropriate tax bracket for the given taxable income
    */
   private findTaxBracket(taxableIncome: number): TaxBracket {
     return BrazilianRentalTaxCalculator.TAX_BRACKETS.find(
-      bracket => taxableIncome < bracket.maxIncome
+      bracket => taxableIncome <= bracket.maxIncome
     ) || BrazilianRentalTaxCalculator.TAX_BRACKETS[BrazilianRentalTaxCalculator.TAX_BRACKETS.length - 1];
   }
 

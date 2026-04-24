@@ -2,7 +2,7 @@
 
 export interface Reservation {
   id: string;
-  date: Date;           // First date of reservation
+  date: string;           // ISO date string (e.g. 2025-01-01)
   nights: number;       // Number of nights
   total: number;        // Total amount Airbnb will pay
   ownerAmount: number;  // Amount owner receives (70%)
@@ -19,7 +19,7 @@ export type ExpenseCategory =
 
 export interface Expense {
   id: string;
-  date: Date;           // Expense date
+  date: string;           // ISO date string
   amount: number;       // Amount spent
   category?: ExpenseCategory; // Optional expense category
   notes?: string;       // Optional description
