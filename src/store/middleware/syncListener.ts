@@ -2,7 +2,7 @@ import { createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
 import { addReservation, updateReservation, deleteReservation } from '../reservationsSlice';
 import { addExpense, updateExpense, deleteExpense } from '../expensesSlice';
 import { setSettings } from '../settingsSlice';
-import { setPaidMonths, setNotes } from '../taxesSlice';
+import { setPaidMonths, setNotes, markMonthAsPaid, markMonthAsUnpaid, setMonthNote } from '../taxesSlice';
 import { googleSheetsService } from '../../services/GoogleSheetsService';
 import { RootState } from '../index';
 import { getAllMonths, groupReservationsByMonth, groupExpensesByMonth, calculateMonthlyTax } from '../../utils/taxCalculations';
@@ -78,8 +78,21 @@ startAppListening({
 });
 
 // Tax Data Sync (Paid Months & Notes)
+// Also triggers when reservations or expenses change to keep tax summary updated
 startAppListening({
-  matcher: isAnyOf(setPaidMonths, setNotes),
+  matcher: isAnyOf(
+    setPaidMonths, 
+    setNotes, 
+    markMonthAsPaid, 
+    markMonthAsUnpaid, 
+    setMonthNote,
+    addReservation,
+    updateReservation,
+    deleteReservation,
+    addExpense,
+    updateExpense,
+    deleteExpense
+  ),
   effect: async (_action, listenerApi) => {
     await listenerApi.delay(1000);
     listenerApi.cancelActiveListeners();

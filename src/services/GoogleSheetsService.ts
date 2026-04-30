@@ -1,5 +1,5 @@
 import { SHEET_CONFIGS } from '../config/google';
-import { Reservation, Expense, AppSettings } from '../types';
+import { Reservation, Expense, AppSettings, ExpenseCategory } from '../types';
 
 interface SheetResponse {
   sheets?: Array<{
@@ -339,17 +339,18 @@ export class GoogleSheetsService {
     const rows = data.values || [];
     return rows
       .map((row: unknown[], index: number) => {
-        const [dateVal, amount, category, notes] = row as [string | number, string | number, ExpenseCategory, string];
+        const [dateVal, amount, category, notes] = row as [string | number, string | number, ExpenseCategory | undefined, string | undefined];
         const date = this.parseDateValue(dateVal);
         if (!date) return null; // Skip invalid dates
 
-        return {
+        const expense: Expense = {
           id: `expense-${index}`,
           date: date.toISOString().split('T')[0],
           amount: parseFloat(amount as string) || 0,
           category,
           notes,
         };
+        return expense;
       })
       .filter((item): item is Expense => item !== null);
 
@@ -468,7 +469,7 @@ export class GoogleSheetsService {
       t.taxRate,
       t.taxOwed,
       t.profit,
-      t.isPaid, // Use boolean directly - USER_ENTERED will interpret it correctly
+      t.isPaid ? 'TRUE' : 'FALSE', // Use explicit strings for booleans with USER_ENTERED
       t.notes || '', // notes column
     ]);
 
