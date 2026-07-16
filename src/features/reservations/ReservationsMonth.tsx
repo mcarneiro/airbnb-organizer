@@ -16,7 +16,9 @@ export default function ReservationsMonth() {
   // Filter reservations for the selected month
   const monthReservations = useMemo(() => {
     if (!month) return [];
-    return reservations.filter(r => formatMonth(r.date) === month);
+    return reservations
+      .filter(r => formatMonth(r.date) === month)
+      .sort((a, b) => parseDate(a.date).getTime() - parseDate(b.date).getTime());
   }, [reservations, month]);
 
   // Calculate totals
