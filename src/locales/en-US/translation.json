@@ -59,7 +59,8 @@
     "removeWarning": "Are you sure you want to remove this reservation? This action cannot be undone.",
     "yesRemove": "Yes, Remove",
     "night_one": "night",
-    "night_other": "nights"
+    "night_other": "nights",
+    "paid": "Paid"
   },
   "expenses": {
     "title": "Expenses",

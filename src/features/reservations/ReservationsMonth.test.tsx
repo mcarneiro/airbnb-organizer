@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import '../../config/i18n';
 import ReservationsMonth from './ReservationsMonth';
 import appReducer, { setDataLoaded } from '../../store/appSlice';
@@ -48,5 +48,42 @@ describe('ReservationsMonth', () => {
       expect.stringContaining('R$ 200,00'),
       expect.stringContaining('R$ 300,00'),
     ]);
+  });
+
+  it('marks reservations whose checkout is before today as paid', () => {
+    // Given
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2025, 5, 10));
+    const store = configureStore({
+      reducer: {
+        app: appReducer,
+        reservations: reservationsReducer,
+        expenses: expensesReducer,
+        settings: settingsReducer,
+        taxes: taxesReducer,
+      },
+    });
+    store.dispatch(setDataLoaded(true));
+    store.dispatch(setReservations([
+      { id: 'paid', date: '2025-06-05', nights: 4, total: 100, ownerAmount: 70, adminFee: 30 },
+      { id: 'active', date: '2025-06-09', nights: 2, total: 200, ownerAmount: 140, adminFee: 60 },
+    ]));
+
+    // When
+    render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/reservations/2025-06']}>
+          <Routes>
+            <Route path="/reservations/:month" element={<ReservationsMonth />} />
+          </Routes>
+        </MemoryRouter>
+      </Provider>,
+    );
+
+    // Then
+    expect(screen.getByText('Paid')).toBeInTheDocument();
+    expect(screen.getByText('Paid').closest('button')).toHaveClass('text-gray-500');
+    expect(screen.getByText('R$ 200,00').closest('button')).not.toHaveClass('text-gray-500');
+    vi.useRealTimers();
   });
 });

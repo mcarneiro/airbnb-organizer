@@ -38,6 +38,9 @@ export default function ReservationsMonth() {
     return d.toLocaleDateString(i18n.language, { day: '2-digit', month: '2-digit' });
   };
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   if (!month) {
     return null;
   }
@@ -147,43 +150,54 @@ export default function ReservationsMonth() {
             </div>
           ) : (
             <div className="divide-y divide-gray-100">
-              {monthReservations.map((reservation) => (
-                <button
-                  key={reservation.id}
-                  onClick={() => navigate(`/reservations/edit/${reservation.id}`)}
-                  className="w-full px-6 py-4 hover:bg-gray-50 transition-colors text-left"
-                >
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-semibold text-gray-900">
-                      {formatDate(reservation.date)}
-                    </span>
-                    <span className="text-sm text-gray-600">
-                      {reservation.nights} {t('reservations.night', { count: reservation.nights })}
-                    </span>
-                  </div>
+              {monthReservations.map((reservation) => {
+                const checkoutDate = parseDate(reservation.date);
+                checkoutDate.setDate(checkoutDate.getDate() + reservation.nights);
+                const isPaid = checkoutDate < today;
 
-                  <div className="mt-2 space-y-1 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">{t('reservations.totalAmount')}:</span>
-                      <span className="font-medium text-gray-900">
-                        R$ {formatCurrency(reservation.total)}
+                return (
+                  <button
+                    key={reservation.id}
+                    onClick={() => navigate(`/reservations/edit/${reservation.id}`)}
+                    className={`w-full px-6 py-4 transition-colors text-left ${isPaid ? 'bg-gray-50 hover:bg-gray-100 text-gray-500' : 'hover:bg-gray-50'}`}
+                  >
+                    <div className="flex items-baseline gap-2">
+                      <span className={`font-semibold ${isPaid ? 'text-gray-500' : 'text-gray-900'}`}>
+                        {formatDate(reservation.date)}
                       </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">{t('reservations.owner')}:</span>
-                      <span className="font-medium text-blue-600">
-                        R$ {formatCurrency(reservation.ownerAmount)}
+                      <span className={`text-sm ${isPaid ? 'text-gray-500' : 'text-gray-600'}`}>
+                        {reservation.nights} {t('reservations.night', { count: reservation.nights })}
                       </span>
+                      {isPaid && (
+                        <span className="text-sm px-2 py-0.5 bg-gray-100 text-gray-700 rounded">
+                          {t('reservations.paid')}
+                        </span>
+                      )}
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">{t('reservations.admin')}:</span>
-                      <span className="font-medium text-gray-600">
-                        R$ {formatCurrency(reservation.adminFee)}
-                      </span>
+
+                    <div className="mt-2 space-y-1 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">{t('reservations.totalAmount')}:</span>
+                        <span className={`font-medium ${isPaid ? 'text-gray-500' : 'text-gray-900'}`}>
+                          R$ {formatCurrency(reservation.total)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">{t('reservations.owner')}:</span>
+                        <span className={`font-medium ${isPaid ? 'text-gray-500' : 'text-blue-600'}`}>
+                          R$ {formatCurrency(reservation.ownerAmount)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">{t('reservations.admin')}:</span>
+                        <span className="font-medium text-gray-600">
+                          R$ {formatCurrency(reservation.adminFee)}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                );
+              })}
             </div>
           )}
             </div>

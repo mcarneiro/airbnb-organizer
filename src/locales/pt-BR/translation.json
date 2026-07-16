@@ -59,7 +59,8 @@
     "removeWarning": "Tem certeza que deseja remover esta reserva? Esta ação não pode ser desfeita.",
     "yesRemove": "Sim, Remover",
     "night_one": "diária",
-    "night_other": "diárias"
+    "night_other": "diárias",
+    "paid": "Pago"
   },
   "expenses": {
     "title": "Despesas",
