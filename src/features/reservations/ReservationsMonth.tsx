@@ -12,6 +12,9 @@ export default function ReservationsMonth() {
   const { month } = useParams<{ month: string }>();
   const reservations = useAppSelector(state => state.reservations.items);
   const dataLoaded = useAppSelector(state => state.app.dataLoaded);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayTime = today.getTime();
 
   // Filter reservations for the selected month
   const monthReservations = useMemo(() => {
@@ -26,20 +29,22 @@ export default function ReservationsMonth() {
     const total = monthReservations.reduce((sum, r) => sum + r.total, 0);
     const nights = monthReservations.reduce((sum, r) => sum + r.nights, 0);
     const ownerAmount = monthReservations.reduce((sum, r) => sum + r.ownerAmount, 0);
+    const toReceive = monthReservations.reduce((sum, r) => {
+      const checkoutDate = parseDate(r.date);
+      checkoutDate.setDate(checkoutDate.getDate() + r.nights);
+      return checkoutDate.getTime() < todayTime ? sum : sum + r.ownerAmount;
+    }, 0);
 
     // Calculate occupation rate (assuming 30 days per month)
     const occupationRate = Math.round((nights / 30) * 100);
 
-    return { total, nights, ownerAmount, occupationRate };
-  }, [monthReservations]);
+    return { total, nights, ownerAmount, toReceive, occupationRate };
+  }, [monthReservations, todayTime]);
 
   const formatDate = (date: string | Date) => {
     const d = parseDate(date);
     return d.toLocaleDateString(i18n.language, { day: '2-digit', month: '2-digit' });
   };
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
 
   if (!month) {
     return null;
@@ -116,18 +121,22 @@ export default function ReservationsMonth() {
             </div>
 
             <div>
+              <div className="text-sm text-gray-600">{t('reservations.toReceive')}</div>
+              <div className="text-xl font-bold text-gray-900">
+                R$ {formatCurrency(totals.toReceive)}
+              </div>
+            </div>
+
+            <div>
               <div className="text-sm text-gray-600">{t('reservations.occupation')}</div>
-              <div className="text-xl font-bold text-gray-900">{totals.occupationRate}%</div>
+              <div className="text-xl font-bold text-gray-900">
+                {totals.occupationRate}% <span className="text-sm font-normal">({totals.nights} {t('reservations.night', { count: totals.nights })})</span>
+              </div>
             </div>
 
             <div>
               <div className="text-sm text-gray-600">{t('reservations.count')}</div>
               <div className="text-xl font-bold text-gray-900">{monthReservations.length}</div>
-            </div>
-
-            <div>
-              <div className="text-sm text-gray-600">{t('reservations.nights')}</div>
-              <div className="text-xl font-bold text-gray-900">{totals.nights}</div>
             </div>
               </div>
             </div>

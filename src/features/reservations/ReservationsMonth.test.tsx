@@ -14,6 +14,8 @@ import taxesReducer from '../../store/taxesSlice';
 describe('ReservationsMonth', () => {
   it('orders reservation cards by date ascending', () => {
     // Given
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2025, 5, 22));
     const store = configureStore({
       reducer: {
         app: appReducer,
@@ -48,6 +50,11 @@ describe('ReservationsMonth', () => {
       expect.stringContaining('R$ 200,00'),
       expect.stringContaining('R$ 300,00'),
     ]);
+    expect(screen.getByText('To Receive').parentElement).toHaveTextContent('R$ 0,00');
+    expect(screen.getByText('Occupancy').parentElement).toHaveTextContent('10% (3 nights)');
+    expect(screen.getByText('(3 nights)')).toHaveClass('text-sm');
+    expect(screen.getByText('(3 nights)')).toHaveClass('font-normal');
+    vi.useRealTimers();
   });
 
   it('marks reservations whose checkout is before today as paid', () => {
@@ -66,6 +73,7 @@ describe('ReservationsMonth', () => {
     store.dispatch(setDataLoaded(true));
     store.dispatch(setReservations([
       { id: 'paid', date: '2025-06-05', nights: 4, total: 100, ownerAmount: 70, adminFee: 30 },
+      { id: 'checkout-today', date: '2025-06-09', nights: 1, total: 50, ownerAmount: 35, adminFee: 15 },
       { id: 'active', date: '2025-06-09', nights: 2, total: 200, ownerAmount: 140, adminFee: 60 },
     ]));
 
@@ -84,6 +92,7 @@ describe('ReservationsMonth', () => {
     expect(screen.getByText('Paid')).toBeInTheDocument();
     expect(screen.getByText('Paid').closest('button')).toHaveClass('text-gray-500');
     expect(screen.getByText('R$ 200,00').closest('button')).not.toHaveClass('text-gray-500');
+    expect(screen.getByText('To Receive').parentElement).toHaveTextContent('R$ 175,00');
     vi.useRealTimers();
   });
 });
