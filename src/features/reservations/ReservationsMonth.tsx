@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatMonth, parseDate } from '../../utils/taxCalculations';
+import { formatMonth, parseDate, isReservationPaid } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 import MonthNavigation from '../../components/MonthNavigation';
 
@@ -30,9 +30,7 @@ export default function ReservationsMonth() {
     const nights = monthReservations.reduce((sum, r) => sum + r.nights, 0);
     const ownerAmount = monthReservations.reduce((sum, r) => sum + r.ownerAmount, 0);
     const toReceive = monthReservations.reduce((sum, r) => {
-      const checkoutDate = parseDate(r.date);
-      checkoutDate.setDate(checkoutDate.getDate() + r.nights);
-      return checkoutDate.getTime() < todayTime ? sum : sum + r.ownerAmount;
+      return isReservationPaid(r, today) ? sum : sum + r.ownerAmount;
     }, 0);
 
     // Calculate occupation rate (assuming 30 days per month)
@@ -160,9 +158,7 @@ export default function ReservationsMonth() {
           ) : (
             <div className="divide-y divide-gray-100">
               {monthReservations.map((reservation) => {
-                const checkoutDate = parseDate(reservation.date);
-                checkoutDate.setDate(checkoutDate.getDate() + reservation.nights);
-                const isPaid = checkoutDate < today;
+                const isPaid = isReservationPaid(reservation, today);
 
                 return (
                   <button

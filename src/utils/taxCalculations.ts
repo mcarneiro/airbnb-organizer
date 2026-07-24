@@ -144,6 +144,20 @@ export function formatReservationsForIRS(reservations: Reservation[]): string {
 }
 
 /**
+ * Check if a reservation is paid (checkout date strictly before the given date).
+ * Defaults to today at midnight if no date is provided.
+ */
+export function isReservationPaid(reservation: Reservation, asOf: Date = new Date()): boolean {
+  const asOfDate = parseDate(asOf);
+  asOfDate.setHours(0, 0, 0, 0);
+
+  const checkoutDate = parseDate(reservation.date);
+  checkoutDate.setDate(checkoutDate.getDate() + reservation.nights);
+
+  return checkoutDate < asOfDate;
+}
+
+/**
  * Get the most recent unpaid month for tax notification
  * Logic: Start from previous month, go back in time until finding an unpaid month with tax owed > 0
  * Only check months that have data (reservations or expenses)
