@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatMonth, getAllMonths, getMostRecentUnpaidMonth, getMonthName } from '../../utils/taxCalculations';
+import { formatMonth, getAllMonths, getMostRecentUnpaidMonth, getMonthName, getNextReservation } from '../../utils/taxCalculations';
 import { formatCurrency } from '../../utils/currency';
 import { calculateYoYAccumulatedProfit, getYearLabels } from '../../utils/yoyCalculations';
 import YearOverYearChart from '../../components/YearOverYearChart';
@@ -62,6 +62,11 @@ export default function Dashboard() {
   const unpaidMonth = useMemo(
     () => getMostRecentUnpaidMonth(availableMonths, paidMonths, reservations, expenses, settings.dependents),
     [availableMonths, paidMonths, reservations, expenses, settings.dependents]
+  );
+
+  const nextReservation = useMemo(
+    () => getNextReservation(reservations),
+    [reservations]
   );
 
   // Calculate Year-over-Year data
@@ -152,6 +157,35 @@ export default function Dashboard() {
               {currentMonth.count} {t('dashboard.reservation', { count: currentMonth.count })} · {currentMonth.nights} {t('dashboard.night', { count: currentMonth.nights })} · {currentMonth.occupation}% {t('dashboard.occupation')}
             </div>
           </div>
+          </button>
+        )}
+
+        {/* Next Reservation Card - only show when data is loaded and a next reservation exists */}
+        {dataLoaded && nextReservation && (
+          <button
+            onClick={() => handleMonthClick(formatMonth(nextReservation.date))}
+            className="w-full bg-emerald-50 border border-emerald-200 rounded-lg shadow-sm p-5 space-y-3 text-left hover:shadow-md transition-shadow"
+          >
+            <div className="flex justify-between items-start">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <h2 className="text-sm font-semibold text-emerald-800 uppercase tracking-wide">{t('dashboard.nextReservation')}</h2>
+              </div>
+              <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+
+            <div className="space-y-1">
+              <div className="text-2xl font-bold text-emerald-900">
+                {nextReservation.date.split('-').reverse().join('/')}
+              </div>
+              <div className="text-sm text-emerald-700">
+                {nextReservation.nights} {t('dashboard.night', { count: nextReservation.nights })} · R$ {formatCurrency(nextReservation.ownerAmount)}
+              </div>
+            </div>
           </button>
         )}
 

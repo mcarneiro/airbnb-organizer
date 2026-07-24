@@ -33,7 +33,8 @@
     "reservation_other": "reservations",
     "night_one": "night",
     "night_other": "nights",
-    "occupation": "occupancy"
+    "occupation": "occupancy",
+    "nextReservation": "Next Reservation"
   },
   "reservations": {
     "title": "Reservations",

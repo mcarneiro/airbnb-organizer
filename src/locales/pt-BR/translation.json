@@ -33,7 +33,8 @@
     "reservation_other": "reservas",
     "night_one": "diária",
     "night_other": "diárias",
-    "occupation": "ocupação"
+    "occupation": "ocupação",
+    "nextReservation": "Próxima Reserva"
   },
   "reservations": {
     "title": "Reservas",

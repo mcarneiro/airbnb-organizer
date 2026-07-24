@@ -158,6 +158,25 @@ export function isReservationPaid(reservation: Reservation, asOf: Date = new Dat
 }
 
 /**
+ * Get the next (earliest check-in) reservation that is not yet paid.
+ * Includes ongoing stays (checkin <= today < checkout).
+ * Returns null when all reservations are paid or no reservations exist.
+ */
+export function getNextReservation(reservations: Reservation[], asOf: Date = new Date()): Reservation | null {
+  const notPaid = reservations.filter(r => !isReservationPaid(r, asOf));
+
+  if (notPaid.length === 0) return null;
+
+  notPaid.sort((a, b) => {
+    const dateA = parseDate(a.date);
+    const dateB = parseDate(b.date);
+    return dateA.getTime() - dateB.getTime();
+  });
+
+  return notPaid[0];
+}
+
+/**
  * Get the most recent unpaid month for tax notification
  * Logic: Start from previous month, go back in time until finding an unpaid month with tax owed > 0
  * Only check months that have data (reservations or expenses)
