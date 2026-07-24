@@ -64,3 +64,6 @@ Thumbs.db
 
 # Draft/design files (optional - uncomment if you want to track these)
 # draft.png
+
+# Scratch/workspace directory
+.scratch/

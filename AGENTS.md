@@ -27,3 +27,17 @@ Stayoo is a Brazilian short-term rental management application. It tracks reserv
 ## Git
 
 - Use clear conventional commit messages such as `feat:`, `fix:`, and `refactor:`.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live as Markdown files in `.scratch/`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Uses the default five canonical triage labels. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Uses a single-context layout. See `docs/agents/domain.md`.
