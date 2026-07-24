@@ -1,0 +1,332 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1762484155.511826,
+    "ast_hash": "c8628d2bc9c9ba10e2b05d1e1038302e",
+    "semantic_hash": "c8628d2bc9c9ba10e2b05d1e1038302e"
+  },
+  "eslint.config.js": {
+    "mtime": 1776998318.300642,
+    "ast_hash": "2683e26e70707841590ff4ad24253919",
+    "semantic_hash": "2683e26e70707841590ff4ad24253919"
+  },
+  "opencode.json": {
+    "mtime": 1784161699.992858,
+    "ast_hash": "37ff6851472c5a1eddb9b8cc17e1e5d7",
+    "semantic_hash": "37ff6851472c5a1eddb9b8cc17e1e5d7"
+  },
+  "package.json": {
+    "mtime": 1776998318.304642,
+    "ast_hash": "056c0c81ccc925b3686097d1a8e4cb1b",
+    "semantic_hash": "056c0c81ccc925b3686097d1a8e4cb1b"
+  },
+  "src/App.tsx": {
+    "mtime": 1762728213.4450238,
+    "ast_hash": "33366ad689e702d5654ed83393cd7513",
+    "semantic_hash": "33366ad689e702d5654ed83393cd7513"
+  },
+  "src/components/Layout.tsx": {
+    "mtime": 1762732414.023523,
+    "ast_hash": "9dead9a46d6f36d7f95e6705bf0de493",
+    "semantic_hash": "9dead9a46d6f36d7f95e6705bf0de493"
+  },
+  "src/components/LoadingScreen.tsx": {
+    "mtime": 1762571641.879624,
+    "ast_hash": "69f4a709f80c0dc57c939140c981366b",
+    "semantic_hash": "69f4a709f80c0dc57c939140c981366b"
+  },
+  "src/components/MonthNavigation.tsx": {
+    "mtime": 1764639950.898262,
+    "ast_hash": "a0ee573022a7767ffe6ad89b75ee991e",
+    "semantic_hash": "a0ee573022a7767ffe6ad89b75ee991e"
+  },
+  "src/components/YearOverYearChart.tsx": {
+    "mtime": 1776998318.304642,
+    "ast_hash": "5454ec4f01fad33586879a7bb811cf2a",
+    "semantic_hash": "5454ec4f01fad33586879a7bb811cf2a"
+  },
+  "src/config/google.ts": {
+    "mtime": 1764638607.1383243,
+    "ast_hash": "0b1146a0eb8d04fffba84aaa49ac883e",
+    "semantic_hash": "0b1146a0eb8d04fffba84aaa49ac883e"
+  },
+  "src/config/i18n.ts": {
+    "mtime": 1776998318.304642,
+    "ast_hash": "3c56e99bb14e9ba279285574d5e54c71",
+    "semantic_hash": "3c56e99bb14e9ba279285574d5e54c71"
+  },
+  "src/contexts/GoogleAuthContext.tsx": {
+    "mtime": 1762726180.156382,
+    "ast_hash": "5bbb52f699893b094b8ac0b586c039ba",
+    "semantic_hash": "5bbb52f699893b094b8ac0b586c039ba"
+  },
+  "src/features/dashboard/Dashboard.tsx": {
+    "mtime": 1784866458.1894019,
+    "ast_hash": "65fe7edf8d39d43414f69d85e923b3f5",
+    "semantic_hash": "65fe7edf8d39d43414f69d85e923b3f5"
+  },
+  "src/features/expenses/ExpensesMonth.tsx": {
+    "mtime": 1776998318.304642,
+    "ast_hash": "cefb685e3e265bba0ee14aab2c108207",
+    "semantic_hash": "cefb685e3e265bba0ee14aab2c108207"
+  },
+  "src/features/expenses/NewExpense.tsx": {
+    "mtime": 1776998318.304642,
+    "ast_hash": "935e054a0f016b5dfe3222509fd6fac9",
+    "semantic_hash": "935e054a0f016b5dfe3222509fd6fac9"
+  },
+  "src/features/onboarding/Onboarding.tsx": {
+    "mtime": 1764906075.2431874,
+    "ast_hash": "afcd44698ee8dc2322adbf21880e524c",
+    "semantic_hash": "afcd44698ee8dc2322adbf21880e524c"
+  },
+  "src/features/reservations/NewReservation.tsx": {
+    "mtime": 1776998318.304642,
+    "ast_hash": "dbabe06ee9df4dbd0cf3a4ea7d6d0e4b",
+    "semantic_hash": "dbabe06ee9df4dbd0cf3a4ea7d6d0e4b"
+  },
+  "src/features/reservations/ReservationsMonth.test.tsx": {
+    "mtime": 1784254707.339776,
+    "ast_hash": "bae14b8dd5516cb733588dd75b7d15e6",
+    "semantic_hash": "bae14b8dd5516cb733588dd75b7d15e6"
+  },
+  "src/features/reservations/ReservationsMonth.tsx": {
+    "mtime": 1784864543.9412735,
+    "ast_hash": "594c00f20f4e796f1bdcb7a3f2123556",
+    "semantic_hash": "594c00f20f4e796f1bdcb7a3f2123556"
+  },
+  "src/features/settings/Settings.tsx": {
+    "mtime": 1764906192.2231615,
+    "ast_hash": "1a67dfd3f9666dce5912f548f1bfed5d",
+    "semantic_hash": "1a67dfd3f9666dce5912f548f1bfed5d"
+  },
+  "src/features/taxes/Taxes.tsx": {
+    "mtime": 1764906147.8631706,
+    "ast_hash": "8fb7a5d0c8b2106c356b584c6e61e6bd",
+    "semantic_hash": "8fb7a5d0c8b2106c356b584c6e61e6bd"
+  },
+  "src/hooks/useDataSync.ts": {
+    "mtime": 1776999784.761522,
+    "ast_hash": "0c8bfca6aafcef353e9122ef56bf22fa",
+    "semantic_hash": "0c8bfca6aafcef353e9122ef56bf22fa"
+  },
+  "src/locales/en-US/translation.json": {
+    "mtime": 1784866504.181404,
+    "ast_hash": "22b2fc16891add1900205e215ec7615e",
+    "semantic_hash": "22b2fc16891add1900205e215ec7615e"
+  },
+  "src/locales/pt-BR/translation.json": {
+    "mtime": 1784866520.8054037,
+    "ast_hash": "0d6b770bbb527ffde73eb54a46a164c7",
+    "semantic_hash": "0d6b770bbb527ffde73eb54a46a164c7"
+  },
+  "src/main.tsx": {
+    "mtime": 1762732226.9035501,
+    "ast_hash": "470cc6b0ed88fd6765865db8ed141d65",
+    "semantic_hash": "470cc6b0ed88fd6765865db8ed141d65"
+  },
+  "src/services/BrazilianRentalTaxCalculator.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "cf1a1cbf70f24915eda4aafc8e4a319e",
+    "semantic_hash": "cf1a1cbf70f24915eda4aafc8e4a319e"
+  },
+  "src/services/GoogleSheetsService.ts": {
+    "mtime": 1777509941.159106,
+    "ast_hash": "34a2a3443559228eba902bb47d472982",
+    "semantic_hash": "34a2a3443559228eba902bb47d472982"
+  },
+  "src/services/__tests__/BrazilianRentalTaxCalculator.test.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "58993c29b5215c112d4fa536cdd40efd",
+    "semantic_hash": "58993c29b5215c112d4fa536cdd40efd"
+  },
+  "src/services/__tests__/BrazilianRentalTaxCalculator2026.test.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "4a599bfcf6b48611fc70138afaf05387",
+    "semantic_hash": "4a599bfcf6b48611fc70138afaf05387"
+  },
+  "src/store/__tests__/syncListener.test.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "68990b6a341cf6c6b992f64afd0c13b1",
+    "semantic_hash": "68990b6a341cf6c6b992f64afd0c13b1"
+  },
+  "src/store/appSlice.ts": {
+    "mtime": 1762571612.387631,
+    "ast_hash": "3d54f092e7f315141d5de65e32f5b532",
+    "semantic_hash": "3d54f092e7f315141d5de65e32f5b532"
+  },
+  "src/store/expensesSlice.ts": {
+    "mtime": 1762484534.1637466,
+    "ast_hash": "319c768717db8aa51f511f894b975704",
+    "semantic_hash": "319c768717db8aa51f511f894b975704"
+  },
+  "src/store/hooks.ts": {
+    "mtime": 1762484566.9637477,
+    "ast_hash": "45d9985f6f52d2a33484d6f66282e329",
+    "semantic_hash": "45d9985f6f52d2a33484d6f66282e329"
+  },
+  "src/store/index.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "b2cb49b5df3b41145d98a7e81d9547f3",
+    "semantic_hash": "b2cb49b5df3b41145d98a7e81d9547f3"
+  },
+  "src/store/middleware/syncListener.ts": {
+    "mtime": 1777510021.0071018,
+    "ast_hash": "ae93e778e8ce871315831375862c27ef",
+    "semantic_hash": "ae93e778e8ce871315831375862c27ef"
+  },
+  "src/store/reservationsSlice.ts": {
+    "mtime": 1762484522.927746,
+    "ast_hash": "b224b2c9f970da5c1862fd15c23dff06",
+    "semantic_hash": "b224b2c9f970da5c1862fd15c23dff06"
+  },
+  "src/store/settingsSlice.ts": {
+    "mtime": 1762487577.9031556,
+    "ast_hash": "f0d7d1b0e99656265c1784a11ab30f2e",
+    "semantic_hash": "f0d7d1b0e99656265c1784a11ab30f2e"
+  },
+  "src/store/taxesSlice.ts": {
+    "mtime": 1764639372.7822702,
+    "ast_hash": "70df10fa1f400e2841e77160eae3ec91",
+    "semantic_hash": "70df10fa1f400e2841e77160eae3ec91"
+  },
+  "src/test/setup.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "00e47f7b9836e8f731101981fa2bb2de",
+    "semantic_hash": "00e47f7b9836e8f731101981fa2bb2de"
+  },
+  "src/types/index.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "39c8474712a9e9e2e01f1948a7fdaaaf",
+    "semantic_hash": "39c8474712a9e9e2e01f1948a7fdaaaf"
+  },
+  "src/utils/__tests__/taxCalculations.test.ts": {
+    "mtime": 1784866263.429386,
+    "ast_hash": "b14838b7f18d9525015b7dc5093e97a2",
+    "semantic_hash": "b14838b7f18d9525015b7dc5093e97a2"
+  },
+  "src/utils/currency.ts": {
+    "mtime": 1762486512.6713693,
+    "ast_hash": "0bd28d57985d6c45dc3c4584a94cde82",
+    "semantic_hash": "0bd28d57985d6c45dc3c4584a94cde82"
+  },
+  "src/utils/taxCalculations.ts": {
+    "mtime": 1784866339.2333946,
+    "ast_hash": "e5dcac0f65848c2718c37b67d821484a",
+    "semantic_hash": "e5dcac0f65848c2718c37b67d821484a"
+  },
+  "src/utils/yoyCalculations.ts": {
+    "mtime": 1776998318.308642,
+    "ast_hash": "f760c508dd57606a68448c2d05f74570",
+    "semantic_hash": "f760c508dd57606a68448c2d05f74570"
+  },
+  "src/vite-env.d.ts": {
+    "mtime": 1762484122.5198276,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": "0352474ba2918efe13895edbc3780d94"
+  },
+  "tsconfig.json": {
+    "mtime": 1762484122.5198276,
+    "ast_hash": "468c4a26d22e95a911cbe5ff0ed9ca27",
+    "semantic_hash": "468c4a26d22e95a911cbe5ff0ed9ca27"
+  },
+  "tsconfig.node.json": {
+    "mtime": 1762484122.5198276,
+    "ast_hash": "df562a73dce2f53f022bc93ee20099c2",
+    "semantic_hash": "df562a73dce2f53f022bc93ee20099c2"
+  },
+  "vite.config.ts": {
+    "mtime": 1776998318.3126419,
+    "ast_hash": "1a264b62d8f0671ef1e0e2fa147241a8",
+    "semantic_hash": "1a264b62d8f0671ef1e0e2fa147241a8"
+  },
+  "AGENTS.md": {
+    "mtime": 1784867076.269428,
+    "ast_hash": "aaf9042d2364c4500e6531e9557d396e",
+    "semantic_hash": ""
+  },
+  "CONTEXT.md": {
+    "mtime": 1784255953.3556476,
+    "ast_hash": "205262403adf80ecb5bb72ce83484efa",
+    "semantic_hash": "205262403adf80ecb5bb72ce83484efa"
+  },
+  "OAUTH_TROUBLESHOOTING.md": {
+    "mtime": 1762488122.3190389,
+    "ast_hash": "d719645dc27cdc31f05465e3933013ee",
+    "semantic_hash": "d719645dc27cdc31f05465e3933013ee"
+  },
+  "README.md": {
+    "mtime": 1776998318.300642,
+    "ast_hash": "bfc0950703e1b936abc45dcbe1d9dfa4",
+    "semantic_hash": "bfc0950703e1b936abc45dcbe1d9dfa4"
+  },
+  "check-config.html": {
+    "mtime": 1762541877.3831737,
+    "ast_hash": "1b6cbcc80ea1e26dd5f6010a06b4bfb3",
+    "semantic_hash": "1b6cbcc80ea1e26dd5f6010a06b4bfb3"
+  },
+  "docs/agents/domain.md": {
+    "mtime": 1784255677.043711,
+    "ast_hash": "35089ed6a70a657c91fd100ade31b642",
+    "semantic_hash": "35089ed6a70a657c91fd100ade31b642"
+  },
+  "docs/agents/issue-tracker.md": {
+    "mtime": 1784255677.043711,
+    "ast_hash": "a0582fd1e4ef87730a00f437fc41a3ec",
+    "semantic_hash": "a0582fd1e4ef87730a00f437fc41a3ec"
+  },
+  "docs/agents/triage-labels.md": {
+    "mtime": 1784255677.043711,
+    "ast_hash": "22add54cb98451c55b20e6b7992d4a85",
+    "semantic_hash": "22add54cb98451c55b20e6b7992d4a85"
+  },
+  "espenses.md": {
+    "mtime": 1762731484.3795903,
+    "ast_hash": "1d16d43f2f586a91ad6d14975376a759",
+    "semantic_hash": "1d16d43f2f586a91ad6d14975376a759"
+  },
+  "index.html": {
+    "mtime": 1764903996.22363,
+    "ast_hash": "52709f7aed4215f8b1514a1b633c7dda",
+    "semantic_hash": "52709f7aed4215f8b1514a1b633c7dda"
+  },
+  "onboarding.md": {
+    "mtime": 1776998318.300642,
+    "ast_hash": "312ae6a614b4179e01f7cd6653b479c3",
+    "semantic_hash": "312ae6a614b4179e01f7cd6653b479c3"
+  },
+  "prd.md": {
+    "mtime": 1776998318.304642,
+    "ast_hash": "13767685cd9ea250f6ffcf84940ce07a",
+    "semantic_hash": "13767685cd9ea250f6ffcf84940ce07a"
+  },
+  "reservations.md": {
+    "mtime": 1762734209.5478554,
+    "ast_hash": "65dbcb3021f886070d65993ccd5887be",
+    "semantic_hash": "65dbcb3021f886070d65993ccd5887be"
+  },
+  "settings.md": {
+    "mtime": 1762734172.9518535,
+    "ast_hash": "2490623392a4b2ac517b994707ed2007",
+    "semantic_hash": "2490623392a4b2ac517b994707ed2007"
+  },
+  "taxes.md": {
+    "mtime": 1764640660.4181943,
+    "ast_hash": "602353027aba094d507c7a72471d9b7f",
+    "semantic_hash": "602353027aba094d507c7a72471d9b7f"
+  },
+  "public/vite.svg": {
+    "mtime": 1762484122.5158277,
+    "ast_hash": "8e3a10e157f75ada21ab742c022d5430",
+    "semantic_hash": "8e3a10e157f75ada21ab742c022d5430"
+  },
+  "src/assets/react.svg": {
+    "mtime": 1762484122.5198276,
+    "ast_hash": "f0402b67b6ce880f65666bb49e841696",
+    "semantic_hash": "f0402b67b6ce880f65666bb49e841696"
+  },
+  "src/features/dashboard/Dashboard.test.tsx": {
+    "mtime": 1784867197.8054543,
+    "ast_hash": "ae2bf4f685f0e11ebc75ba91daf9f002",
+    "semantic_hash": ""
+  }
+}
