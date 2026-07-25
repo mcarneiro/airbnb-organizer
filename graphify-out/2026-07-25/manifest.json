@@ -60,9 +60,9 @@
     "semantic_hash": "5bbb52f699893b094b8ac0b586c039ba"
   },
   "src/features/dashboard/Dashboard.tsx": {
-    "mtime": 1784950229.8792357,
-    "ast_hash": "e7d40c27636be9b94ad46f9e715ecae1",
-    "semantic_hash": "e7d40c27636be9b94ad46f9e715ecae1"
+    "mtime": 1784866458.1894019,
+    "ast_hash": "65fe7edf8d39d43414f69d85e923b3f5",
+    "semantic_hash": "65fe7edf8d39d43414f69d85e923b3f5"
   },
   "src/features/expenses/ExpensesMonth.tsx": {
     "mtime": 1776998318.304642,
@@ -110,12 +110,12 @@
     "semantic_hash": "0c8bfca6aafcef353e9122ef56bf22fa"
   },
   "src/locales/en-US/translation.json": {
-    "mtime": 1784949452.7713869,
+    "mtime": 1784866504.181404,
     "ast_hash": "22b2fc16891add1900205e215ec7615e",
     "semantic_hash": "22b2fc16891add1900205e215ec7615e"
   },
   "src/locales/pt-BR/translation.json": {
-    "mtime": 1784949452.7753868,
+    "mtime": 1784866520.8054037,
     "ast_hash": "0d6b770bbb527ffde73eb54a46a164c7",
     "semantic_hash": "0d6b770bbb527ffde73eb54a46a164c7"
   },
@@ -190,7 +190,7 @@
     "semantic_hash": "70df10fa1f400e2841e77160eae3ec91"
   },
   "src/test/setup.ts": {
-    "mtime": 1784943476.7963536,
+    "mtime": 1776998318.308642,
     "ast_hash": "00e47f7b9836e8f731101981fa2bb2de",
     "semantic_hash": "00e47f7b9836e8f731101981fa2bb2de"
   },
@@ -210,7 +210,7 @@
     "semantic_hash": "0bd28d57985d6c45dc3c4584a94cde82"
   },
   "src/utils/taxCalculations.ts": {
-    "mtime": 1784949452.7753868,
+    "mtime": 1784866339.2333946,
     "ast_hash": "e5dcac0f65848c2718c37b67d821484a",
     "semantic_hash": "e5dcac0f65848c2718c37b67d821484a"
   },
@@ -240,9 +240,9 @@
     "semantic_hash": "1a264b62d8f0671ef1e0e2fa147241a8"
   },
   "AGENTS.md": {
-    "mtime": 1784949452.7553868,
+    "mtime": 1784867076.269428,
     "ast_hash": "aaf9042d2364c4500e6531e9557d396e",
-    "semantic_hash": "aaf9042d2364c4500e6531e9557d396e"
+    "semantic_hash": ""
   },
   "CONTEXT.md": {
     "mtime": 1784255953.3556476,
@@ -325,13 +325,8 @@
     "semantic_hash": "f0402b67b6ce880f65666bb49e841696"
   },
   "src/features/dashboard/Dashboard.test.tsx": {
-    "mtime": 1784950131.0072553,
-    "ast_hash": "d55f336226e6949c3b6a2bc469b1997c",
-    "semantic_hash": "d55f336226e6949c3b6a2bc469b1997c"
-  },
-  ".serena/project.yml": {
-    "mtime": 1784930306.0204787,
-    "ast_hash": "948d7d4699a9f8b7aa94841d3dc9feed",
-    "semantic_hash": "948d7d4699a9f8b7aa94841d3dc9feed"
+    "mtime": 1784867197.8054543,
+    "ast_hash": "ae2bf4f685f0e11ebc75ba91daf9f002",
+    "semantic_hash": ""
   }
 }

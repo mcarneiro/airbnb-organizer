@@ -20,15 +20,48 @@
   },
   "nodes": [
     {
+      "label": "Dashboard.test.tsx",
+      "file_type": "code",
+      "source_file": "src/features/dashboard/Dashboard.test.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_features_dashboard_dashboard_test",
+      "community": 1,
+      "community_name": "Dashboard Components",
+      "norm_label": "dashboard.test.tsx"
+    },
+    {
+      "label": "Dashboard.tsx",
+      "file_type": "code",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_features_dashboard_dashboard",
+      "community": 1,
+      "community_name": "Dashboard Components",
+      "norm_label": "dashboard.tsx"
+    },
+    {
+      "label": "Dashboard()",
+      "file_type": "code",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_features_dashboard_dashboard_dashboard",
+      "community": 1,
+      "community_name": "Dashboard Components",
+      "norm_label": "dashboard()"
+    },
+    {
       "label": "taxCalculations.test.ts",
       "file_type": "code",
       "source_file": "src/utils/__tests__/taxCalculations.test.ts",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "src_utils_tests_taxcalculations_test",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "taxcalculations.test.ts",
-      "id": "src_utils_tests_taxcalculations_test"
+      "norm_label": "taxcalculations.test.ts"
     },
     {
       "label": "taxCalculations.ts",
@@ -36,10 +69,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "taxcalculations.ts",
-      "id": "src_utils_taxcalculations"
+      "norm_label": "taxcalculations.ts"
     },
     {
       "label": "parseDate()",
@@ -47,10 +80,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L8",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_parsedate",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "parsedate()",
-      "id": "src_utils_taxcalculations_parsedate"
+      "norm_label": "parsedate()"
     },
     {
       "label": "formatMonth()",
@@ -58,10 +91,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L18",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_formatmonth",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "formatmonth()",
-      "id": "src_utils_taxcalculations_formatmonth"
+      "norm_label": "formatmonth()"
     },
     {
       "label": "parseMonth()",
@@ -69,10 +102,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L28",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_parsemonth",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "parsemonth()",
-      "id": "src_utils_taxcalculations_parsemonth"
+      "norm_label": "parsemonth()"
     },
     {
       "label": "getMonthName()",
@@ -80,10 +113,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L37",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_getmonthname",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "getmonthname()",
-      "id": "src_utils_taxcalculations_getmonthname"
+      "norm_label": "getmonthname()"
     },
     {
       "label": "groupReservationsByMonth()",
@@ -91,10 +124,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L45",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_groupreservationsbymonth",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "groupreservationsbymonth()",
-      "id": "src_utils_taxcalculations_groupreservationsbymonth"
+      "norm_label": "groupreservationsbymonth()"
     },
     {
       "label": "groupExpensesByMonth()",
@@ -102,10 +135,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L62",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_groupexpensesbymonth",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "groupexpensesbymonth()",
-      "id": "src_utils_taxcalculations_groupexpensesbymonth"
+      "norm_label": "groupexpensesbymonth()"
     },
     {
       "label": "calculateMonthlyTax()",
@@ -113,10 +146,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L79",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_calculatemonthlytax",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "calculatemonthlytax()",
-      "id": "src_utils_taxcalculations_calculatemonthlytax"
+      "norm_label": "calculatemonthlytax()"
     },
     {
       "label": "getAllMonths()",
@@ -124,10 +157,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L122",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_getallmonths",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "getallmonths()",
-      "id": "src_utils_taxcalculations_getallmonths"
+      "norm_label": "getallmonths()"
     },
     {
       "label": "formatReservationsForIRS()",
@@ -135,10 +168,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L134",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_formatreservationsforirs",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "formatreservationsforirs()",
-      "id": "src_utils_taxcalculations_formatreservationsforirs"
+      "norm_label": "formatreservationsforirs()"
     },
     {
       "label": "isReservationPaid()",
@@ -146,10 +179,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L150",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_isreservationpaid",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "isreservationpaid()",
-      "id": "src_utils_taxcalculations_isreservationpaid"
+      "norm_label": "isreservationpaid()"
     },
     {
       "label": "getNextReservation()",
@@ -157,10 +190,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L165",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_getnextreservation",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "getnextreservation()",
-      "id": "src_utils_taxcalculations_getnextreservation"
+      "norm_label": "getnextreservation()"
     },
     {
       "label": "getMostRecentUnpaidMonth()",
@@ -168,10 +201,10 @@
       "source_file": "src/utils/taxCalculations.ts",
       "source_location": "L184",
       "_origin": "ast",
+      "id": "src_utils_taxcalculations_getmostrecentunpaidmonth",
       "community": 1,
       "community_name": "Dashboard Components",
-      "norm_label": "getmostrecentunpaidmonth()",
-      "id": "src_utils_taxcalculations_getmostrecentunpaidmonth"
+      "norm_label": "getmostrecentunpaidmonth()"
     },
     {
       "label": "eslint.config.js",
@@ -179,10 +212,10 @@
       "source_file": "eslint.config.js",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 41,
+      "community": 28,
       "norm_label": "eslint.config.js",
-      "community_name": "ESLint Config",
-      "id": "eslint_config"
+      "id": "eslint_config",
+      "community_name": "ESLint Config"
     },
     {
       "label": "opencode.json",
@@ -192,8 +225,8 @@
       "_origin": "ast",
       "community": 13,
       "norm_label": "opencode.json",
-      "community_name": "Agent Configuration",
-      "id": "opencode"
+      "id": "opencode",
+      "community_name": "Agent Configuration"
     },
     {
       "label": "$schema",
@@ -203,8 +236,8 @@
       "_origin": "ast",
       "community": 13,
       "norm_label": "$schema",
-      "community_name": "Agent Configuration",
-      "id": "opencode_schema"
+      "id": "opencode_schema",
+      "community_name": "Agent Configuration"
     },
     {
       "label": "instructions",
@@ -214,8 +247,8 @@
       "_origin": "ast",
       "community": 13,
       "norm_label": "instructions",
-      "community_name": "Agent Configuration",
-      "id": "opencode_instructions"
+      "id": "opencode_instructions",
+      "community_name": "Agent Configuration"
     },
     {
       "label": "AGENTS.md",
@@ -225,8 +258,8 @@
       "_origin": "ast",
       "community": 13,
       "norm_label": "agents.md",
-      "community_name": "Agent Configuration",
-      "id": "ref_agents_md"
+      "id": "ref_agents_md",
+      "community_name": "Agent Configuration"
     },
     {
       "label": "package.json",
@@ -234,10 +267,10 @@
       "source_file": "package.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "package.json",
-      "community_name": "Frontend Dependencies",
-      "id": "package"
+      "id": "package",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "name",
@@ -245,10 +278,10 @@
       "source_file": "package.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "name",
-      "community_name": "Frontend Dependencies",
-      "id": "package_name"
+      "id": "package_name",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "private",
@@ -256,10 +289,10 @@
       "source_file": "package.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "private",
-      "community_name": "Frontend Dependencies",
-      "id": "package_private"
+      "id": "package_private",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "version",
@@ -267,10 +300,10 @@
       "source_file": "package.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "version",
-      "community_name": "Frontend Dependencies",
-      "id": "package_version"
+      "id": "package_version",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "type",
@@ -278,10 +311,10 @@
       "source_file": "package.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "type",
-      "community_name": "Frontend Dependencies",
-      "id": "package_type"
+      "id": "package_type",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "scripts",
@@ -289,10 +322,10 @@
       "source_file": "package.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "scripts",
-      "community_name": "Frontend Dependencies",
-      "id": "package_scripts"
+      "id": "package_scripts",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "dev",
@@ -300,10 +333,10 @@
       "source_file": "package.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "dev",
-      "community_name": "Frontend Dependencies",
-      "id": "package_scripts_dev"
+      "id": "package_scripts_dev",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "build",
@@ -311,10 +344,10 @@
       "source_file": "package.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "build",
-      "community_name": "Frontend Dependencies",
-      "id": "package_scripts_build"
+      "id": "package_scripts_build",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "lint",
@@ -322,10 +355,10 @@
       "source_file": "package.json",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "lint",
-      "community_name": "Frontend Dependencies",
-      "id": "package_scripts_lint"
+      "id": "package_scripts_lint",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "preview",
@@ -333,10 +366,10 @@
       "source_file": "package.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "preview",
-      "community_name": "Frontend Dependencies",
-      "id": "package_scripts_preview"
+      "id": "package_scripts_preview",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "test",
@@ -344,10 +377,10 @@
       "source_file": "package.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "test",
-      "community_name": "Frontend Dependencies",
-      "id": "package_scripts_test"
+      "id": "package_scripts_test",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "test:ui",
@@ -355,10 +388,10 @@
       "source_file": "package.json",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "test:ui",
-      "community_name": "Frontend Dependencies",
-      "id": "package_scripts_test_ui"
+      "id": "package_scripts_test_ui",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "dependencies",
@@ -366,10 +399,10 @@
       "source_file": "package.json",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "dependencies",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies"
+      "id": "package_dependencies",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "@react-oauth/google",
@@ -377,10 +410,10 @@
       "source_file": "package.json",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "@react-oauth/google",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_react_oauth_google"
+      "id": "package_dependencies_react_oauth_google",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "@react-oauth/google",
@@ -388,10 +421,10 @@
       "source_file": "package.json",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "@react-oauth/google",
-      "community_name": "Frontend Dependencies",
-      "id": "react_oauth_google"
+      "id": "react_oauth_google",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "@reduxjs/toolkit",
@@ -399,10 +432,10 @@
       "source_file": "package.json",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "@reduxjs/toolkit",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_reduxjs_toolkit"
+      "id": "package_dependencies_reduxjs_toolkit",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "@reduxjs/toolkit",
@@ -410,10 +443,10 @@
       "source_file": "package.json",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "@reduxjs/toolkit",
-      "community_name": "Frontend Dependencies",
-      "id": "reduxjs_toolkit"
+      "id": "reduxjs_toolkit",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "i18next",
@@ -421,10 +454,10 @@
       "source_file": "package.json",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "i18next",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_i18next"
+      "id": "package_dependencies_i18next",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "i18next",
@@ -432,10 +465,10 @@
       "source_file": "package.json",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "i18next",
-      "community_name": "Frontend Dependencies",
-      "id": "i18next"
+      "id": "i18next",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "i18next-browser-languagedetector",
@@ -443,10 +476,10 @@
       "source_file": "package.json",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "i18next-browser-languagedetector",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_i18next_browser_languagedetector"
+      "id": "package_dependencies_i18next_browser_languagedetector",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "i18next-browser-languagedetector",
@@ -454,10 +487,10 @@
       "source_file": "package.json",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "i18next-browser-languagedetector",
-      "community_name": "Frontend Dependencies",
-      "id": "i18next_browser_languagedetector"
+      "id": "i18next_browser_languagedetector",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react",
@@ -465,10 +498,10 @@
       "source_file": "package.json",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_react"
+      "id": "package_dependencies_react",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react",
@@ -476,10 +509,10 @@
       "source_file": "package.json",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react",
-      "community_name": "Frontend Dependencies",
-      "id": "react"
+      "id": "react",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-dom",
@@ -487,10 +520,10 @@
       "source_file": "package.json",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react-dom",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_react_dom"
+      "id": "package_dependencies_react_dom",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-dom",
@@ -498,10 +531,10 @@
       "source_file": "package.json",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react-dom",
-      "community_name": "Frontend Dependencies",
-      "id": "react_dom"
+      "id": "react_dom",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-i18next",
@@ -509,23 +542,21 @@
       "source_file": "package.json",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 7,
+      "community": 4,
       "norm_label": "react-i18next",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_react_i18next"
+      "id": "package_dependencies_react_i18next",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-i18next",
       "file_type": "concept",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
+      "source_file": "package.json",
+      "source_location": "L21",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "react-i18next",
       "id": "react_i18next",
-      "community": 7,
-      "norm_label": "react-i18next"
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-redux",
@@ -533,10 +564,10 @@
       "source_file": "package.json",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react-redux",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_react_redux"
+      "id": "package_dependencies_react_redux",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-redux",
@@ -544,10 +575,10 @@
       "source_file": "package.json",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react-redux",
-      "community_name": "Frontend Dependencies",
-      "id": "react_redux"
+      "id": "react_redux",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-router-dom",
@@ -555,10 +586,10 @@
       "source_file": "package.json",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react-router-dom",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_react_router_dom"
+      "id": "package_dependencies_react_router_dom",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "react-router-dom",
@@ -566,10 +597,10 @@
       "source_file": "package.json",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "react-router-dom",
-      "community_name": "Frontend Dependencies",
-      "id": "react_router_dom"
+      "id": "react_router_dom",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "recharts",
@@ -577,10 +608,10 @@
       "source_file": "package.json",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "recharts",
-      "community_name": "Frontend Dependencies",
-      "id": "package_dependencies_recharts"
+      "id": "package_dependencies_recharts",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "recharts",
@@ -588,10 +619,10 @@
       "source_file": "package.json",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 2,
+      "community": 4,
       "norm_label": "recharts",
-      "community_name": "Frontend Dependencies",
-      "id": "recharts"
+      "id": "recharts",
+      "community_name": "Frontend Dependencies"
     },
     {
       "label": "devDependencies",
@@ -599,10 +630,10 @@
       "source_file": "package.json",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "devdependencies",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies"
+      "id": "package_devdependencies",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@eslint/js",
@@ -610,10 +641,10 @@
       "source_file": "package.json",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "@eslint/js",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_eslint_js"
+      "id": "package_devdependencies_eslint_js",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@eslint/js",
@@ -621,10 +652,10 @@
       "source_file": "package.json",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "@eslint/js",
-      "community_name": "Lint Tooling",
-      "id": "eslint_js"
+      "id": "eslint_js",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@testing-library/jest-dom",
@@ -632,10 +663,10 @@
       "source_file": "package.json",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 26,
+      "community": 2,
       "norm_label": "@testing-library/jest-dom",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_testing_library_jest_dom"
+      "id": "package_devdependencies_testing_library_jest_dom",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@testing-library/jest-dom",
@@ -643,10 +674,10 @@
       "source_file": "package.json",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 26,
+      "community": 2,
       "norm_label": "@testing-library/jest-dom",
-      "community_name": "Lint Tooling",
-      "id": "testing_library_jest_dom"
+      "id": "testing_library_jest_dom",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@testing-library/react",
@@ -654,10 +685,10 @@
       "source_file": "package.json",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 27,
+      "community": 2,
       "norm_label": "@testing-library/react",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_testing_library_react"
+      "id": "package_devdependencies_testing_library_react",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@testing-library/react",
@@ -665,10 +696,10 @@
       "source_file": "package.json",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 27,
+      "community": 2,
       "norm_label": "@testing-library/react",
-      "community_name": "Lint Tooling",
-      "id": "testing_library_react"
+      "id": "testing_library_react",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@testing-library/user-event",
@@ -676,10 +707,10 @@
       "source_file": "package.json",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 28,
+      "community": 2,
       "norm_label": "@testing-library/user-event",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_testing_library_user_event"
+      "id": "package_devdependencies_testing_library_user_event",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@testing-library/user-event",
@@ -687,10 +718,10 @@
       "source_file": "package.json",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 28,
+      "community": 2,
       "norm_label": "@testing-library/user-event",
-      "community_name": "Lint Tooling",
-      "id": "testing_library_user_event"
+      "id": "testing_library_user_event",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@types/react",
@@ -698,10 +729,10 @@
       "source_file": "package.json",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 29,
+      "community": 2,
       "norm_label": "@types/react",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_types_react"
+      "id": "package_devdependencies_types_react",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@types/react",
@@ -709,10 +740,10 @@
       "source_file": "package.json",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 29,
+      "community": 2,
       "norm_label": "@types/react",
-      "community_name": "Lint Tooling",
-      "id": "types_react"
+      "id": "types_react",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@types/react-dom",
@@ -720,10 +751,10 @@
       "source_file": "package.json",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "@types/react-dom",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_types_react_dom"
+      "id": "package_devdependencies_types_react_dom",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@types/react-dom",
@@ -731,10 +762,10 @@
       "source_file": "package.json",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "@types/react-dom",
-      "community_name": "Lint Tooling",
-      "id": "types_react_dom"
+      "id": "types_react_dom",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@vitejs/plugin-react",
@@ -742,10 +773,10 @@
       "source_file": "package.json",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 31,
+      "community": 2,
       "norm_label": "@vitejs/plugin-react",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_vitejs_plugin_react"
+      "id": "package_devdependencies_vitejs_plugin_react",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@vitejs/plugin-react",
@@ -753,10 +784,10 @@
       "source_file": "package.json",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 31,
+      "community": 2,
       "norm_label": "@vitejs/plugin-react",
-      "community_name": "Lint Tooling",
-      "id": "vitejs_plugin_react"
+      "id": "vitejs_plugin_react",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "eslint",
@@ -764,10 +795,10 @@
       "source_file": "package.json",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 20,
+      "community": 2,
       "norm_label": "eslint",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_eslint"
+      "id": "package_devdependencies_eslint",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "eslint",
@@ -775,10 +806,10 @@
       "source_file": "package.json",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 20,
+      "community": 2,
       "norm_label": "eslint",
-      "community_name": "Lint Tooling",
-      "id": "eslint"
+      "id": "eslint",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "eslint-plugin-react-hooks",
@@ -786,10 +817,10 @@
       "source_file": "package.json",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 21,
+      "community": 2,
       "norm_label": "eslint-plugin-react-hooks",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_eslint_plugin_react_hooks"
+      "id": "package_devdependencies_eslint_plugin_react_hooks",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "eslint-plugin-react-hooks",
@@ -797,10 +828,10 @@
       "source_file": "package.json",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 21,
+      "community": 2,
       "norm_label": "eslint-plugin-react-hooks",
-      "community_name": "Lint Tooling",
-      "id": "eslint_plugin_react_hooks"
+      "id": "eslint_plugin_react_hooks",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "eslint-plugin-react-refresh",
@@ -808,10 +839,10 @@
       "source_file": "package.json",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "eslint-plugin-react-refresh",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_eslint_plugin_react_refresh"
+      "id": "package_devdependencies_eslint_plugin_react_refresh",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "eslint-plugin-react-refresh",
@@ -819,10 +850,10 @@
       "source_file": "package.json",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "eslint-plugin-react-refresh",
-      "community_name": "Lint Tooling",
-      "id": "eslint_plugin_react_refresh"
+      "id": "eslint_plugin_react_refresh",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "globals",
@@ -830,10 +861,10 @@
       "source_file": "package.json",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 22,
+      "community": 2,
       "norm_label": "globals",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_globals"
+      "id": "package_devdependencies_globals",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "globals",
@@ -841,10 +872,10 @@
       "source_file": "package.json",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 22,
+      "community": 2,
       "norm_label": "globals",
-      "community_name": "Lint Tooling",
-      "id": "globals"
+      "id": "globals",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "jsdom",
@@ -852,10 +883,10 @@
       "source_file": "package.json",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 23,
+      "community": 2,
       "norm_label": "jsdom",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_jsdom"
+      "id": "package_devdependencies_jsdom",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "jsdom",
@@ -863,10 +894,10 @@
       "source_file": "package.json",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 23,
+      "community": 2,
       "norm_label": "jsdom",
-      "community_name": "Lint Tooling",
-      "id": "jsdom"
+      "id": "jsdom",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "postcss",
@@ -874,10 +905,10 @@
       "source_file": "package.json",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 25,
+      "community": 2,
       "norm_label": "postcss",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_postcss"
+      "id": "package_devdependencies_postcss",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "postcss",
@@ -885,10 +916,10 @@
       "source_file": "package.json",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 25,
+      "community": 2,
       "norm_label": "postcss",
-      "community_name": "Lint Tooling",
-      "id": "postcss"
+      "id": "postcss",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "tailwindcss",
@@ -896,10 +927,10 @@
       "source_file": "package.json",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "tailwindcss",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_tailwindcss"
+      "id": "package_devdependencies_tailwindcss",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "tailwindcss",
@@ -907,10 +938,10 @@
       "source_file": "package.json",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "tailwindcss",
-      "community_name": "Lint Tooling",
-      "id": "tailwindcss"
+      "id": "tailwindcss",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@tailwindcss/vite",
@@ -918,10 +949,10 @@
       "source_file": "package.json",
       "source_location": "L41",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "@tailwindcss/vite",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_tailwindcss_vite"
+      "id": "package_devdependencies_tailwindcss_vite",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@tailwindcss/vite",
@@ -929,10 +960,10 @@
       "source_file": "package.json",
       "source_location": "L41",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "@tailwindcss/vite",
-      "community_name": "Lint Tooling",
-      "id": "tailwindcss_vite"
+      "id": "tailwindcss_vite",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "typescript",
@@ -940,23 +971,21 @@
       "source_file": "package.json",
       "source_location": "L42",
       "_origin": "ast",
-      "community": 17,
+      "community": 2,
       "norm_label": "typescript",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_typescript"
+      "id": "package_devdependencies_typescript",
+      "community_name": "Lint Tooling"
     },
     {
-      "label": "TypeScript",
+      "label": "typescript",
       "file_type": "concept",
-      "source_file": ".serena/project.yml",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
+      "source_file": "package.json",
+      "source_location": "L42",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "typescript",
       "id": "typescript",
-      "community": 17,
-      "norm_label": "typescript"
+      "community_name": "Lint Tooling"
     },
     {
       "label": "typescript-eslint",
@@ -964,10 +993,10 @@
       "source_file": "package.json",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "typescript-eslint",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_typescript_eslint"
+      "id": "package_devdependencies_typescript_eslint",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "typescript-eslint",
@@ -975,10 +1004,10 @@
       "source_file": "package.json",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "typescript-eslint",
-      "community_name": "Lint Tooling",
-      "id": "typescript_eslint"
+      "id": "typescript_eslint",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "vite",
@@ -986,10 +1015,10 @@
       "source_file": "package.json",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 30,
+      "community": 2,
       "norm_label": "vite",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_vite"
+      "id": "package_devdependencies_vite",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "vite",
@@ -997,10 +1026,10 @@
       "source_file": "package.json",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 30,
+      "community": 2,
       "norm_label": "vite",
-      "community_name": "Lint Tooling",
-      "id": "vite"
+      "id": "vite",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "vitest",
@@ -1008,23 +1037,21 @@
       "source_file": "package.json",
       "source_location": "L45",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "vitest",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_vitest"
+      "id": "package_devdependencies_vitest",
+      "community_name": "Lint Tooling"
     },
     {
-      "label": "Vitest",
+      "label": "vitest",
       "file_type": "concept",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
+      "source_file": "package.json",
+      "source_location": "L45",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "vitest",
       "id": "vitest",
-      "community": 7,
-      "norm_label": "vitest"
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@vitest/ui",
@@ -1032,10 +1059,10 @@
       "source_file": "package.json",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 32,
+      "community": 2,
       "norm_label": "@vitest/ui",
-      "community_name": "Lint Tooling",
-      "id": "package_devdependencies_vitest_ui"
+      "id": "package_devdependencies_vitest_ui",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "@vitest/ui",
@@ -1043,10 +1070,10 @@
       "source_file": "package.json",
       "source_location": "L46",
       "_origin": "ast",
-      "community": 32,
+      "community": 2,
       "norm_label": "@vitest/ui",
-      "community_name": "Lint Tooling",
-      "id": "vitest_ui"
+      "id": "vitest_ui",
+      "community_name": "Lint Tooling"
     },
     {
       "label": "App.tsx",
@@ -1056,8 +1083,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "app.tsx",
-      "community_name": "Application Startup",
-      "id": "src_app"
+      "id": "src_app",
+      "community_name": "Application Startup"
     },
     {
       "label": "getCurrentMonth()",
@@ -1067,8 +1094,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "getcurrentmonth()",
-      "community_name": "Application Startup",
-      "id": "src_app_getcurrentmonth"
+      "id": "src_app_getcurrentmonth",
+      "community_name": "Application Startup"
     },
     {
       "label": "App()",
@@ -1078,8 +1105,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "app()",
-      "community_name": "Application Startup",
-      "id": "src_app_app"
+      "id": "src_app_app",
+      "community_name": "Application Startup"
     },
     {
       "label": "IMPORTANT: This useEffect must be called before any early returns (Rules of Hook",
@@ -1089,8 +1116,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "important: this useeffect must be called before any early returns (rules of hook",
-      "community_name": "Application Startup",
-      "id": "src_app_rationale_38"
+      "id": "src_app_rationale_38",
+      "community_name": "Application Startup"
     },
     {
       "label": "Layout.tsx",
@@ -1100,8 +1127,8 @@
       "_origin": "ast",
       "community": 14,
       "norm_label": "layout.tsx",
-      "community_name": "App Layout",
-      "id": "src_components_layout"
+      "id": "src_components_layout",
+      "community_name": "App Layout"
     },
     {
       "label": "LayoutProps",
@@ -1111,8 +1138,8 @@
       "_origin": "ast",
       "community": 14,
       "norm_label": "layoutprops",
-      "community_name": "App Layout",
-      "id": "src_components_layout_layoutprops"
+      "id": "src_components_layout_layoutprops",
+      "community_name": "App Layout"
     },
     {
       "label": "getCurrentMonth()",
@@ -1122,8 +1149,8 @@
       "_origin": "ast",
       "community": 14,
       "norm_label": "getcurrentmonth()",
-      "community_name": "App Layout",
-      "id": "src_components_layout_getcurrentmonth"
+      "id": "src_components_layout_getcurrentmonth",
+      "community_name": "App Layout"
     },
     {
       "label": "Layout()",
@@ -1133,8 +1160,8 @@
       "_origin": "ast",
       "community": 14,
       "norm_label": "layout()",
-      "community_name": "App Layout",
-      "id": "src_components_layout_layout"
+      "id": "src_components_layout_layout",
+      "community_name": "App Layout"
     },
     {
       "label": "LoadingScreen.tsx",
@@ -1144,8 +1171,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "loadingscreen.tsx",
-      "community_name": "Application Startup",
-      "id": "src_components_loadingscreen"
+      "id": "src_components_loadingscreen",
+      "community_name": "Application Startup"
     },
     {
       "label": "LoadingScreen()",
@@ -1155,8 +1182,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "loadingscreen()",
-      "community_name": "Application Startup",
-      "id": "src_components_loadingscreen_loadingscreen"
+      "id": "src_components_loadingscreen_loadingscreen",
+      "community_name": "Application Startup"
     },
     {
       "label": "MonthNavigation.tsx",
@@ -1166,8 +1193,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "monthnavigation.tsx",
-      "community_name": "Dashboard Components",
-      "id": "src_components_monthnavigation"
+      "id": "src_components_monthnavigation",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "MonthNavigationProps",
@@ -1177,8 +1204,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "monthnavigationprops",
-      "community_name": "Dashboard Components",
-      "id": "src_components_monthnavigation_monthnavigationprops"
+      "id": "src_components_monthnavigation_monthnavigationprops",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "MonthNavigation()",
@@ -1188,8 +1215,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "monthnavigation()",
-      "community_name": "Dashboard Components",
-      "id": "src_components_monthnavigation_monthnavigation"
+      "id": "src_components_monthnavigation_monthnavigation",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "YearOverYearChart.tsx",
@@ -1199,8 +1226,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "yearoveryearchart.tsx",
-      "community_name": "Dashboard Components",
-      "id": "src_components_yearoveryearchart"
+      "id": "src_components_yearoveryearchart",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "YearOverYearChartProps",
@@ -1210,8 +1237,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "yearoveryearchartprops",
-      "community_name": "Dashboard Components",
-      "id": "src_components_yearoveryearchart_yearoveryearchartprops"
+      "id": "src_components_yearoveryearchart_yearoveryearchartprops",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "TooltipPayload",
@@ -1221,8 +1248,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "tooltippayload",
-      "community_name": "Dashboard Components",
-      "id": "src_components_yearoveryearchart_tooltippayload"
+      "id": "src_components_yearoveryearchart_tooltippayload",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "CustomTooltipProps",
@@ -1232,8 +1259,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "customtooltipprops",
-      "community_name": "Dashboard Components",
-      "id": "src_components_yearoveryearchart_customtooltipprops"
+      "id": "src_components_yearoveryearchart_customtooltipprops",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "YearOverYearChart()",
@@ -1243,8 +1270,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "yearoveryearchart()",
-      "community_name": "Dashboard Components",
-      "id": "src_components_yearoveryearchart_yearoveryearchart"
+      "id": "src_components_yearoveryearchart_yearoveryearchart",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "google.ts",
@@ -1252,10 +1279,10 @@
       "source_file": "src/config/google.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "google.ts",
-      "community_name": "Internationalization State",
-      "id": "src_config_google"
+      "id": "src_config_google",
+      "community_name": "Internationalization State"
     },
     {
       "label": "GOOGLE_CONFIG",
@@ -1263,10 +1290,10 @@
       "source_file": "src/config/google.ts",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "google_config",
-      "community_name": "Internationalization State",
-      "id": "src_config_google_google_config"
+      "id": "src_config_google_google_config",
+      "community_name": "Internationalization State"
     },
     {
       "label": "SHEET_CONFIGS",
@@ -1274,10 +1301,10 @@
       "source_file": "src/config/google.ts",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "sheet_configs",
-      "community_name": "Internationalization State",
-      "id": "src_config_google_sheet_configs"
+      "id": "src_config_google_sheet_configs",
+      "community_name": "Internationalization State"
     },
     {
       "label": "i18n.ts",
@@ -1285,10 +1312,10 @@
       "source_file": "src/config/i18n.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "i18n.ts",
-      "community_name": "Internationalization State",
-      "id": "src_config_i18n"
+      "id": "src_config_i18n",
+      "community_name": "Internationalization State"
     },
     {
       "label": "languageDetector",
@@ -1296,10 +1323,10 @@
       "source_file": "src/config/i18n.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "languagedetector",
-      "community_name": "Internationalization State",
-      "id": "src_config_i18n_languagedetector"
+      "id": "src_config_i18n_languagedetector",
+      "community_name": "Internationalization State"
     },
     {
       "label": "lookup()",
@@ -1307,10 +1334,10 @@
       "source_file": "src/config/i18n.ts",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "lookup()",
-      "community_name": "Internationalization State",
-      "id": "src_config_i18n_lookup"
+      "id": "src_config_i18n_lookup",
+      "community_name": "Internationalization State"
     },
     {
       "label": "cacheUserLanguage()",
@@ -1318,10 +1345,10 @@
       "source_file": "src/config/i18n.ts",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "cacheuserlanguage()",
-      "community_name": "Internationalization State",
-      "id": "src_config_i18n_cacheuserlanguage"
+      "id": "src_config_i18n_cacheuserlanguage",
+      "community_name": "Internationalization State"
     },
     {
       "label": "GoogleAuthContext.tsx",
@@ -1331,8 +1358,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "googleauthcontext.tsx",
-      "community_name": "Application Startup",
-      "id": "src_contexts_googleauthcontext"
+      "id": "src_contexts_googleauthcontext",
+      "community_name": "Application Startup"
     },
     {
       "label": "GoogleAuthContextType",
@@ -1342,8 +1369,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "googleauthcontexttype",
-      "community_name": "Application Startup",
-      "id": "src_contexts_googleauthcontext_googleauthcontexttype"
+      "id": "src_contexts_googleauthcontext_googleauthcontexttype",
+      "community_name": "Application Startup"
     },
     {
       "label": "GoogleAuthContext",
@@ -1353,8 +1380,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "googleauthcontext",
-      "community_name": "Application Startup",
-      "id": "src_contexts_googleauthcontext_googleauthcontext"
+      "id": "src_contexts_googleauthcontext_googleauthcontext",
+      "community_name": "Application Startup"
     },
     {
       "label": "getStorage()",
@@ -1364,8 +1391,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "getstorage()",
-      "community_name": "Application Startup",
-      "id": "src_contexts_googleauthcontext_getstorage"
+      "id": "src_contexts_googleauthcontext_getstorage",
+      "community_name": "Application Startup"
     },
     {
       "label": "shouldPersistAuth()",
@@ -1375,8 +1402,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "shouldpersistauth()",
-      "community_name": "Application Startup",
-      "id": "src_contexts_googleauthcontext_shouldpersistauth"
+      "id": "src_contexts_googleauthcontext_shouldpersistauth",
+      "community_name": "Application Startup"
     },
     {
       "label": "GoogleAuthProvider()",
@@ -1386,8 +1413,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "googleauthprovider()",
-      "community_name": "Application Startup",
-      "id": "src_contexts_googleauthcontext_googleauthprovider"
+      "id": "src_contexts_googleauthcontext_googleauthprovider",
+      "community_name": "Application Startup"
     },
     {
       "label": "useGoogleAuth()",
@@ -1397,8 +1424,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "usegoogleauth()",
-      "community_name": "Application Startup",
-      "id": "src_contexts_googleauthcontext_usegoogleauth"
+      "id": "src_contexts_googleauthcontext_usegoogleauth",
+      "community_name": "Application Startup"
     },
     {
       "label": "ExpensesMonth.tsx",
@@ -1406,10 +1433,10 @@
       "source_file": "src/features/expenses/ExpensesMonth.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 3,
       "norm_label": "expensesmonth.tsx",
-      "community_name": "Application Startup",
-      "id": "src_features_expenses_expensesmonth"
+      "id": "src_features_expenses_expensesmonth",
+      "community_name": "Application Startup"
     },
     {
       "label": "ExpensesMonth()",
@@ -1417,10 +1444,10 @@
       "source_file": "src/features/expenses/ExpensesMonth.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 1,
+      "community": 3,
       "norm_label": "expensesmonth()",
-      "community_name": "Application Startup",
-      "id": "src_features_expenses_expensesmonth_expensesmonth"
+      "id": "src_features_expenses_expensesmonth_expensesmonth",
+      "community_name": "Application Startup"
     },
     {
       "label": "NewExpense.tsx",
@@ -1430,8 +1457,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "newexpense.tsx",
-      "community_name": "Application Startup",
-      "id": "src_features_expenses_newexpense"
+      "id": "src_features_expenses_newexpense",
+      "community_name": "Application Startup"
     },
     {
       "label": "EXPENSE_CATEGORIES",
@@ -1441,8 +1468,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "expense_categories",
-      "community_name": "Application Startup",
-      "id": "src_features_expenses_newexpense_expense_categories"
+      "id": "src_features_expenses_newexpense_expense_categories",
+      "community_name": "Application Startup"
     },
     {
       "label": "NewExpense()",
@@ -1452,8 +1479,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "newexpense()",
-      "community_name": "Application Startup",
-      "id": "src_features_expenses_newexpense_newexpense"
+      "id": "src_features_expenses_newexpense_newexpense",
+      "community_name": "Application Startup"
     },
     {
       "label": "Onboarding.tsx",
@@ -1463,8 +1490,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "onboarding.tsx",
-      "community_name": "Application Startup",
-      "id": "src_features_onboarding_onboarding"
+      "id": "src_features_onboarding_onboarding",
+      "community_name": "Application Startup"
     },
     {
       "label": "Onboarding()",
@@ -1474,8 +1501,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "onboarding()",
-      "community_name": "Application Startup",
-      "id": "src_features_onboarding_onboarding_onboarding"
+      "id": "src_features_onboarding_onboarding_onboarding",
+      "community_name": "Application Startup"
     },
     {
       "label": "NewReservation.tsx",
@@ -1485,8 +1512,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "newreservation.tsx",
-      "community_name": "Application Startup",
-      "id": "src_features_reservations_newreservation"
+      "id": "src_features_reservations_newreservation",
+      "community_name": "Application Startup"
     },
     {
       "label": "NewReservation()",
@@ -1496,8 +1523,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "newreservation()",
-      "community_name": "Application Startup",
-      "id": "src_features_reservations_newreservation_newreservation"
+      "id": "src_features_reservations_newreservation_newreservation",
+      "community_name": "Application Startup"
     },
     {
       "label": "ReservationsMonth.test.tsx",
@@ -1505,10 +1532,10 @@
       "source_file": "src/features/reservations/ReservationsMonth.test.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "reservationsmonth.test.tsx",
-      "community_name": "Internationalization State",
-      "id": "src_features_reservations_reservationsmonth_test"
+      "id": "src_features_reservations_reservationsmonth_test",
+      "community_name": "Internationalization State"
     },
     {
       "label": "ReservationsMonth.tsx",
@@ -1518,8 +1545,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "reservationsmonth.tsx",
-      "community_name": "Dashboard Components",
-      "id": "src_features_reservations_reservationsmonth"
+      "id": "src_features_reservations_reservationsmonth",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "ReservationsMonth()",
@@ -1529,8 +1556,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "reservationsmonth()",
-      "community_name": "Dashboard Components",
-      "id": "src_features_reservations_reservationsmonth_reservationsmonth"
+      "id": "src_features_reservations_reservationsmonth_reservationsmonth",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "Settings.tsx",
@@ -1540,8 +1567,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "settings.tsx",
-      "community_name": "Application Startup",
-      "id": "src_features_settings_settings"
+      "id": "src_features_settings_settings",
+      "community_name": "Application Startup"
     },
     {
       "label": "Settings()",
@@ -1551,8 +1578,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "settings()",
-      "community_name": "Application Startup",
-      "id": "src_features_settings_settings_settings"
+      "id": "src_features_settings_settings_settings",
+      "community_name": "Application Startup"
     },
     {
       "label": "Taxes.tsx",
@@ -1562,8 +1589,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "taxes.tsx",
-      "community_name": "Dashboard Components",
-      "id": "src_features_taxes_taxes"
+      "id": "src_features_taxes_taxes",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "Taxes()",
@@ -1573,8 +1600,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "taxes()",
-      "community_name": "Dashboard Components",
-      "id": "src_features_taxes_taxes_taxes"
+      "id": "src_features_taxes_taxes_taxes",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "useDataSync.ts",
@@ -1584,8 +1611,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "usedatasync.ts",
-      "community_name": "Application Startup",
-      "id": "src_hooks_usedatasync"
+      "id": "src_hooks_usedatasync",
+      "community_name": "Application Startup"
     },
     {
       "label": "useDataSync()",
@@ -1595,8 +1622,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "usedatasync()",
-      "community_name": "Application Startup",
-      "id": "src_hooks_usedatasync_usedatasync"
+      "id": "src_hooks_usedatasync_usedatasync",
+      "community_name": "Application Startup"
     },
     {
       "label": "main.tsx",
@@ -1604,10 +1631,10 @@
       "source_file": "src/main.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "main.tsx",
-      "community_name": "Internationalization State",
-      "id": "src_main"
+      "id": "src_main",
+      "community_name": "Internationalization State"
     },
     {
       "label": "BrazilianRentalTaxCalculator.ts",
@@ -1617,8 +1644,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": "brazilianrentaltaxcalculator.ts",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator"
+      "id": "src_services_brazilianrentaltaxcalculator",
+      "community_name": "Tax Calculator"
     },
     {
       "label": "BrazilianRentalTaxCalculator",
@@ -1628,8 +1655,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": "brazilianrentaltaxcalculator",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator"
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator",
+      "community_name": "Tax Calculator"
     },
     {
       "label": ".constructor()",
@@ -1639,8 +1666,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": ".constructor()",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_constructor"
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_constructor",
+      "community_name": "Tax Calculator"
     },
     {
       "label": ".calculateTax()",
@@ -1650,8 +1677,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": ".calculatetax()",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_calculatetax"
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_calculatetax",
+      "community_name": "Tax Calculator"
     },
     {
       "label": ".calculate2026Reducer()",
@@ -1661,8 +1688,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": ".calculate2026reducer()",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_calculate2026reducer"
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_calculate2026reducer",
+      "community_name": "Tax Calculator"
     },
     {
       "label": ".findTaxBracket()",
@@ -1672,8 +1699,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": ".findtaxbracket()",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_findtaxbracket"
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_findtaxbracket",
+      "community_name": "Tax Calculator"
     },
     {
       "label": ".getTaxBrackets()",
@@ -1683,8 +1710,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": ".gettaxbrackets()",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_gettaxbrackets"
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_gettaxbrackets",
+      "community_name": "Tax Calculator"
     },
     {
       "label": ".getDeductionConstants()",
@@ -1694,8 +1721,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": ".getdeductionconstants()",
-      "community_name": "Tax Calculator",
-      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_getdeductionconstants"
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_getdeductionconstants",
+      "community_name": "Tax Calculator"
     },
     {
       "label": "GoogleSheetsService.ts",
@@ -1703,10 +1730,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "googlesheetsservice.ts",
-      "community_name": "Internationalization State",
-      "id": "src_services_googlesheetsservice"
+      "id": "src_services_googlesheetsservice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "SheetResponse",
@@ -1714,10 +1741,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "sheetresponse",
-      "community_name": "Internationalization State",
-      "id": "src_services_googlesheetsservice_sheetresponse"
+      "id": "src_services_googlesheetsservice_sheetresponse",
+      "community_name": "Internationalization State"
     },
     {
       "label": "ValueResponse",
@@ -1725,10 +1752,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "valueresponse",
-      "community_name": "Internationalization State",
-      "id": "src_services_googlesheetsservice_valueresponse"
+      "id": "src_services_googlesheetsservice_valueresponse",
+      "community_name": "Internationalization State"
     },
     {
       "label": "GoogleSheetsService",
@@ -1736,10 +1763,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": "googlesheetsservice",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice"
+      "id": "src_services_googlesheetsservice_googlesheetsservice",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".constructor()",
@@ -1747,10 +1774,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".constructor()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_constructor"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_constructor",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".getInstance()",
@@ -1758,10 +1785,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".getinstance()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_getinstance"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_getinstance",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".setAccessToken()",
@@ -1769,10 +1796,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".setaccesstoken()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_setaccesstoken"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_setaccesstoken",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".apiRequest()",
@@ -1780,10 +1807,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".apirequest()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_apirequest"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_apirequest",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".sheetExists()",
@@ -1791,10 +1818,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L73",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".sheetexists()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_sheetexists"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_sheetexists",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".createSheet()",
@@ -1802,10 +1829,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L89",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".createsheet()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_createsheet"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_createsheet",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".writeHeaders()",
@@ -1813,10 +1840,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L110",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".writeheaders()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_writeheaders"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_writeheaders",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".sheetHasData()",
@@ -1824,10 +1851,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L129",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".sheethasdata()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_sheethasdata"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_sheethasdata",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".initializeSheets()",
@@ -1835,10 +1862,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L142",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".initializesheets()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_initializesheets"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_initializesheets",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".readSettings()",
@@ -1846,10 +1873,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L171",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".readsettings()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_readsettings"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_readsettings",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".writeSettings()",
@@ -1857,10 +1884,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L204",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".writesettings()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_writesettings"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_writesettings",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".parseLocalDate()",
@@ -1868,10 +1895,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L222",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".parselocaldate()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_parselocaldate"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_parselocaldate",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".excelSerialToDate()",
@@ -1879,10 +1906,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L231",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".excelserialtodate()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_excelserialtodate"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_excelserialtodate",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".parseDateValue()",
@@ -1890,10 +1917,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L244",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".parsedatevalue()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_parsedatevalue"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_parsedatevalue",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".readReservations()",
@@ -1901,10 +1928,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L275",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".readreservations()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_readreservations"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_readreservations",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".writeReservations()",
@@ -1912,10 +1939,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L302",
       "_origin": "ast",
-      "community": 5,
+      "community": 8,
       "norm_label": ".writereservations()",
-      "community_name": "Internationalization State",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_writereservations"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_writereservations",
+      "community_name": "Internationalization State"
     },
     {
       "label": ".readExpenses()",
@@ -1923,10 +1950,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L334",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".readexpenses()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_readexpenses"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_readexpenses",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".writeExpenses()",
@@ -1934,10 +1961,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L362",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".writeexpenses()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_writeexpenses"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_writeexpenses",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".readPaidTaxMonths()",
@@ -1945,10 +1972,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L393",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".readpaidtaxmonths()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_readpaidtaxmonths"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_readpaidtaxmonths",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".writeTaxData()",
@@ -1956,10 +1983,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L452",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".writetaxdata()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_writetaxdata"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_writetaxdata",
+      "community_name": "Sheets Integration"
     },
     {
       "label": ".extractSpreadsheetId()",
@@ -1967,10 +1994,10 @@
       "source_file": "src/services/GoogleSheetsService.ts",
       "source_location": "L499",
       "_origin": "ast",
-      "community": 5,
+      "community": 0,
       "norm_label": ".extractspreadsheetid()",
-      "community_name": "Sheets Integration",
-      "id": "src_services_googlesheetsservice_googlesheetsservice_extractspreadsheetid"
+      "id": "src_services_googlesheetsservice_googlesheetsservice_extractspreadsheetid",
+      "community_name": "Sheets Integration"
     },
     {
       "label": "BrazilianRentalTaxCalculator.test.ts",
@@ -1980,8 +2007,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": "brazilianrentaltaxcalculator.test.ts",
-      "community_name": "Tax Calculator",
-      "id": "src_services_tests_brazilianrentaltaxcalculator_test"
+      "id": "src_services_tests_brazilianrentaltaxcalculator_test",
+      "community_name": "Tax Calculator"
     },
     {
       "label": "BrazilianRentalTaxCalculator2026.test.ts",
@@ -1991,8 +2018,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": "brazilianrentaltaxcalculator2026.test.ts",
-      "community_name": "Tax Calculator",
-      "id": "src_services_tests_brazilianrentaltaxcalculator2026_test"
+      "id": "src_services_tests_brazilianrentaltaxcalculator2026_test",
+      "community_name": "Tax Calculator"
     },
     {
       "label": "syncListener.test.ts",
@@ -2000,10 +2027,10 @@
       "source_file": "src/store/__tests__/syncListener.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "synclistener.test.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_tests_synclistener_test"
+      "id": "src_store_tests_synclistener_test",
+      "community_name": "Internationalization State"
     },
     {
       "label": "appSlice.ts",
@@ -2011,10 +2038,10 @@
       "source_file": "src/store/appSlice.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "appslice.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_appslice"
+      "id": "src_store_appslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "AppState",
@@ -2022,10 +2049,10 @@
       "source_file": "src/store/appSlice.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "appstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_appslice_appstate"
+      "id": "src_store_appslice_appstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "initialState",
@@ -2033,10 +2060,10 @@
       "source_file": "src/store/appSlice.ts",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "initialstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_appslice_initialstate"
+      "id": "src_store_appslice_initialstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "appSlice",
@@ -2044,10 +2071,10 @@
       "source_file": "src/store/appSlice.ts",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "appslice",
-      "community_name": "Internationalization State",
-      "id": "src_store_appslice_appslice"
+      "id": "src_store_appslice_appslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "expensesSlice.ts",
@@ -2055,10 +2082,10 @@
       "source_file": "src/store/expensesSlice.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "expensesslice.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_expensesslice"
+      "id": "src_store_expensesslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "ExpensesState",
@@ -2068,8 +2095,8 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "expensesstate",
-      "community_name": "Sheets Integration",
-      "id": "src_store_expensesslice_expensesstate"
+      "id": "src_store_expensesslice_expensesstate",
+      "community_name": "Sheets Integration"
     },
     {
       "label": "initialState",
@@ -2077,10 +2104,10 @@
       "source_file": "src/store/expensesSlice.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "initialstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_expensesslice_initialstate"
+      "id": "src_store_expensesslice_initialstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "expensesSlice",
@@ -2088,10 +2115,10 @@
       "source_file": "src/store/expensesSlice.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "expensesslice",
-      "community_name": "Internationalization State",
-      "id": "src_store_expensesslice_expensesslice"
+      "id": "src_store_expensesslice_expensesslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "hooks.ts",
@@ -2101,8 +2128,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "hooks.ts",
-      "community_name": "Application Startup",
-      "id": "src_store_hooks"
+      "id": "src_store_hooks",
+      "community_name": "Application Startup"
     },
     {
       "label": "useAppDispatch()",
@@ -2112,8 +2139,8 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "useappdispatch()",
-      "community_name": "Application Startup",
-      "id": "src_store_hooks_useappdispatch"
+      "id": "src_store_hooks_useappdispatch",
+      "community_name": "Application Startup"
     },
     {
       "label": "store/index.ts",
@@ -2121,10 +2148,10 @@
       "source_file": "src/store/index.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "store/index.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_index"
+      "id": "src_store_index",
+      "community_name": "Internationalization State"
     },
     {
       "label": "store",
@@ -2132,10 +2159,10 @@
       "source_file": "src/store/index.ts",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "store",
-      "community_name": "Internationalization State",
-      "id": "src_store_index_store"
+      "id": "src_store_index_store",
+      "community_name": "Internationalization State"
     },
     {
       "label": "RootState",
@@ -2143,10 +2170,10 @@
       "source_file": "src/store/index.ts",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "rootstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_index_rootstate"
+      "id": "src_store_index_rootstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "AppDispatch",
@@ -2154,10 +2181,10 @@
       "source_file": "src/store/index.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "appdispatch",
-      "community_name": "Internationalization State",
-      "id": "src_store_index_appdispatch"
+      "id": "src_store_index_appdispatch",
+      "community_name": "Internationalization State"
     },
     {
       "label": "syncListener.ts",
@@ -2165,10 +2192,10 @@
       "source_file": "src/store/middleware/syncListener.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 8,
       "norm_label": "synclistener.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_middleware_synclistener"
+      "id": "src_store_middleware_synclistener",
+      "community_name": "Internationalization State"
     },
     {
       "label": "syncListenerMiddleware",
@@ -2176,10 +2203,10 @@
       "source_file": "src/store/middleware/syncListener.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "synclistenermiddleware",
-      "community_name": "Internationalization State",
-      "id": "src_store_middleware_synclistener_synclistenermiddleware"
+      "id": "src_store_middleware_synclistener_synclistenermiddleware",
+      "community_name": "Internationalization State"
     },
     {
       "label": "startAppListening",
@@ -2187,10 +2214,10 @@
       "source_file": "src/store/middleware/syncListener.ts",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 1,
+      "community": 8,
       "norm_label": "startapplistening",
-      "community_name": "Internationalization State",
-      "id": "src_store_middleware_synclistener_startapplistening"
+      "id": "src_store_middleware_synclistener_startapplistening",
+      "community_name": "Internationalization State"
     },
     {
       "label": "reservationsSlice.ts",
@@ -2198,10 +2225,10 @@
       "source_file": "src/store/reservationsSlice.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "reservationsslice.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_reservationsslice"
+      "id": "src_store_reservationsslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "ReservationsState",
@@ -2209,10 +2236,10 @@
       "source_file": "src/store/reservationsSlice.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "reservationsstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_reservationsslice_reservationsstate"
+      "id": "src_store_reservationsslice_reservationsstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "initialState",
@@ -2220,10 +2247,10 @@
       "source_file": "src/store/reservationsSlice.ts",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "initialstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_reservationsslice_initialstate"
+      "id": "src_store_reservationsslice_initialstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "reservationsSlice",
@@ -2231,10 +2258,10 @@
       "source_file": "src/store/reservationsSlice.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "reservationsslice",
-      "community_name": "Internationalization State",
-      "id": "src_store_reservationsslice_reservationsslice"
+      "id": "src_store_reservationsslice_reservationsslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "settingsSlice.ts",
@@ -2242,10 +2269,10 @@
       "source_file": "src/store/settingsSlice.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "settingsslice.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_settingsslice"
+      "id": "src_store_settingsslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "SettingsState",
@@ -2255,8 +2282,8 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "settingsstate",
-      "community_name": "Sheets Integration",
-      "id": "src_store_settingsslice_settingsstate"
+      "id": "src_store_settingsslice_settingsstate",
+      "community_name": "Sheets Integration"
     },
     {
       "label": "initialState",
@@ -2264,10 +2291,10 @@
       "source_file": "src/store/settingsSlice.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "initialstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_settingsslice_initialstate"
+      "id": "src_store_settingsslice_initialstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "settingsSlice",
@@ -2275,10 +2302,10 @@
       "source_file": "src/store/settingsSlice.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "settingsslice",
-      "community_name": "Internationalization State",
-      "id": "src_store_settingsslice_settingsslice"
+      "id": "src_store_settingsslice_settingsslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "taxesSlice.ts",
@@ -2286,10 +2313,10 @@
       "source_file": "src/store/taxesSlice.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "taxesslice.ts",
-      "community_name": "Internationalization State",
-      "id": "src_store_taxesslice"
+      "id": "src_store_taxesslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "TaxesState",
@@ -2297,10 +2324,10 @@
       "source_file": "src/store/taxesSlice.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "taxesstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_taxesslice_taxesstate"
+      "id": "src_store_taxesslice_taxesstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "initialState",
@@ -2308,10 +2335,10 @@
       "source_file": "src/store/taxesSlice.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "initialstate",
-      "community_name": "Internationalization State",
-      "id": "src_store_taxesslice_initialstate"
+      "id": "src_store_taxesslice_initialstate",
+      "community_name": "Internationalization State"
     },
     {
       "label": "taxesSlice",
@@ -2319,10 +2346,10 @@
       "source_file": "src/store/taxesSlice.ts",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "taxesslice",
-      "community_name": "Internationalization State",
-      "id": "src_store_taxesslice_taxesslice"
+      "id": "src_store_taxesslice_taxesslice",
+      "community_name": "Internationalization State"
     },
     {
       "label": "setup.ts",
@@ -2330,10 +2357,10 @@
       "source_file": "src/test/setup.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 49,
+      "community": 36,
       "norm_label": "setup.ts",
-      "community_name": "Test Setup",
-      "id": "src_test_setup"
+      "id": "src_test_setup",
+      "community_name": "Test Setup"
     },
     {
       "label": "types/index.ts",
@@ -2341,10 +2368,10 @@
       "source_file": "src/types/index.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "types/index.ts",
-      "community_name": "Internationalization State",
-      "id": "src_types_index"
+      "id": "src_types_index",
+      "community_name": "Internationalization State"
     },
     {
       "label": "Reservation",
@@ -2352,10 +2379,10 @@
       "source_file": "src/types/index.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "reservation",
-      "community_name": "Internationalization State",
-      "id": "src_types_index_reservation"
+      "id": "src_types_index_reservation",
+      "community_name": "Internationalization State"
     },
     {
       "label": "ExpenseCategory",
@@ -2363,10 +2390,10 @@
       "source_file": "src/types/index.ts",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "expensecategory",
-      "community_name": "Internationalization State",
-      "id": "src_types_index_expensecategory"
+      "id": "src_types_index_expensecategory",
+      "community_name": "Internationalization State"
     },
     {
       "label": "Expense",
@@ -2376,8 +2403,8 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "expense",
-      "community_name": "Sheets Integration",
-      "id": "src_types_index_expense"
+      "id": "src_types_index_expense",
+      "community_name": "Sheets Integration"
     },
     {
       "label": "MonthlyTaxSummary",
@@ -2385,10 +2412,10 @@
       "source_file": "src/types/index.ts",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "monthlytaxsummary",
-      "community_name": "Internationalization State",
-      "id": "src_types_index_monthlytaxsummary"
+      "id": "src_types_index_monthlytaxsummary",
+      "community_name": "Internationalization State"
     },
     {
       "label": "AppSettings",
@@ -2398,8 +2425,8 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "appsettings",
-      "community_name": "Sheets Integration",
-      "id": "src_types_index_appsettings"
+      "id": "src_types_index_appsettings",
+      "community_name": "Sheets Integration"
     },
     {
       "label": "LocalConfig",
@@ -2407,10 +2434,10 @@
       "source_file": "src/types/index.ts",
       "source_location": "L48",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "localconfig",
-      "community_name": "Internationalization State",
-      "id": "src_types_index_localconfig"
+      "id": "src_types_index_localconfig",
+      "community_name": "Internationalization State"
     },
     {
       "label": "TaxCalculator",
@@ -2420,8 +2447,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": "taxcalculator",
-      "community_name": "Tax Calculator",
-      "id": "src_types_index_taxcalculator"
+      "id": "src_types_index_taxcalculator",
+      "community_name": "Tax Calculator"
     },
     {
       "label": ".calculateTax()",
@@ -2431,8 +2458,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": ".calculatetax()",
-      "community_name": "Tax Calculator",
-      "id": "src_types_index_taxcalculator_calculatetax"
+      "id": "src_types_index_taxcalculator_calculatetax",
+      "community_name": "Tax Calculator"
     },
     {
       "label": "TaxBracket",
@@ -2442,8 +2469,8 @@
       "_origin": "ast",
       "community": 6,
       "norm_label": "taxbracket",
-      "community_name": "Tax Calculator",
-      "id": "src_types_index_taxbracket"
+      "id": "src_types_index_taxbracket",
+      "community_name": "Tax Calculator"
     },
     {
       "label": "currency.ts",
@@ -2453,8 +2480,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "currency.ts",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_currency"
+      "id": "src_utils_currency",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "formatCurrency()",
@@ -2464,8 +2491,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "formatcurrency()",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_currency_formatcurrency"
+      "id": "src_utils_currency_formatcurrency",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "formatPercentage()",
@@ -2475,8 +2502,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "formatpercentage()",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_currency_formatpercentage"
+      "id": "src_utils_currency_formatpercentage",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "yoyCalculations.ts",
@@ -2486,8 +2513,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "yoycalculations.ts",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_yoycalculations"
+      "id": "src_utils_yoycalculations",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "YearMonthData",
@@ -2497,8 +2524,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "yearmonthdata",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_yoycalculations_yearmonthdata"
+      "id": "src_utils_yoycalculations_yearmonthdata",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "YearOverYearData",
@@ -2508,8 +2535,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "yearoveryeardata",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_yoycalculations_yearoveryeardata"
+      "id": "src_utils_yoycalculations_yearoveryeardata",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "calculateYearProfit()",
@@ -2519,8 +2546,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "calculateyearprofit()",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_yoycalculations_calculateyearprofit"
+      "id": "src_utils_yoycalculations_calculateyearprofit",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "getAvailableYears()",
@@ -2530,8 +2557,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "getavailableyears()",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_yoycalculations_getavailableyears"
+      "id": "src_utils_yoycalculations_getavailableyears",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "calculateYoYAccumulatedProfit()",
@@ -2541,8 +2568,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "calculateyoyaccumulatedprofit()",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_yoycalculations_calculateyoyaccumulatedprofit"
+      "id": "src_utils_yoycalculations_calculateyoyaccumulatedprofit",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "getYearLabels()",
@@ -2552,8 +2579,8 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "getyearlabels()",
-      "community_name": "Dashboard Components",
-      "id": "src_utils_yoycalculations_getyearlabels"
+      "id": "src_utils_yoycalculations_getyearlabels",
+      "community_name": "Dashboard Components"
     },
     {
       "label": "vite-env.d.ts",
@@ -2561,10 +2588,10 @@
       "source_file": "src/vite-env.d.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 50,
+      "community": 37,
       "norm_label": "vite-env.d.ts",
-      "community_name": "Vite Types",
-      "id": "src_vite_env_d"
+      "id": "src_vite_env_d",
+      "community_name": "Vite Types"
     },
     {
       "label": "tsconfig.json",
@@ -2572,10 +2599,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "tsconfig.json",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig"
+      "id": "tsconfig",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "compilerOptions",
@@ -2583,10 +2610,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "compileroptions",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions"
+      "id": "tsconfig_compileroptions",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "target",
@@ -2594,10 +2621,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "target",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_target"
+      "id": "tsconfig_compileroptions_target",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "useDefineForClassFields",
@@ -2605,10 +2632,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "usedefineforclassfields",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_usedefineforclassfields"
+      "id": "tsconfig_compileroptions_usedefineforclassfields",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "lib",
@@ -2616,10 +2643,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "lib",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_lib"
+      "id": "tsconfig_compileroptions_lib",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "ES2020",
@@ -2627,10 +2654,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "es2020",
-      "community_name": "TypeScript Configuration",
-      "id": "ref_es2020"
+      "id": "ref_es2020",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "DOM",
@@ -2638,10 +2665,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "dom",
-      "community_name": "TypeScript Configuration",
-      "id": "ref_dom"
+      "id": "ref_dom",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "DOM.Iterable",
@@ -2649,10 +2676,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "dom.iterable",
-      "community_name": "TypeScript Configuration",
-      "id": "ref_dom_iterable"
+      "id": "ref_dom_iterable",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "module",
@@ -2660,10 +2687,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "module",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_module"
+      "id": "tsconfig_compileroptions_module",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "skipLibCheck",
@@ -2671,10 +2698,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "skiplibcheck",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_skiplibcheck"
+      "id": "tsconfig_compileroptions_skiplibcheck",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "moduleResolution",
@@ -2682,10 +2709,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "moduleresolution",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_moduleresolution"
+      "id": "tsconfig_compileroptions_moduleresolution",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "allowImportingTsExtensions",
@@ -2693,10 +2720,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "allowimportingtsextensions",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_allowimportingtsextensions"
+      "id": "tsconfig_compileroptions_allowimportingtsextensions",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "resolveJsonModule",
@@ -2704,10 +2731,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "resolvejsonmodule",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_resolvejsonmodule"
+      "id": "tsconfig_compileroptions_resolvejsonmodule",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "isolatedModules",
@@ -2715,10 +2742,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "isolatedmodules",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_isolatedmodules"
+      "id": "tsconfig_compileroptions_isolatedmodules",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "noEmit",
@@ -2726,10 +2753,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "noemit",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_noemit"
+      "id": "tsconfig_compileroptions_noemit",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "jsx",
@@ -2737,10 +2764,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "jsx",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_jsx"
+      "id": "tsconfig_compileroptions_jsx",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "strict",
@@ -2748,10 +2775,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "strict",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_strict"
+      "id": "tsconfig_compileroptions_strict",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "noUnusedLocals",
@@ -2759,10 +2786,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "nounusedlocals",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_nounusedlocals"
+      "id": "tsconfig_compileroptions_nounusedlocals",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "noUnusedParameters",
@@ -2770,10 +2797,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "nounusedparameters",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_nounusedparameters"
+      "id": "tsconfig_compileroptions_nounusedparameters",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "noFallthroughCasesInSwitch",
@@ -2781,10 +2808,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "nofallthroughcasesinswitch",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_compileroptions_nofallthroughcasesinswitch"
+      "id": "tsconfig_compileroptions_nofallthroughcasesinswitch",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "include",
@@ -2792,10 +2819,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "include",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_include"
+      "id": "tsconfig_include",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "src",
@@ -2803,10 +2830,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "src",
-      "community_name": "TypeScript Configuration",
-      "id": "ref_src"
+      "id": "ref_src",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "references",
@@ -2814,10 +2841,10 @@
       "source_file": "tsconfig.json",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "norm_label": "references",
-      "community_name": "TypeScript Configuration",
-      "id": "tsconfig_references"
+      "id": "tsconfig_references",
+      "community_name": "TypeScript Configuration"
     },
     {
       "label": "tsconfig.node.json",
@@ -2825,10 +2852,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "tsconfig.node.json",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node"
+      "id": "tsconfig_node",
+      "community_name": "Build Configuration"
     },
     {
       "label": "compilerOptions",
@@ -2836,10 +2863,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "compileroptions",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_compileroptions"
+      "id": "tsconfig_node_compileroptions",
+      "community_name": "Build Configuration"
     },
     {
       "label": "composite",
@@ -2847,10 +2874,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "composite",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_compileroptions_composite"
+      "id": "tsconfig_node_compileroptions_composite",
+      "community_name": "Build Configuration"
     },
     {
       "label": "skipLibCheck",
@@ -2858,10 +2885,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "skiplibcheck",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_compileroptions_skiplibcheck"
+      "id": "tsconfig_node_compileroptions_skiplibcheck",
+      "community_name": "Build Configuration"
     },
     {
       "label": "module",
@@ -2869,10 +2896,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "module",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_compileroptions_module"
+      "id": "tsconfig_node_compileroptions_module",
+      "community_name": "Build Configuration"
     },
     {
       "label": "moduleResolution",
@@ -2880,10 +2907,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "moduleresolution",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_compileroptions_moduleresolution"
+      "id": "tsconfig_node_compileroptions_moduleresolution",
+      "community_name": "Build Configuration"
     },
     {
       "label": "allowSyntheticDefaultImports",
@@ -2891,10 +2918,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "allowsyntheticdefaultimports",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_compileroptions_allowsyntheticdefaultimports"
+      "id": "tsconfig_node_compileroptions_allowsyntheticdefaultimports",
+      "community_name": "Build Configuration"
     },
     {
       "label": "strict",
@@ -2902,10 +2929,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "strict",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_compileroptions_strict"
+      "id": "tsconfig_node_compileroptions_strict",
+      "community_name": "Build Configuration"
     },
     {
       "label": "include",
@@ -2913,10 +2940,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "include",
-      "community_name": "Build Configuration",
-      "id": "tsconfig_node_include"
+      "id": "tsconfig_node_include",
+      "community_name": "Build Configuration"
     },
     {
       "label": "vite.config.ts",
@@ -2924,10 +2951,10 @@
       "source_file": "tsconfig.node.json",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 9,
+      "community": 7,
       "norm_label": "vite.config.ts",
-      "community_name": "Build Configuration",
-      "id": "ref_vite_config_ts"
+      "id": "ref_vite_config_ts",
+      "community_name": "Build Configuration"
     },
     {
       "label": "vite.config.ts",
@@ -2935,10 +2962,10 @@
       "source_file": "vite.config.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 51,
+      "community": 38,
       "norm_label": "vite.config.ts",
-      "community_name": "Vite Config",
-      "id": "vite_config"
+      "id": "vite_config",
+      "community_name": "Vite Config"
     },
     {
       "label": "useAppSelector",
@@ -2948,8 +2975,64 @@
       "_origin": "ast",
       "community": 3,
       "norm_label": "useappselector",
-      "community_name": "Application Startup",
-      "id": "src_store_hooks_useappselector"
+      "id": "src_store_hooks_useappselector",
+      "community_name": "Application Startup"
+    },
+    {
+      "label": "Stayoo",
+      "file_type": "concept",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "norm_label": "stayoo",
+      "id": "agents_stayoo",
+      "community_name": "Architecture Overview"
+    },
+    {
+      "label": "Google Sheets",
+      "file_type": "concept",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "norm_label": "google sheets",
+      "id": "agents_google_sheets",
+      "community_name": "Architecture Overview"
+    },
+    {
+      "label": "Redux Toolkit",
+      "file_type": "concept",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "norm_label": "redux toolkit",
+      "id": "agents_redux_toolkit",
+      "community_name": "Architecture Overview"
+    },
+    {
+      "label": "BrazilianRentalTaxCalculator",
+      "file_type": "code",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "norm_label": "brazilianrentaltaxcalculator",
+      "id": "agents_brazilian_rental_tax_calculator",
+      "community_name": "Architecture Overview"
     },
     {
       "label": "Paid Reservation",
@@ -2960,10 +3043,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 19,
+      "community": 18,
       "norm_label": "paid reservation",
-      "community_name": "Reservation Status",
-      "id": "context_paid_reservation"
+      "id": "context_paid_reservation",
+      "community_name": "Reservation Status"
     },
     {
       "label": "Next Reservation",
@@ -2974,10 +3057,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 19,
+      "community": 18,
       "norm_label": "next reservation",
-      "community_name": "Reservation Status",
-      "id": "context_next_reservation"
+      "id": "context_next_reservation",
+      "community_name": "Reservation Status"
     },
     {
       "label": "Google OAuth",
@@ -2990,8 +3073,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "google oauth",
-      "community_name": "OAuth Configuration",
-      "id": "oauth_troubleshooting_google_oauth"
+      "id": "oauth_troubleshooting_google_oauth",
+      "community_name": "OAuth Configuration"
     },
     {
       "label": "Google Sheets API",
@@ -3004,8 +3087,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "google sheets api",
-      "community_name": "OAuth Configuration",
-      "id": "oauth_troubleshooting_google_sheets_api"
+      "id": "oauth_troubleshooting_google_sheets_api",
+      "community_name": "OAuth Configuration"
     },
     {
       "label": "VITE_GOOGLE_CLIENT_ID",
@@ -3018,8 +3101,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "vite_google_client_id",
-      "community_name": "OAuth Configuration",
-      "id": "oauth_troubleshooting_vite_google_client_id"
+      "id": "oauth_troubleshooting_vite_google_client_id",
+      "community_name": "OAuth Configuration"
     },
     {
       "label": "Stayoo",
@@ -3030,10 +3113,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 10,
+      "community": 9,
       "norm_label": "stayoo",
-      "community_name": "Product Domain",
-      "id": "readme_stayoo"
+      "id": "readme_stayoo",
+      "community_name": "Product Domain"
     },
     {
       "label": "Reservations",
@@ -3044,10 +3127,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 10,
+      "community": 9,
       "norm_label": "reservations",
-      "community_name": "Product Domain",
-      "id": "readme_reservations"
+      "id": "readme_reservations",
+      "community_name": "Product Domain"
     },
     {
       "label": "Expenses",
@@ -3058,10 +3141,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 10,
+      "community": 9,
       "norm_label": "expenses",
-      "community_name": "Product Domain",
-      "id": "readme_expenses"
+      "id": "readme_expenses",
+      "community_name": "Product Domain"
     },
     {
       "label": "Brazilian Rental Tax",
@@ -3072,10 +3155,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 10,
+      "community": 9,
       "norm_label": "brazilian rental tax",
-      "community_name": "Product Domain",
-      "id": "readme_brazilian_rental_tax"
+      "id": "readme_brazilian_rental_tax",
+      "community_name": "Product Domain"
     },
     {
       "label": "Google Sheets",
@@ -3086,10 +3169,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 10,
+      "community": 9,
       "norm_label": "google sheets",
-      "community_name": "Product Domain",
-      "id": "readme_google_sheets"
+      "id": "readme_google_sheets",
+      "community_name": "Product Domain"
     },
     {
       "label": "Google OAuth 2.0",
@@ -3100,10 +3183,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 46,
+      "community": 33,
       "norm_label": "google oauth 2.0",
-      "community_name": "OAuth Protocol",
-      "id": "readme_google_oauth"
+      "id": "readme_google_oauth",
+      "community_name": "OAuth Protocol"
     },
     {
       "label": "GoogleSheetsService",
@@ -3114,10 +3197,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 35,
+      "community": 22,
       "norm_label": "googlesheetsservice",
-      "community_name": "Sheets Data Loading",
-      "id": "readme_google_sheets_service"
+      "id": "readme_google_sheets_service",
+      "community_name": "Sheets Data Loading"
     },
     {
       "label": "useDataSync",
@@ -3128,10 +3211,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 35,
+      "community": 22,
       "norm_label": "usedatasync",
-      "community_name": "Sheets Data Loading",
-      "id": "readme_use_data_sync"
+      "id": "readme_use_data_sync",
+      "community_name": "Sheets Data Loading"
     },
     {
       "label": "Google OAuth Configuration Checker",
@@ -3144,8 +3227,8 @@
       "contributor": null,
       "community": 11,
       "norm_label": "google oauth configuration checker",
-      "community_name": "OAuth Configuration",
-      "id": "check_config_google_oauth_configuration_checker"
+      "id": "check_config_google_oauth_configuration_checker",
+      "community_name": "OAuth Configuration"
     },
     {
       "label": "CONTEXT.md",
@@ -3156,10 +3239,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 38,
+      "community": 25,
       "norm_label": "context.md",
-      "community_name": "Project Context",
-      "id": "docs_agents_domain_context_md"
+      "id": "docs_agents_domain_context_md",
+      "community_name": "Project Context"
     },
     {
       "label": "Local Markdown Issue Tracker",
@@ -3170,10 +3253,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 39,
+      "community": 26,
       "norm_label": "local markdown issue tracker",
-      "community_name": "Issue Tracking",
-      "id": "docs_agents_issue_tracker_local_markdown"
+      "id": "docs_agents_issue_tracker_local_markdown",
+      "community_name": "Issue Tracking"
     },
     {
       "label": "Canonical Triage Roles",
@@ -3184,10 +3267,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 40,
+      "community": 27,
       "norm_label": "canonical triage roles",
-      "community_name": "Issue Triage",
-      "id": "docs_agents_triage_labels"
+      "id": "docs_agents_triage_labels",
+      "community_name": "Issue Triage"
     },
     {
       "label": "Expense",
@@ -3200,8 +3283,8 @@
       "contributor": null,
       "community": 12,
       "norm_label": "expense",
-      "community_name": "Expense Management",
-      "id": "espenses_expense"
+      "id": "espenses_expense",
+      "community_name": "Expense Management"
     },
     {
       "label": "ExpensesMonth",
@@ -3214,8 +3297,8 @@
       "contributor": null,
       "community": 12,
       "norm_label": "expensesmonth",
-      "community_name": "Expense Management",
-      "id": "espenses_expenses_month"
+      "id": "espenses_expenses_month",
+      "community_name": "Expense Management"
     },
     {
       "label": "NewExpense",
@@ -3228,8 +3311,8 @@
       "contributor": null,
       "community": 12,
       "norm_label": "newexpense",
-      "community_name": "Expense Management",
-      "id": "espenses_new_expense"
+      "id": "espenses_new_expense",
+      "community_name": "Expense Management"
     },
     {
       "label": "expensesSlice",
@@ -3242,8 +3325,8 @@
       "contributor": null,
       "community": 12,
       "norm_label": "expensesslice",
-      "community_name": "Expense Management",
-      "id": "espenses_expenses_slice"
+      "id": "espenses_expenses_slice",
+      "community_name": "Expense Management"
     },
     {
       "label": "Content Security Policy",
@@ -3254,10 +3337,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 42,
+      "community": 29,
       "norm_label": "content security policy",
-      "community_name": "Security Policy",
-      "id": "index_content_security_policy"
+      "id": "index_content_security_policy",
+      "community_name": "Security Policy"
     },
     {
       "label": "Google Authentication",
@@ -3268,10 +3351,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 24,
+      "community": 19,
       "norm_label": "google authentication",
-      "community_name": "Google Authentication",
-      "id": "onboarding_google_authentication"
+      "id": "onboarding_google_authentication",
+      "community_name": "Google Authentication"
     },
     {
       "label": "Data Sync",
@@ -3284,8 +3367,8 @@
       "contributor": null,
       "community": 16,
       "norm_label": "data sync",
-      "community_name": "Data Synchronization",
-      "id": "onboarding_data_sync"
+      "id": "onboarding_data_sync",
+      "community_name": "Data Synchronization"
     },
     {
       "label": "GoogleSheetsService",
@@ -3298,8 +3381,8 @@
       "contributor": null,
       "community": 16,
       "norm_label": "googlesheetsservice",
-      "community_name": "Data Synchronization",
-      "id": "onboarding_google_sheets_service"
+      "id": "onboarding_google_sheets_service",
+      "community_name": "Data Synchronization"
     },
     {
       "label": "GoogleAuthContext",
@@ -3310,10 +3393,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 24,
+      "community": 19,
       "norm_label": "googleauthcontext",
-      "community_name": "Google Authentication",
-      "id": "onboarding_google_auth_context"
+      "id": "onboarding_google_auth_context",
+      "community_name": "Google Authentication"
     },
     {
       "label": "Redux Store",
@@ -3326,8 +3409,8 @@
       "contributor": null,
       "community": 16,
       "norm_label": "redux store",
-      "community_name": "Data Synchronization",
-      "id": "onboarding_redux_store"
+      "id": "onboarding_redux_store",
+      "community_name": "Data Synchronization"
     },
     {
       "label": "Google Sheets",
@@ -3338,10 +3421,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 31,
       "norm_label": "google sheets",
-      "community_name": "Sheets Concept",
-      "id": "prd_google_sheets"
+      "id": "prd_google_sheets",
+      "community_name": "Sheets Concept"
     },
     {
       "label": "BrazilianRentalTaxCalculator",
@@ -3352,10 +3435,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 33,
+      "community": 20,
       "norm_label": "brazilianrentaltaxcalculator",
-      "community_name": "Tax Calculations",
-      "id": "prd_brazilian_rental_tax_calculator"
+      "id": "prd_brazilian_rental_tax_calculator",
+      "community_name": "Tax Calculations"
     },
     {
       "label": "Reservation",
@@ -3366,10 +3449,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 32,
       "norm_label": "reservation",
-      "community_name": "Reservation Entity",
-      "id": "prd_reservation"
+      "id": "prd_reservation",
+      "community_name": "Reservation Entity"
     },
     {
       "label": "Expense",
@@ -3380,10 +3463,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 43,
+      "community": 30,
       "norm_label": "expense",
-      "community_name": "Expense Entity",
-      "id": "prd_expense"
+      "id": "prd_expense",
+      "community_name": "Expense Entity"
     },
     {
       "label": "MonthlyTaxSummary",
@@ -3394,10 +3477,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 33,
+      "community": 20,
       "norm_label": "monthlytaxsummary",
-      "community_name": "Tax Calculations",
-      "id": "prd_monthly_tax_summary"
+      "id": "prd_monthly_tax_summary",
+      "community_name": "Tax Calculations"
     },
     {
       "label": "Reservation",
@@ -3408,10 +3491,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 18,
+      "community": 17,
       "norm_label": "reservation",
-      "community_name": "Reservation Models",
-      "id": "reservations_reservation"
+      "id": "reservations_reservation",
+      "community_name": "Reservation Models"
     },
     {
       "label": "ReservationsMonth",
@@ -3422,10 +3505,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 47,
+      "community": 34,
       "norm_label": "reservationsmonth",
-      "community_name": "Reservation Tests",
-      "id": "reservations_reservations_month"
+      "id": "reservations_reservations_month",
+      "community_name": "Reservation Tests"
     },
     {
       "label": "NewReservation",
@@ -3436,10 +3519,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 18,
+      "community": 17,
       "norm_label": "newreservation",
-      "community_name": "Reservation Models",
-      "id": "reservations_new_reservation"
+      "id": "reservations_new_reservation",
+      "community_name": "Reservation Models"
     },
     {
       "label": "AppSettings",
@@ -3450,10 +3533,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 18,
+      "community": 17,
       "norm_label": "appsettings",
-      "community_name": "Reservation Models",
-      "id": "reservations_app_settings"
+      "id": "reservations_app_settings",
+      "community_name": "Reservation Models"
     },
     {
       "label": "AppSettings",
@@ -3464,10 +3547,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 23,
       "norm_label": "appsettings",
-      "community_name": "Sheet Settings",
-      "id": "settings_app_settings"
+      "id": "settings_app_settings",
+      "community_name": "Sheet Settings"
     },
     {
       "label": "persistAuth",
@@ -3478,10 +3561,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 48,
+      "community": 35,
       "norm_label": "persistauth",
-      "community_name": "Auth Persistence",
-      "id": "settings_persist_auth"
+      "id": "settings_persist_auth",
+      "community_name": "Auth Persistence"
     },
     {
       "label": "Google Sheet ID",
@@ -3492,10 +3575,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 23,
       "norm_label": "google sheet id",
-      "community_name": "Sheet Settings",
-      "id": "settings_google_sheet_id"
+      "id": "settings_google_sheet_id",
+      "community_name": "Sheet Settings"
     },
     {
       "label": "MonthlyTaxSummary",
@@ -3508,8 +3591,8 @@
       "contributor": null,
       "community": 15,
       "norm_label": "monthlytaxsummary",
-      "community_name": "Tax Summary",
-      "id": "taxes_monthly_tax_summary"
+      "id": "taxes_monthly_tax_summary",
+      "community_name": "Tax Summary"
     },
     {
       "label": "calculateMonthlyTax",
@@ -3522,8 +3605,8 @@
       "contributor": null,
       "community": 15,
       "norm_label": "calculatemonthlytax",
-      "community_name": "Tax Summary",
-      "id": "taxes_calculate_monthly_tax"
+      "id": "taxes_calculate_monthly_tax",
+      "community_name": "Tax Summary"
     },
     {
       "label": "BrazilianRentalTaxCalculator",
@@ -3536,8 +3619,8 @@
       "contributor": null,
       "community": 15,
       "norm_label": "brazilianrentaltaxcalculator",
-      "community_name": "Tax Summary",
-      "id": "taxes_brazilian_rental_tax_calculator"
+      "id": "taxes_brazilian_rental_tax_calculator",
+      "community_name": "Tax Summary"
     },
     {
       "label": "Paid Tax Months",
@@ -3550,8 +3633,8 @@
       "contributor": null,
       "community": 15,
       "norm_label": "paid tax months",
-      "community_name": "Tax Summary",
-      "id": "taxes_paid_tax_months"
+      "id": "taxes_paid_tax_months",
+      "community_name": "Tax Summary"
     },
     {
       "label": "Vite logo",
@@ -3560,10 +3643,10 @@
       "description": "A vector logo with a purple-to-cyan angular Vite mark and a yellow lightning bolt.",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "community": 34,
+      "community": 21,
       "norm_label": "vite logo",
-      "community_name": "Vite Branding",
-      "id": "public_vite_vite_logo"
+      "id": "public_vite_vite_logo",
+      "community_name": "Vite Branding"
     },
     {
       "label": "Vite",
@@ -3572,10 +3655,10 @@
       "description": "The Vite development tooling brand represented by the logo asset.",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
-      "community": 34,
+      "community": 21,
       "norm_label": "vite",
-      "community_name": "Vite Branding",
-      "id": "public_vite_vite"
+      "id": "public_vite_vite",
+      "community_name": "Vite Branding"
     },
     {
       "label": "React logo asset",
@@ -3583,10 +3666,10 @@
       "source_file": "src/assets/react.svg",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "community": 37,
+      "community": 24,
       "norm_label": "react logo asset",
-      "community_name": "React Branding",
-      "id": "src_assets_react"
+      "id": "src_assets_react",
+      "community_name": "React Branding"
     },
     {
       "label": "React",
@@ -3594,134 +3677,180 @@
       "source_file": "src/assets/react.svg",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "community": 37,
+      "community": 24,
       "norm_label": "react",
-      "community_name": "React Branding",
-      "id": "src_assets_react_react"
-    },
-    {
-      "label": "Dashboard.test.tsx",
-      "file_type": "code",
-      "source_file": "src/features/dashboard/Dashboard.test.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_features_dashboard_dashboard_test",
-      "community": 3,
-      "norm_label": "dashboard.test.tsx"
-    },
-    {
-      "label": "Dashboard.tsx",
-      "file_type": "code",
-      "source_file": "src/features/dashboard/Dashboard.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_features_dashboard_dashboard",
-      "community": 3,
-      "norm_label": "dashboard.tsx"
-    },
-    {
-      "label": "Dashboard()",
-      "file_type": "code",
-      "source_file": "src/features/dashboard/Dashboard.tsx",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "src_features_dashboard_dashboard_dashboard",
-      "community": 3,
-      "norm_label": "dashboard()"
-    },
-    {
-      "label": "AGENTS.md",
-      "file_type": "document",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "agents",
-      "community": 7,
-      "norm_label": "agents.md"
-    },
-    {
-      "label": "GoogleSheetsService.ts",
-      "file_type": "code",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "google_sheets_service",
-      "community": 7,
-      "norm_label": "googlesheetsservice.ts"
-    },
-    {
-      "label": "useDataSync.ts",
-      "file_type": "code",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "use_data_sync",
-      "community": 7,
-      "norm_label": "usedatasync.ts"
-    },
-    {
-      "label": "syncListener.ts",
-      "file_type": "code",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "store_middleware_sync_listener",
-      "community": 7,
-      "norm_label": "synclistener.ts"
-    },
-    {
-      "label": "BrazilianRentalTaxCalculator.ts",
-      "file_type": "code",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "brazilian_rental_tax_calculator",
-      "community": 7,
-      "norm_label": "brazilianrentaltaxcalculator.ts"
-    },
-    {
-      "label": "graphify",
-      "file_type": "concept",
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "graphify",
-      "community": 7,
-      "norm_label": "graphify"
-    },
-    {
-      "label": ".serena/project.yml",
-      "file_type": "document",
-      "source_file": ".serena/project.yml",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "serena_project_config",
-      "community": 17,
-      "norm_label": ".serena/project.yml"
+      "id": "src_assets_react_react",
+      "community_name": "React Branding"
     }
   ],
   "links": [
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.test.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard_test",
+      "target": "src_features_dashboard_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "src_features_dashboard_dashboard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard",
+      "target": "src_features_dashboard_dashboard_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard",
+      "target": "src_utils_taxcalculations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_formatmonth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getallmonths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getmonthname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getmostrecentunpaidmonth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getnextreservation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_formatmonth"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getallmonths"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L131",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getmonthname"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getmostrecentunpaidmonth"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/features/dashboard/Dashboard.tsx",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_dashboard_dashboard_dashboard",
+      "target": "src_utils_taxcalculations_getnextreservation"
+    },
     {
       "relation": "imports_from",
       "context": "import",
@@ -3730,9 +3859,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_tests_taxcalculations_test",
-      "target": "src_utils_taxcalculations"
+      "target": "src_utils_taxcalculations",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3742,9 +3871,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_tests_taxcalculations_test",
-      "target": "src_utils_taxcalculations_getnextreservation"
+      "target": "src_utils_taxcalculations_getnextreservation",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3754,9 +3883,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_tests_taxcalculations_test",
-      "target": "src_utils_taxcalculations_isreservationpaid"
+      "target": "src_utils_taxcalculations_isreservationpaid",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -3849,9 +3978,9 @@
       "source_location": "L79",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_calculatemonthlytax"
+      "target": "src_utils_taxcalculations_calculatemonthlytax",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3860,9 +3989,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_formatmonth"
+      "target": "src_utils_taxcalculations_formatmonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3871,9 +4000,9 @@
       "source_location": "L134",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_formatreservationsforirs"
+      "target": "src_utils_taxcalculations_formatreservationsforirs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3882,9 +4011,9 @@
       "source_location": "L122",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_getallmonths"
+      "target": "src_utils_taxcalculations_getallmonths",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3893,9 +4022,9 @@
       "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_getmonthname"
+      "target": "src_utils_taxcalculations_getmonthname",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3904,9 +4033,9 @@
       "source_location": "L184",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_getmostrecentunpaidmonth"
+      "target": "src_utils_taxcalculations_getmostrecentunpaidmonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3915,9 +4044,9 @@
       "source_location": "L165",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_getnextreservation"
+      "target": "src_utils_taxcalculations_getnextreservation",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3926,9 +4055,9 @@
       "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_groupexpensesbymonth"
+      "target": "src_utils_taxcalculations_groupexpensesbymonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3937,9 +4066,9 @@
       "source_location": "L45",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_groupreservationsbymonth"
+      "target": "src_utils_taxcalculations_groupreservationsbymonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3948,9 +4077,9 @@
       "source_location": "L150",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_isreservationpaid"
+      "target": "src_utils_taxcalculations_isreservationpaid",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3959,9 +4088,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_parsedate"
+      "target": "src_utils_taxcalculations_parsedate",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3970,9 +4099,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations",
-      "target": "src_utils_taxcalculations_parsemonth"
+      "target": "src_utils_taxcalculations_parsemonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -4018,9 +4147,9 @@
       "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_formatmonth",
-      "target": "src_utils_taxcalculations_parsedate"
+      "target": "src_utils_taxcalculations_parsedate",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4030,9 +4159,9 @@
       "source_location": "L171",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getnextreservation",
-      "target": "src_utils_taxcalculations_parsedate"
+      "target": "src_utils_taxcalculations_parsedate",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4042,9 +4171,9 @@
       "source_location": "L151",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_isreservationpaid",
-      "target": "src_utils_taxcalculations_parsedate"
+      "target": "src_utils_taxcalculations_parsedate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4174,9 +4303,9 @@
       "source_location": "L125",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getallmonths",
-      "target": "src_utils_taxcalculations_formatmonth"
+      "target": "src_utils_taxcalculations_formatmonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4186,9 +4315,9 @@
       "source_location": "L192",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getmostrecentunpaidmonth",
-      "target": "src_utils_taxcalculations_formatmonth"
+      "target": "src_utils_taxcalculations_formatmonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4198,9 +4327,9 @@
       "source_location": "L66",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_groupexpensesbymonth",
-      "target": "src_utils_taxcalculations_formatmonth"
+      "target": "src_utils_taxcalculations_formatmonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4210,9 +4339,9 @@
       "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_groupreservationsbymonth",
-      "target": "src_utils_taxcalculations_formatmonth"
+      "target": "src_utils_taxcalculations_formatmonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4246,9 +4375,9 @@
       "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getmonthname",
-      "target": "src_utils_taxcalculations_parsemonth"
+      "target": "src_utils_taxcalculations_parsemonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4342,9 +4471,9 @@
       "source_location": "L201",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getmostrecentunpaidmonth",
-      "target": "src_utils_taxcalculations_groupreservationsbymonth"
+      "target": "src_utils_taxcalculations_groupreservationsbymonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4414,9 +4543,9 @@
       "source_location": "L202",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getmostrecentunpaidmonth",
-      "target": "src_utils_taxcalculations_groupexpensesbymonth"
+      "target": "src_utils_taxcalculations_groupexpensesbymonth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4486,9 +4615,9 @@
       "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getmostrecentunpaidmonth",
-      "target": "src_utils_taxcalculations_calculatemonthlytax"
+      "target": "src_utils_taxcalculations_calculatemonthlytax",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4606,9 +4735,9 @@
       "source_location": "L166",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_utils_taxcalculations_getnextreservation",
-      "target": "src_utils_taxcalculations_isreservationpaid"
+      "target": "src_utils_taxcalculations_isreservationpaid",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4979,16 +5108,6 @@
       "_origin": "ast",
       "confidence_score": 1.0,
       "source": "package_dependencies_react_i18next",
-      "target": "react_i18next"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
       "target": "react_i18next"
     },
     {
@@ -5416,16 +5535,6 @@
       "target": "tailwindcss"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
-      "target": "tailwindcss"
-    },
-    {
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
@@ -5447,16 +5556,6 @@
       "_origin": "ast",
       "confidence_score": 1.0,
       "source": "package_devdependencies_typescript",
-      "target": "typescript"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".serena/project.yml",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "serena_project_config",
       "target": "typescript"
     },
     {
@@ -5493,16 +5592,6 @@
       "_origin": "ast",
       "confidence_score": 1.0,
       "source": "package_devdependencies_vitest",
-      "target": "vitest"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
       "target": "vitest"
     },
     {
@@ -5598,18 +5687,6 @@
       "confidence_score": 1.0,
       "source": "src_app",
       "target": "src_contexts_googleauthcontext_usegoogleauth"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_features_dashboard_dashboard"
     },
     {
       "relation": "imports_from",
@@ -9021,16 +9098,6 @@
       "target": "src_store_taxesslice_taxesstate"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
-      "target": "src_types_index"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/types/index.ts",
@@ -9636,6 +9703,36 @@
       "target": "ref_vite_config_ts"
     },
     {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "agents_stayoo",
+      "target": "agents_brazilian_rental_tax_calculator"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "agents_stayoo",
+      "target": "agents_google_sheets"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "agents_stayoo",
+      "target": "agents_redux_toolkit"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -9870,79 +9967,6 @@
       "source_file": "src/assets/react.svg",
       "source": "src_assets_react",
       "target": "src_assets_react_react"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/dashboard/Dashboard.test.tsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_dashboard_dashboard_test",
-      "target": "src_features_dashboard_dashboard",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/dashboard/Dashboard.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_dashboard_dashboard",
-      "target": "src_features_dashboard_dashboard_dashboard",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
-      "target": "brazilian_rental_tax_calculator"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
-      "target": "google_sheets_service"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
-      "target": "graphify"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
-      "target": "store_middleware_sync_listener"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "agents",
-      "target": "use_data_sync"
     }
   ],
   "hyperedges": [
@@ -9960,5 +9984,5 @@
       "source_file": "onboarding.md"
     }
   ],
-  "built_at_commit": "1e0be627695ba16c02d3d8019311c4f5b1034ce0"
+  "built_at_commit": "54e3a7d7b59755748a330c82b79f3ea287b66ff3"
 }

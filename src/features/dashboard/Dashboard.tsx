@@ -16,11 +16,12 @@ export default function Dashboard() {
   const paidMonths = useAppSelector(state => state.taxes.paidMonths);
   const dataLoaded = useAppSelector(state => state.app.dataLoaded);
 
+  const locale = i18n.language;
+
   // Calculate current month and next 3 months data
   const monthsData = useMemo(() => {
     const now = new Date();
     const months = [];
-    const locale = i18n.language;
 
     // Generate data for current month and next 2 months (3 total)
     for (let i = 0; i < 3; i++) {
@@ -48,7 +49,7 @@ export default function Dashboard() {
     }
 
     return months;
-  }, [reservations, i18n.language]);
+  }, [reservations, locale]);
 
   const currentMonth = monthsData[0];
   const nextMonths = monthsData.slice(1);
@@ -180,7 +181,7 @@ export default function Dashboard() {
 
             <div className="space-y-1">
               <div className="text-2xl font-bold text-emerald-900">
-                {nextReservation.date.split('-').reverse().join('/')}
+                {new Date(nextReservation.date + 'T00:00:00').toLocaleDateString(locale, { day: '2-digit', month: '2-digit' })}
               </div>
               <div className="text-sm text-emerald-700">
                 {nextReservation.nights} {t('dashboard.night', { count: nextReservation.nights })} · R$ {formatCurrency(nextReservation.ownerAmount)}

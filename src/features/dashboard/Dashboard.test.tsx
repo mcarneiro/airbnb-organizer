@@ -49,7 +49,7 @@ describe('Dashboard next reservation card', () => {
 
     // Then
     expect(screen.getByText('Next Reservation')).toBeInTheDocument();
-    expect(screen.getByText('15/06/2025')).toBeInTheDocument();
+    expect(screen.getByText('06/15')).toBeInTheDocument();
     expect(screen.getByText('3 nights · R$ 210,00')).toBeInTheDocument();
     vi.useRealTimers();
   });
@@ -84,7 +84,7 @@ describe('Dashboard next reservation card', () => {
 
     // Then
     expect(screen.getByText('Next Reservation')).toBeInTheDocument();
-    expect(screen.getByText('08/06/2025')).toBeInTheDocument();
+    expect(screen.getByText('06/08')).toBeInTheDocument();
     vi.useRealTimers();
   });
 

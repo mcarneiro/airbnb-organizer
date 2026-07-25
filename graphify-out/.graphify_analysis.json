@@ -1,0 +1,598 @@
+{
+  "communities": {
+    "0": [
+      "src_config_google",
+      "src_config_google_google_config",
+      "src_config_google_sheet_configs",
+      "src_config_i18n",
+      "src_config_i18n_cacheuserlanguage",
+      "src_config_i18n_languagedetector",
+      "src_config_i18n_lookup",
+      "src_features_reservations_reservationsmonth_test",
+      "src_main",
+      "src_services_googlesheetsservice",
+      "src_services_googlesheetsservice_sheetresponse",
+      "src_services_googlesheetsservice_valueresponse",
+      "src_store_appslice",
+      "src_store_appslice_appslice",
+      "src_store_appslice_appstate",
+      "src_store_appslice_initialstate",
+      "src_store_expensesslice",
+      "src_store_expensesslice_expensesslice",
+      "src_store_expensesslice_expensesstate",
+      "src_store_expensesslice_initialstate",
+      "src_store_index",
+      "src_store_index_appdispatch",
+      "src_store_index_rootstate",
+      "src_store_index_store",
+      "src_store_middleware_synclistener_synclistenermiddleware",
+      "src_store_reservationsslice",
+      "src_store_reservationsslice_initialstate",
+      "src_store_reservationsslice_reservationsslice",
+      "src_store_reservationsslice_reservationsstate",
+      "src_store_settingsslice",
+      "src_store_settingsslice_initialstate",
+      "src_store_settingsslice_settingsslice",
+      "src_store_settingsslice_settingsstate",
+      "src_store_taxesslice",
+      "src_store_taxesslice_initialstate",
+      "src_store_taxesslice_taxesslice",
+      "src_store_taxesslice_taxesstate",
+      "src_store_tests_synclistener_test",
+      "src_types_index",
+      "src_types_index_appsettings",
+      "src_types_index_expense",
+      "src_types_index_expensecategory",
+      "src_types_index_localconfig",
+      "src_types_index_monthlytaxsummary",
+      "src_types_index_reservation"
+    ],
+    "1": [
+      "src_components_monthnavigation",
+      "src_components_monthnavigation_monthnavigation",
+      "src_components_monthnavigation_monthnavigationprops",
+      "src_components_yearoveryearchart",
+      "src_components_yearoveryearchart_customtooltipprops",
+      "src_components_yearoveryearchart_tooltippayload",
+      "src_components_yearoveryearchart_yearoveryearchart",
+      "src_components_yearoveryearchart_yearoveryearchartprops",
+      "src_features_expenses_expensesmonth",
+      "src_features_expenses_expensesmonth_expensesmonth",
+      "src_features_reservations_reservationsmonth",
+      "src_features_reservations_reservationsmonth_reservationsmonth",
+      "src_features_taxes_taxes",
+      "src_features_taxes_taxes_taxes",
+      "src_store_middleware_synclistener",
+      "src_store_middleware_synclistener_startapplistening",
+      "src_utils_currency",
+      "src_utils_currency_formatcurrency",
+      "src_utils_currency_formatpercentage",
+      "src_utils_taxcalculations",
+      "src_utils_taxcalculations_calculatemonthlytax",
+      "src_utils_taxcalculations_formatmonth",
+      "src_utils_taxcalculations_formatreservationsforirs",
+      "src_utils_taxcalculations_getallmonths",
+      "src_utils_taxcalculations_getmonthname",
+      "src_utils_taxcalculations_getmostrecentunpaidmonth",
+      "src_utils_taxcalculations_getnextreservation",
+      "src_utils_taxcalculations_groupexpensesbymonth",
+      "src_utils_taxcalculations_groupreservationsbymonth",
+      "src_utils_taxcalculations_isreservationpaid",
+      "src_utils_taxcalculations_parsedate",
+      "src_utils_taxcalculations_parsemonth",
+      "src_utils_tests_taxcalculations_test",
+      "src_utils_yoycalculations",
+      "src_utils_yoycalculations_calculateyearprofit",
+      "src_utils_yoycalculations_calculateyoyaccumulatedprofit",
+      "src_utils_yoycalculations_getavailableyears",
+      "src_utils_yoycalculations_getyearlabels",
+      "src_utils_yoycalculations_yearmonthdata",
+      "src_utils_yoycalculations_yearoveryeardata"
+    ],
+    "2": [
+      "i18next",
+      "i18next_browser_languagedetector",
+      "package",
+      "package_dependencies",
+      "package_dependencies_i18next",
+      "package_dependencies_i18next_browser_languagedetector",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_react_oauth_google",
+      "package_dependencies_react_redux",
+      "package_dependencies_react_router_dom",
+      "package_dependencies_recharts",
+      "package_dependencies_reduxjs_toolkit",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_lint",
+      "package_scripts_preview",
+      "package_scripts_test",
+      "package_scripts_test_ui",
+      "package_type",
+      "package_version",
+      "react",
+      "react_dom",
+      "react_oauth_google",
+      "react_redux",
+      "react_router_dom",
+      "recharts",
+      "reduxjs_toolkit"
+    ],
+    "3": [
+      "src_app",
+      "src_app_app",
+      "src_app_getcurrentmonth",
+      "src_app_rationale_38",
+      "src_components_loadingscreen",
+      "src_components_loadingscreen_loadingscreen",
+      "src_contexts_googleauthcontext",
+      "src_contexts_googleauthcontext_getstorage",
+      "src_contexts_googleauthcontext_googleauthcontext",
+      "src_contexts_googleauthcontext_googleauthcontexttype",
+      "src_contexts_googleauthcontext_googleauthprovider",
+      "src_contexts_googleauthcontext_shouldpersistauth",
+      "src_contexts_googleauthcontext_usegoogleauth",
+      "src_features_dashboard_dashboard",
+      "src_features_dashboard_dashboard_dashboard",
+      "src_features_dashboard_dashboard_test",
+      "src_features_expenses_newexpense",
+      "src_features_expenses_newexpense_expense_categories",
+      "src_features_expenses_newexpense_newexpense",
+      "src_features_onboarding_onboarding",
+      "src_features_onboarding_onboarding_onboarding",
+      "src_features_reservations_newreservation",
+      "src_features_reservations_newreservation_newreservation",
+      "src_features_settings_settings",
+      "src_features_settings_settings_settings",
+      "src_hooks_usedatasync",
+      "src_hooks_usedatasync_usedatasync",
+      "src_store_hooks",
+      "src_store_hooks_useappdispatch",
+      "src_store_hooks_useappselector"
+    ],
+    "4": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_es2020",
+      "ref_src",
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowimportingtsextensions",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_nofallthroughcasesinswitch",
+      "tsconfig_compileroptions_nounusedlocals",
+      "tsconfig_compileroptions_nounusedparameters",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_compileroptions_usedefineforclassfields",
+      "tsconfig_include",
+      "tsconfig_references"
+    ],
+    "5": [
+      "src_services_googlesheetsservice_googlesheetsservice",
+      "src_services_googlesheetsservice_googlesheetsservice_apirequest",
+      "src_services_googlesheetsservice_googlesheetsservice_constructor",
+      "src_services_googlesheetsservice_googlesheetsservice_createsheet",
+      "src_services_googlesheetsservice_googlesheetsservice_excelserialtodate",
+      "src_services_googlesheetsservice_googlesheetsservice_extractspreadsheetid",
+      "src_services_googlesheetsservice_googlesheetsservice_getinstance",
+      "src_services_googlesheetsservice_googlesheetsservice_initializesheets",
+      "src_services_googlesheetsservice_googlesheetsservice_parsedatevalue",
+      "src_services_googlesheetsservice_googlesheetsservice_parselocaldate",
+      "src_services_googlesheetsservice_googlesheetsservice_readexpenses",
+      "src_services_googlesheetsservice_googlesheetsservice_readpaidtaxmonths",
+      "src_services_googlesheetsservice_googlesheetsservice_readreservations",
+      "src_services_googlesheetsservice_googlesheetsservice_readsettings",
+      "src_services_googlesheetsservice_googlesheetsservice_setaccesstoken",
+      "src_services_googlesheetsservice_googlesheetsservice_sheetexists",
+      "src_services_googlesheetsservice_googlesheetsservice_sheethasdata",
+      "src_services_googlesheetsservice_googlesheetsservice_writeexpenses",
+      "src_services_googlesheetsservice_googlesheetsservice_writeheaders",
+      "src_services_googlesheetsservice_googlesheetsservice_writereservations",
+      "src_services_googlesheetsservice_googlesheetsservice_writesettings",
+      "src_services_googlesheetsservice_googlesheetsservice_writetaxdata"
+    ],
+    "6": [
+      "src_services_brazilianrentaltaxcalculator",
+      "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator",
+      "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_calculate2026reducer",
+      "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_calculatetax",
+      "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_constructor",
+      "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_findtaxbracket",
+      "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_getdeductionconstants",
+      "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator_gettaxbrackets",
+      "src_services_tests_brazilianrentaltaxcalculator2026_test",
+      "src_services_tests_brazilianrentaltaxcalculator_test",
+      "src_types_index_taxbracket",
+      "src_types_index_taxcalculator",
+      "src_types_index_taxcalculator_calculatetax"
+    ],
+    "7": [
+      "agents",
+      "brazilian_rental_tax_calculator",
+      "google_sheets_service",
+      "graphify",
+      "package_dependencies_react_i18next",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_vitest",
+      "react_i18next",
+      "store_middleware_sync_listener",
+      "tailwindcss",
+      "use_data_sync",
+      "vitest"
+    ],
+    "8": [
+      "eslint_js",
+      "eslint_plugin_react_refresh",
+      "package_devdependencies",
+      "package_devdependencies_eslint_js",
+      "package_devdependencies_eslint_plugin_react_refresh",
+      "package_devdependencies_tailwindcss_vite",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_typescript_eslint",
+      "tailwindcss_vite",
+      "types_react_dom",
+      "typescript_eslint"
+    ],
+    "9": [
+      "ref_vite_config_ts",
+      "tsconfig_node",
+      "tsconfig_node_compileroptions",
+      "tsconfig_node_compileroptions_allowsyntheticdefaultimports",
+      "tsconfig_node_compileroptions_composite",
+      "tsconfig_node_compileroptions_module",
+      "tsconfig_node_compileroptions_moduleresolution",
+      "tsconfig_node_compileroptions_skiplibcheck",
+      "tsconfig_node_compileroptions_strict",
+      "tsconfig_node_include"
+    ],
+    "10": [
+      "readme_brazilian_rental_tax",
+      "readme_expenses",
+      "readme_google_sheets",
+      "readme_reservations",
+      "readme_stayoo"
+    ],
+    "11": [
+      "check_config_google_oauth_configuration_checker",
+      "oauth_troubleshooting_google_oauth",
+      "oauth_troubleshooting_google_sheets_api",
+      "oauth_troubleshooting_vite_google_client_id"
+    ],
+    "12": [
+      "espenses_expense",
+      "espenses_expenses_month",
+      "espenses_expenses_slice",
+      "espenses_new_expense"
+    ],
+    "13": [
+      "opencode",
+      "opencode_instructions",
+      "opencode_schema",
+      "ref_agents_md"
+    ],
+    "14": [
+      "src_components_layout",
+      "src_components_layout_getcurrentmonth",
+      "src_components_layout_layout",
+      "src_components_layout_layoutprops"
+    ],
+    "15": [
+      "taxes_brazilian_rental_tax_calculator",
+      "taxes_calculate_monthly_tax",
+      "taxes_monthly_tax_summary",
+      "taxes_paid_tax_months"
+    ],
+    "16": [
+      "onboarding_data_sync",
+      "onboarding_google_sheets_service",
+      "onboarding_redux_store"
+    ],
+    "17": [
+      "package_devdependencies_typescript",
+      "serena_project_config",
+      "typescript"
+    ],
+    "18": [
+      "reservations_app_settings",
+      "reservations_new_reservation",
+      "reservations_reservation"
+    ],
+    "19": [
+      "context_next_reservation",
+      "context_paid_reservation"
+    ],
+    "20": [
+      "eslint",
+      "package_devdependencies_eslint"
+    ],
+    "21": [
+      "eslint_plugin_react_hooks",
+      "package_devdependencies_eslint_plugin_react_hooks"
+    ],
+    "22": [
+      "globals",
+      "package_devdependencies_globals"
+    ],
+    "23": [
+      "jsdom",
+      "package_devdependencies_jsdom"
+    ],
+    "24": [
+      "onboarding_google_auth_context",
+      "onboarding_google_authentication"
+    ],
+    "25": [
+      "package_devdependencies_postcss",
+      "postcss"
+    ],
+    "26": [
+      "package_devdependencies_testing_library_jest_dom",
+      "testing_library_jest_dom"
+    ],
+    "27": [
+      "package_devdependencies_testing_library_react",
+      "testing_library_react"
+    ],
+    "28": [
+      "package_devdependencies_testing_library_user_event",
+      "testing_library_user_event"
+    ],
+    "29": [
+      "package_devdependencies_types_react",
+      "types_react"
+    ],
+    "30": [
+      "package_devdependencies_vite",
+      "vite"
+    ],
+    "31": [
+      "package_devdependencies_vitejs_plugin_react",
+      "vitejs_plugin_react"
+    ],
+    "32": [
+      "package_devdependencies_vitest_ui",
+      "vitest_ui"
+    ],
+    "33": [
+      "prd_brazilian_rental_tax_calculator",
+      "prd_monthly_tax_summary"
+    ],
+    "34": [
+      "public_vite_vite",
+      "public_vite_vite_logo"
+    ],
+    "35": [
+      "readme_google_sheets_service",
+      "readme_use_data_sync"
+    ],
+    "36": [
+      "settings_app_settings",
+      "settings_google_sheet_id"
+    ],
+    "37": [
+      "src_assets_react",
+      "src_assets_react_react"
+    ],
+    "38": [
+      "docs_agents_domain_context_md"
+    ],
+    "39": [
+      "docs_agents_issue_tracker_local_markdown"
+    ],
+    "40": [
+      "docs_agents_triage_labels"
+    ],
+    "41": [
+      "eslint_config"
+    ],
+    "42": [
+      "index_content_security_policy"
+    ],
+    "43": [
+      "prd_expense"
+    ],
+    "44": [
+      "prd_google_sheets"
+    ],
+    "45": [
+      "prd_reservation"
+    ],
+    "46": [
+      "readme_google_oauth"
+    ],
+    "47": [
+      "reservations_reservations_month"
+    ],
+    "48": [
+      "settings_persist_auth"
+    ],
+    "49": [
+      "src_test_setup"
+    ],
+    "50": [
+      "src_vite_env_d"
+    ],
+    "51": [
+      "vite_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.0707070707070707,
+    "1": 0.14358974358974358,
+    "2": 0.06451612903225806,
+    "3": 0.16551724137931034,
+    "4": 0.08695652173913043,
+    "5": 0.18614718614718614,
+    "6": 0.2564102564102564,
+    "7": 0.16666666666666666,
+    "8": 0.18181818181818182,
+    "9": 0.2,
+    "10": 0.4,
+    "11": 0.5,
+    "12": 0.5,
+    "13": 0.5,
+    "14": 0.6666666666666666,
+    "15": 0.5,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
+    "18": 0.6666666666666666,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_services_googlesheetsservice_googlesheetsservice",
+      "label": "GoogleSheetsService",
+      "degree": 26
+    },
+    {
+      "id": "src_store_hooks_useappselector",
+      "label": "useAppSelector",
+      "degree": 18
+    },
+    {
+      "id": "src_utils_taxcalculations_formatmonth",
+      "label": "formatMonth()",
+      "degree": 16
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "src_store_hooks_useappdispatch",
+      "label": "useAppDispatch()",
+      "degree": 15
+    },
+    {
+      "id": "src_services_brazilianrentaltaxcalculator_brazilianrentaltaxcalculator",
+      "label": "BrazilianRentalTaxCalculator",
+      "degree": 11
+    },
+    {
+      "id": "src_utils_currency_formatcurrency",
+      "label": "formatCurrency()",
+      "degree": 11
+    },
+    {
+      "id": "src_features_taxes_taxes_taxes",
+      "label": "Taxes()",
+      "degree": 10
+    },
+    {
+      "id": "src_contexts_googleauthcontext_usegoogleauth",
+      "label": "useGoogleAuth()",
+      "degree": 9
+    },
+    {
+      "id": "src_utils_taxcalculations_groupreservationsbymonth",
+      "label": "groupReservationsByMonth()",
+      "degree": 8
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Google OAuth Configuration Checker",
+      "target": "VITE_GOOGLE_CLIENT_ID",
+      "source_files": [
+        "check-config.html",
+        "OAUTH_TROUBLESHOOTING.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "NewExpense()",
+      "target": "formatMonth()",
+      "source_files": [
+        "src/features/expenses/NewExpense.tsx",
+        "src/utils/taxCalculations.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "NewReservation()",
+      "target": "formatMonth()",
+      "source_files": [
+        "src/features/reservations/NewReservation.tsx",
+        "src/utils/taxCalculations.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "YearOverYearChart()",
+      "target": "formatCurrency()",
+      "source_files": [
+        "src/components/YearOverYearChart.tsx",
+        "src/utils/currency.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `YearOverYearChart()` unexpectedly reaches hub `formatCurrency()`"
+    },
+    {
+      "source": "ExpensesMonth()",
+      "target": "useAppDispatch()",
+      "source_files": [
+        "src/features/expenses/ExpensesMonth.tsx",
+        "src/store/hooks.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 3756,
+    "output": 5000
+  }
+}
