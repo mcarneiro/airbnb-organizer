@@ -33,6 +33,8 @@ export interface MonthlyTaxSummary {
   deduction: number;    // Tax deduction (dependent or simplified)
   taxableIncome: number;
   taxRate: number;      // Tax rate applied
+  taxBefore2026Reduction: number; // Tax after bracket deduction, before 2026 reduction
+  taxReduction2026: number; // 2026 reduction actually applied
   taxOwed: number;      // Tax amount to pay
   profit: number;       // Final profit after tax
   isPaid: boolean;      // Payment status
@@ -58,6 +60,8 @@ export interface TaxCalculator {
     deduction: number;
     taxableIncome: number;
     taxRate: number;
+    taxBefore2026Reduction: number;
+    taxReduction2026: number;
     taxOwed: number;
   };
 }

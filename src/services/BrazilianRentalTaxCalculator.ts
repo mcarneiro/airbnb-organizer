@@ -43,19 +43,25 @@ export class BrazilianRentalTaxCalculator implements TaxCalculator {
 
     // Step 3: Find applicable tax bracket and calculate base tax
     const bracket = this.findTaxBracket(taxableIncome);
-    const taxBeforeFloor = taxableIncome * bracket.rate - bracket.deduction;
-    let taxOwed = Math.max(taxBeforeFloor, 0);
+    const taxBefore2026Reduction = Math.max(
+      taxableIncome * bracket.rate - bracket.deduction,
+      0
+    );
+    let taxReduction2026 = 0;
 
     // Step 4: Apply 2026+ Reducer if applicable
     if (this.year >= 2026) {
       const reducer = this.calculate2026Reducer(liquidIncome);
-      taxOwed = Math.max(taxOwed - reducer, 0);
+      taxReduction2026 = Math.min(reducer, taxBefore2026Reduction);
     }
+    const taxOwed = taxBefore2026Reduction - taxReduction2026;
 
     return {
       deduction,
       taxableIncome,
       taxRate: bracket.rate,
+      taxBefore2026Reduction: Math.round(taxBefore2026Reduction * 100) / 100,
+      taxReduction2026: Math.round(taxReduction2026 * 100) / 100,
       taxOwed: Math.round(taxOwed * 100) / 100, // Round to 2 decimal places
     };
   }

@@ -110,6 +110,8 @@ export function calculateMonthlyTax(
     deduction: taxCalculation.deduction,
     taxableIncome: taxCalculation.taxableIncome,
     taxRate: taxCalculation.taxRate,
+    taxBefore2026Reduction: taxCalculation.taxBefore2026Reduction,
+    taxReduction2026: taxCalculation.taxReduction2026,
     taxOwed: taxCalculation.taxOwed,
     profit,
     isPaid,

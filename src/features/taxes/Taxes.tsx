@@ -221,9 +221,23 @@ export default function Taxes() {
                 </div>
 
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">{t('taxes.taxRate')}:</span>
+                  <span className="text-gray-600">{t('taxes.marginalTaxRate')}:</span>
                   <span className="font-semibold">{(selectedMonthData.taxRate * 100).toFixed(1)}%</span>
                 </div>
+
+                {selectedMonthData.taxReduction2026 > 0 && (
+                  <>
+                    <div className="flex justify-between py-2 border-b border-gray-100">
+                      <span className="text-gray-600">{t('taxes.taxBefore2026Reduction')}:</span>
+                      <span className="font-semibold">R$ {formatCurrency(selectedMonthData.taxBefore2026Reduction)}</span>
+                    </div>
+
+                    <div className="flex justify-between py-2 border-b border-gray-100">
+                      <span className="text-gray-600">{t('taxes.taxReduction2026')}:</span>
+                      <span className="font-semibold text-green-600">- R$ {formatCurrency(selectedMonthData.taxReduction2026)}</span>
+                    </div>
+                  </>
+                )}
 
                 <div className="flex justify-between py-2 border-b border-gray-200">
                   <span className="font-medium text-gray-700">{t('taxes.taxOwed')}:</span>
